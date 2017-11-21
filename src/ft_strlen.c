@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 11:54:10 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/27 16:40:39 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/20 18:21:19 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	return (ft_arraylen((void *)s));
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
