@@ -6,14 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 16:38:28 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/27 14:18:50 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/20 19:09:36 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../inc/../inc/libft.h"
+#include "../inc/libft.h"
 #include "../inc/get_next_line.h"
 
 static int		run_copy(char **line, t_fdb *data, int rv)

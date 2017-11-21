@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/20 18:19:14 by rhallste         ###   ########.fr        #
+#    Updated: 2017/11/20 19:07:41 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,7 +47,11 @@ MEM			=	ft_bzero					\
 				ft_memset					\
 				ft_memrealloc
 
-PRINTING	=	ft_putchar					\
+PRINTF		=	$(addprefix ft_printf/,		\
+				ft_printf)
+
+PRINTING	=	$(PRINTF)					\
+				ft_putchar					\
 				ft_putchar_fd				\
 				ft_putendl					\
 				ft_putendl_fd	 			\
