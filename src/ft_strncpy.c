@@ -6,13 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:00:02 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/05 15:29:57 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:16:27 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "../inc/libft.h"
 
-char	*ft_strncpy(char *dst, char *src, size_t len)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	char *dst_start;
 

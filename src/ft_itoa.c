@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 10:47:04 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/03 14:10:38 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:09:10 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char		*ft_itoa(int n)
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	len = (n < 0) ? ft_digitcount(n * -1) + 1 : ft_digitcount(n);
-	if (!(new = ft_strnew(len)))
+	len = (n < 0) ? ft_digitcount((UNSI)(n * -1)) + 1 : ft_digitcount((UNSI)n);
+	if (!(new = ft_strnew((size_t)len)))
 		return (NULL);
 	start = (n < 0);
 	if (n < 0)

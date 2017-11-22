@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 16:38:28 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/20 19:09:36 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:47:41 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../inc/libft.h"
 #include "../inc/get_next_line.h"
 
-static int		run_copy(char **line, t_fdb *data, int rv)
+static int		copy(char **line, t_fdb *data, int rv)
 {
 	char	*char_pos;
 	int		copy_len;
@@ -24,12 +24,12 @@ static int		run_copy(char **line, t_fdb *data, int rv)
 	size_t	old_len;
 
 	char_pos = ft_strchr(data->buff, '\n');
-	copy_len = (char_pos) ? (char_pos - data->buff) : rv;
-	old_len = data->line_len;
+	copy_len = (char_pos) ? (int)(char_pos - data->buff) : rv;
+	old_len = (size_t)data->line_len;
 	data->line_len += copy_len;
-	if (!(*line = ft_memrealloc(*line, data->line_len + 1, old_len)))
+	if (!(*line = ft_memrealloc(*line, (size_t)data->line_len + 1, old_len)))
 		return (-1);
-	ft_strncat(*line, data->buff, copy_len);
+	ft_strncat(*line, data->buff, (size_t)copy_len);
 	i = 0;
 	copy_len++;
 	while (data->buff[i] && data->buff[i + copy_len])
@@ -37,7 +37,7 @@ static int		run_copy(char **line, t_fdb *data, int rv)
 		data->buff[i] = data->buff[i + copy_len];
 		i++;
 	}
-	ft_bzero(data->buff + i, BUFF_SIZE - i);
+	ft_bzero(data->buff + i, (size_t)(BUFF_SIZE - i));
 	return ((char_pos != NULL));
 }
 
@@ -109,23 +109,23 @@ int				get_next_line(const int fd, char **line)
 {
 	static t_fdb	*first;
 	t_fdb			*d;
-	int				rv;
+	ssize_t			rv;
 
 	if (!(line) || fd < 0 || (!(d = find_fdb(&first, fd))))
 		return (-1);
 	*line = NULL;
-	if (ft_strlen(d->buff) > 0 && (rv = run_copy(line, d, ft_strlen(d->buff))))
-		return (rv);
+	if (ft_strlen(d->buff) > 0 && (rv = copy(line, d, (int)ft_strlen(d->buff))))
+		return ((int)rv);
 	if ((rv = read(fd, d->buff, BUFF_SIZE)) == -1 || (rv == 0 && *line == NULL))
 	{
 		free_fdb(&first, d);
-		return (rv);
+		return ((int)rv);
 	}
 	while (rv)
 	{
-		if (run_copy(line, d, rv))
+		if (copy(line, d, (int)rv))
 			return (1);
-		if ((rv = read(fd, d->buff, BUFF_SIZE)) == -1)
+		if ((rv = (int)read(fd, d->buff, BUFF_SIZE)) == -1)
 		{
 			free_fdb(&first, d);
 			return (-1);

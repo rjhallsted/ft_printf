@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/21 21:36:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:38:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ typedef struct		s_list
 
 # define MIN(a, b) ((a < b) ? a : b)
 # define MAX(a, b) ((a > b) ? a : b)
+# define UNSI unsigned int
+# define UNSL unsigned long
 
 int					ft_atoi(char const *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_digitcount(unsigned int n);
-int					ft_digitcount_base(unsigned int n, int base);
+int					ft_digitcount_base(unsigned int n, unsigned int base);
 void				ft_free_2d_array(void ***array, size_t size);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -38,7 +40,7 @@ int					ft_islower(int c);
 int					ft_isprint(int c);
 int					ft_isspace(int c);
 char				*ft_itoa(int n);
-char				*ft_itoa_base(int n, int base);
+char				*ft_itoa_base(int n, unsigned int base);
 int					ft_isupper(int c);
 t_list				*ft_lst_itemcpy(t_list *item);
 t_list				*ft_lst_swap(t_list **lst_start, int fi, int si);
@@ -73,7 +75,8 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
-int					ft_snprintf(char *str, size_t size, const char *format, ...);
+int					ft_snprintf(char *str, size_t size,
+								const char *format, ...);
 char				*ft_strcat(char *s1, char const *s2);
 int					ft_strcmp(char const *s1, char const *s2);
 char				*ft_strchr(char const *s, int c);

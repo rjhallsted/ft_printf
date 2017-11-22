@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:53:14 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/23 22:46:23 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:10:43 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 void	ft_striter(char *s, void (*f)(char *))
 {

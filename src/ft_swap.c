@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 15:59:21 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/29 16:00:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:25:45 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 void	ft_swap(int *a, int *b)
 {

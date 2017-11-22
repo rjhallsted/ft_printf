@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 14:40:31 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/09 16:44:47 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:25:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 int	ft_power(int base, int power)
 {

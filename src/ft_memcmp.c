@@ -6,11 +6,12 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 19:38:12 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/21 11:31:07 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 09:58:04 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "../inc/libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {

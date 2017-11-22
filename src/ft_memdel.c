@@ -6,10 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:16:47 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/23 22:37:46 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:00:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/libft.h"
 #include <stdlib.h>
 
 void	ft_memdel(void **ap)

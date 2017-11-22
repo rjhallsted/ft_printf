@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:37:43 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/23 22:41:17 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:10:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 void	ft_strclr(char *s)
 {

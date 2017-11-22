@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 19:01:29 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/20 19:08:23 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:04:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/libft.h"
 
 int	ft_printf(const char *format, ...)
 {

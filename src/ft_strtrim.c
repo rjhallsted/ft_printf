@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 09:47:48 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/23 22:57:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:22:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char		*ft_strtrim(char const *s)
 		while (isspace(*s))
 			s++;
 		start = (char *)s;
-		len = ft_strlen(s);
+		len = (UNSI)ft_strlen(s);
 		if (len == 0)
 			return (ft_strdup(""));
 		len--;

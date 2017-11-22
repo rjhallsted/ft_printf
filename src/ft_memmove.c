@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 18:55:02 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/21 11:25:04 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 10:02:38 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 
 void		*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void *save;
+	char		*dst_str;
+	const char	*src_str;
 
-	save = dst;
-	if (dst > src && dst - src < (long)len)
+	dst_str = dst;
+	src_str = dst;
+	if (dst_str > src_str && dst_str - src_str < (long)len)
 	{
 		while (len > 0)
 		{
-			*(char *)(dst + len - 1) = *(char *)(src + len - 1);
+			*(dst_str + len - 1) = *(src_str + len - 1);
 			len--;
 		}
 	}
 	else
 		ft_memcpy(dst, src, len);
-	return (save);
+	return (dst);
 }

@@ -6,12 +6,13 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/21 22:09:30 by rhallste         ###   ########.fr        #
+#    Updated: 2017/11/22 10:48:15 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		= 	libftprintf.a
 CC			=	gcc
+EXTRA_FLAGS =	-Weverything -Wno-cast-qual
 CFLAGS		=	-Wall -Werror -Wextra
 
 LIST		=	ft_lst_itemcpy				\
