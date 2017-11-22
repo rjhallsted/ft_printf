@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 00:18:15 by rhallste          #+#    #+#             */
-/*   Updated: 2017/10/03 11:00:50 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:37:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 size_t	ft_lstlen(t_list *item)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (item)

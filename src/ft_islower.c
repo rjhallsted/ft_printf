@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 18:15:14 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/18 18:51:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:39:30 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 int	ft_islower(int c)
 {

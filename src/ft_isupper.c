@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 18:14:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/18 18:53:10 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:40:15 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 int	ft_isupper(int c)
 {

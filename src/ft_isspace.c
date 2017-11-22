@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 19:38:26 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/21 14:17:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:39:45 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 int	ft_isspace(int c)
 {

@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_snprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/18 18:38:33 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/21 21:40:00 by rhallste         ###   ########.fr       */
+/*   Created: 2017/11/21 21:29:05 by rhallste          #+#    #+#             */
+/*   Updated: 2017/11/21 21:35:06 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include <stdlib.h>
+#include <stdarg.h>
 
-int	ft_isprint(int c)
+int	ft_snprintf(char *str, size_t size, const char *format, ...)
 {
-	return (c >= 32 && c <= 126);
+	va_list *ap;
+	int str_pos;
+
+	va_start(ap, format);
+	str_pos = 0;
+	while (*format && str_pos < size - 1;)
+	{
+		if (*format == '%')
+		{
+			format++;
+			//do things
+		}
+		else
+			str[str_pos] = *format;
+		format++;
+	}
+	return str_pos;
 }

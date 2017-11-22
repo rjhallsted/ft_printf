@@ -6,9 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 18:19:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/21 14:22:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:39:08 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/libft.h"
 
 int	ft_isdigit(int c)
 {

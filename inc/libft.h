@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/20 19:04:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:36:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
+int					ft_snprintf(char *str, size_t size, const char *format, ...);
 char				*ft_strcat(char *s1, char const *s2);
 int					ft_strcmp(char const *s1, char const *s2);
 char				*ft_strchr(char const *s, int c);

@@ -6,14 +6,13 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/20 19:07:41 by rhallste         ###   ########.fr        #
+#    Updated: 2017/11/21 21:59:12 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		= 	libftprintf.a
-
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -Weverything
 
 LIST		=	ft_lst_itemcpy				\
 				ft_lst_remove_if			\
