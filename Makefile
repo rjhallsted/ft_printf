@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/22 11:19:50 by rhallste         ###   ########.fr        #
+#    Updated: 2017/11/22 14:25:33 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -96,6 +96,7 @@ STR			=	$(SNPRINTF)					\
 				ft_strtrim					\
 				ft_tolower					\
 				ft_toupper					\
+				ft_uitoa
 
 UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\
