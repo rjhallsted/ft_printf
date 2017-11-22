@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/22 10:48:15 by rhallste         ###   ########.fr        #
+#    Updated: 2017/11/22 11:02:23 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,6 +50,9 @@ MEM			=	ft_bzero					\
 PRINTF		=	$(addprefix ft_printf/,		\
 				ft_printf)
 
+SNPRINTF	=	$(addprefix ft_snprintf/,	\
+				ft_snprintf)
+
 PRINTING	=	$(PRINTF)					\
 				ft_putchar					\
 				ft_putchar_fd				\
@@ -60,7 +63,8 @@ PRINTING	=	$(PRINTF)					\
 				ft_putstr					\
 				ft_putstr_fd				\
 
-STR			=	ft_atoi						\
+STR			=	$(SNPRINTF)					\
+				ft_atoi						\
 				ft_itoa						\
 				ft_itoa_base				\
 				ft_strcat					\
