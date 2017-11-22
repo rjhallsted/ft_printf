@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/22 10:58:52 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/22 11:20:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <stdarg.h>
 
 typedef struct		s_list
 {
@@ -27,6 +28,7 @@ typedef struct		s_list
 # define UNSI unsigned int
 # define UNSL unsigned long
 
+char				*ap_to_str(va_list ap, const char *format);
 int					ft_atoi(char const *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_digitcount(unsigned int n);

@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/22 11:02:23 by rhallste         ###   ########.fr        #
+#    Updated: 2017/11/22 11:19:50 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -51,7 +51,8 @@ PRINTF		=	$(addprefix ft_printf/,		\
 				ft_printf)
 
 SNPRINTF	=	$(addprefix ft_snprintf/,	\
-				ft_snprintf)
+				ft_snprintf					\
+				ap_to_str)
 
 PRINTING	=	$(PRINTF)					\
 				ft_putchar					\
