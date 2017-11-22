@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 18:47:11 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/21 21:57:50 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/21 21:59:57 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	size_t				i;
 
 	dst_str = (unsigned char *)dst;
-	src_str = (unsigned char *)src;
+	src_str = (const unsigned char *)src;
 	i = 0;
 	while (i < n)
 	{
