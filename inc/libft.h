@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/22 14:26:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/23 23:13:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 int					ft_snprintf(char *str, size_t size,
 								const char *format, ...);
+int					ft_vsnprintf(char *str, size_t size,
+								const char *format, va_list ap);
 char				*ft_strcat(char *s1, char const *s2);
 int					ft_strcmp(char const *s1, char const *s2);
 char				*ft_strchr(char const *s, int c);
