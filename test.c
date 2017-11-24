@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/23 23:53:49 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/24 00:15:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(void)
 	run_test("string: %s\n", "this");
 	run_test("Signed dec: %d, %D, %i\n", 2, 2, 2);
 	run_test("Unsigned dec: %u, %u\n", 3, 13244214);
-	run_test("char %c, %C\n", 'a', '\200');
+	run_test("char %c, %c\n", 'a', '\200');
 	run_test("Octal: %o, %O, %o\n", 1, 23, -64);
 	int a = 5;
 	run_test("pointer: %p, %p, %p\n", &a, &pt, &test);
