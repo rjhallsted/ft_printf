@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/23 22:49:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/23 22:58:23 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 int main(void)
 {
+	int pt = 12;
 //	char *test = "test string";
 	char *hold;
 	hold = ft_strnew(100);
@@ -54,8 +55,8 @@ int main(void)
 
  	hold = ft_strnew(100);
 	int a = 5;
-	printf("\e[34mpointer: %p\n", &a);
-	ft_snprintf(hold, 100, "pointer: %p\n", &a);
+	printf("\e[34mpointer: %p, %p, %p\n", &a, &pt, &hold);
+	ft_snprintf(hold, 100, "pointer: %p, %p, %p\n", &a, &pt, &hold);
 	printf("\e[35m%s\e[0m", hold);
 	free(hold);
 

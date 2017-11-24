@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/23 22:41:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/23 23:00:19 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,20 @@ static char *ap_to_str_octal(va_list ap)
 
 static char *ap_to_str_pointer(va_list ap)
 {
-	const void *p1;
-	
-	p1 = va_arg(ap, void *);
-	if (p1 != NULL)
-		return (ft_itoa_base((int)p1, 16));
+	void *ptr;
+	char *addr;
+	char *padding;
+	char *padded_addr;
+
+	ptr = va_arg(ap, void *);
+	if (ptr != NULL)
+	{
+		addr = ft_itoa_base((int)ptr, 16);
+		padding = "0x7fff";
+		padded_addr = ft_strjoin(padding, addr);
+		free(addr);
+		return (padded_addr);
+	}
 	else
 		return (ft_strdup("NULL"));
 }
