@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/23 22:58:23 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/23 23:01:38 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int main(void)
 	free(hold);
 
 	hold = ft_strnew(100);
-	printf("\e[34mhex: %x\n", 255);
-	ft_snprintf(hold, 100, "hex: %x\n", 255);
+	printf("\e[34mhex: %x, %X\n", 255, 36);
+	ft_snprintf(hold, 100, "hex: %x, %X\n", 255, 36);
 	printf("\e[35m%s\e[0m", hold);
 	free(hold);
 
