@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/23 23:25:45 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/23 23:53:49 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,86 +18,51 @@
 #define FT_COLOR "\e[35m"
 #define NORM_COLOR "\e[0m"
 
-void print_color(char *color, char *format, va_list ap)
+void print_lib(char *format, va_list ap)
 {
-	printf("%s", color);
+	printf("%s", LIB_COLOR);
 	vprintf(format, ap);
 	printf(NORM_COLOR);
 }
 
-void print_lib(char *format, ...)
+void print_ft(char *format, va_list ap)
+{
+	char *hold;
+	
+	hold = ft_strnew(100);
+	ft_vsnprintf(hold, 100, format, ap);
+	printf("%s%s%s", FT_COLOR, hold, NORM_COLOR);
+	free(hold);
+}
+
+void run_test(char *format, ...)
 {
 	va_list ap;
 
 	va_start(ap, format);
-	print_color(LIB_COLOR, format, ap);
+	print_lib(format, ap);
 	va_end(ap);
-}
-
-void print_ft(char *format, ...)
-{
-	va_list ap;
-
 	va_start(ap, format);
-	print_color(FT_COLOR, format, ap);
+	print_ft(format, ap);
 	va_end(ap);
 }
-
 
 
 int main(void)
 {
 	int pt = 12;
-//	char *test = "test string";
-	char *hold;
-	hold = ft_strnew(100);
-	print_lib("string: %s\n", "this");
-	ft_snprintf(hold, 100, "string: %s\n", "this");
-	print_ft("%s", hold);
-	free(hold);
-
-	hold = ft_strnew(100);
-	print_lib("Signed dec: %d, %D, %i\n", 2, 2, 2);
-	ft_snprintf(hold, 100, "Signed dec: %d, %D, %i\n", 2, 2, 2);
-	print_ft("%s", hold);
-	free(hold);
-
-	hold = ft_strnew(100);
-	print_lib("Unsigned dec: %u, %u\n", 3, 13244214);
-	ft_snprintf(hold, 100, "Unsigned dec: %u, %u\n", 3, 13244214);
-	print_ft("%s", hold);
-	free(hold);
-
-	hold = ft_strnew(100);
-	print_lib("char: %c, %c\n", 'a', '\200'); //libc printf doesn't support capital-C
-	ft_snprintf(hold, 100, "char: %c, %C\n", 'a', '\200');
-	print_ft("%s", hold);
-	free(hold);
-
- 	hold = ft_strnew(100);
-	print_lib("Octal: %o, %O, %o\n", 1, 23, -64);
-	ft_snprintf(hold, 100, "Octal: %o, %O, %o\n", 1, 23, -64);
-	print_ft("%s", hold);
-	free(hold);
-
- 	hold = ft_strnew(100);
+	char *test = ft_strnew(13);
+	
+	run_test("string: %s\n", "this");
+	run_test("Signed dec: %d, %D, %i\n", 2, 2, 2);
+	run_test("Unsigned dec: %u, %u\n", 3, 13244214);
+	run_test("char %c, %C\n", 'a', '\200');
+	run_test("Octal: %o, %O, %o\n", 1, 23, -64);
 	int a = 5;
-	print_lib("pointer: %p, %p, %p\n", &a, &pt, &hold);
-	ft_snprintf(hold, 100, "pointer: %p, %p, %p\n", &a, &pt, &hold);
-	print_ft("%s", hold);
-	free(hold);
+	run_test("pointer: %p, %p, %p\n", &a, &pt, &test);
+	run_test("hex: %x, %X\n", 255, 36);
+	run_test("Percent: %%\n");
 
-	hold = ft_strnew(100);
-	print_lib("hex: %x, %X\n", 255, 36);
-	ft_snprintf(hold, 100, "hex: %x, %X\n", 255, 36);
-	print_ft("%s", hold);
-	free(hold);
-
-	hold = ft_strnew(100);
-	print_lib("Percent: %%\n");
-	ft_snprintf(hold, 100, "Percent: %%\n");
-	print_ft("%s", hold);
-	free(hold);
-
+	free(test);
 	return (0);
 }
