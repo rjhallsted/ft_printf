@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/25 00:41:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 01:12:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static char *ap_to_str_char(va_list ap, int arg_type)
 	str = ft_strnew(1);
 	//char is to promotable to int, thus we use int below. Will need
 	//to protect against things a bit.
+	if (arg_type == TYPE_CHAR || arg_type == TYPE_UCHAR)
+		arg_type = TYPE_INT;
 	ptr = (unsigned char *)get_arg(ap, arg_type);
 	str[0] = *ptr;
 	free(ptr);
@@ -131,39 +133,69 @@ static char *ap_to_str_percent(void)
 	return (ft_strdup("%"));
 }
 
-static void *get_input_format_func(char c)
+static void *get_input_format_func(const char *f)
 {
-	if (c == 's' || c == 'S')
+	if (*f == 's' || *f == 'S')
 		return (&ap_to_str_str);
-	else if (c == 'p')
+	else if (*f == 'p')
 		return (&ap_to_str_pointer);
-	else if (c == 'd' || c == 'D' || c == 'i')
+	else if (*f == 'd' || *f == 'D' || *f == 'i')
 	 	return (&ap_to_str_sdec);
-	else if (c == 'o' || c == 'O')
+	else if (*f == 'o' || *f == 'O')
 		return (&ap_to_str_octal);
-	else if (c == 'u' || c == 'U')
+	else if (*f == 'u' || *f == 'U')
 	 	return (&ap_to_str_udec);
-	else if (c == 'c' || c == 'C')
+	else if (*f == 'c' || *f == 'C')
 		return (*ap_to_str_char);
-	else if (c == 'x' || c == 'X')
+	else if (*f == 'x' || *f == 'X')
 		return (&ap_to_str_hex);
-	else if (c == '%')
+	else if (*f == '%')
 		return (&ap_to_str_percent);
 	return (NULL);
 }
 
-static int get_conversion_type(char c)
+static int get_conversion_type(const char *f)
 {
-	if (c == 's' || c == 'S')
+	int next_type;
+	if (*f == 'h')
+	{
+		if (*(f + 1) == 'h')
+			return (TYPE_UCHAR);
+		else
+			return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_USH_INT : TYPE_SH_INT);
+	}
+	if (*f == 'l')
+	{
+		if (*(f + 1) == 'l')
+			return ((get_conversion_type(f + 2) == TYPE_UINT) ? TYPE_ULL_INT : TYPE_LL_INT);
+		else
+		{
+			next_type = get_conversion_type(f + 1);
+			if (next_type == TYPE_UINT)
+				return (TYPE_UL_INT);
+			if (next_type == TYPE_INT)
+				return (TYPE_L_INT);
+			if (next_type == TYPE_CHAR)
+				return (TYPE_WINT);
+			if (next_type == TYPE_STR)
+				return (TYPE_WCHAR);
+		}
+	}
+	if (*f == 'j')
+		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_UINTMAX : TYPE_INTMAX);
+	if (*f == 'z')
+		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_SIZET : TYPE_SSIZET);
+	if (*f == 's' || *f == 'S')
 		return (TYPE_STR);
-	if (c == 'p')
+	if (*f == 'p')
 		return (TYPE_PTR);
-	if (c == 'd' || c == 'D' || c == 'i'
-		|| c == 'c' || c == 'C')
+	if (*f == 'd' || *f == 'D' || *f == 'i')
 		return (TYPE_INT);
-	if (c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X')
+	if (*f == 'c' || *f == 'C')
+		return (TYPE_CHAR);
+	if (*f == 'o' || *f == 'O' || *f == 'u' || *f == 'U' || *f == 'x' || *f == 'X')
 		return (TYPE_UINT);
-	if (c == '%')
+	if (*f == '%')
 		return (TYPE_INT);
 	return (0);
 }
@@ -173,8 +205,8 @@ static char *get_field(va_list ap, const char *format)
 	int type;
 	char *(*func)(va_list, int);
 
-	type = get_conversion_type(*format);
-	func = get_input_format_func(*format);
+	type = get_conversion_type(format);
+	func = get_input_format_func(format);
 	return (func(ap, type));
 }
 
