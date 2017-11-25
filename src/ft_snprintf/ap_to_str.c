@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/24 01:29:04 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 00:41:55 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,19 +168,33 @@ static int get_conversion_type(char c)
 	return (0);
 }
 
-char *ap_to_str(va_list ap, const char *format)
+static char *get_field(va_list ap, const char *format)
 {
-	//determine expected type.
-	//call va_arg appropriately
-	//call appropriate conversion to string function
-	//return string
-	char	*(*func)(va_list, int);
-	int		type;
+	int type;
+	char *(*func)(va_list, int);
 
-	func = get_input_format_func(*format);
 	type = get_conversion_type(*format);
-	if (func == NULL || type == 0)
-		return (ft_strnew(0));
-	else
-		return (func(ap, type));
+	func = get_input_format_func(*format);
+	return (func(ap, type));
+}
+
+int get_format_spec_len(const char *format)
+{
+	format++;
+	return (1);
+}
+
+int ap_to_str(char *str, va_list ap, const char *format)
+{
+	char	*field;
+
+	//flags
+	//field width
+	//period then precision
+	//length modifier
+	//conversion
+	field = get_field(ap, format);
+	ft_strncat(str, field, ft_strlen(field));
+	free(field);
+	return (get_format_spec_len(format));
 }

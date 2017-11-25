@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/24 01:15:03 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 00:23:18 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 enum types {
 	TYPE_INT = 1,
-	TYPE_UINT = 2,
-	TYPE_STR = 3,
-	TYPE_PTR = 4	
+	TYPE_UINT,
+	TYPE_SH_INT,
+	TYPE_L_INT,
+	TYPE_WINT,
+	TYPE_STR,
+	TYPE_WCHAR,
+	TYPE_INTMAX,
+	TYPE_SIZET,
+	TYPE_PTR 
 };
 
 #endif

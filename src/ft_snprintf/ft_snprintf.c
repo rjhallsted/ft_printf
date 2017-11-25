@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 21:29:05 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/23 23:12:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 00:47:07 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,19 @@
 int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 {
 	size_t	str_pos;
-	char	*field;
-
+	
+	ft_bzero(str, size);
 	str_pos = 0;
 	while (*format && str_pos < size - 1)
 	{
 		if (*format == '%')
 		{
 			format++;
-			//flags
-			//field width
-			//period then precision
-			//length modifier
-			//conversion
-			field = ap_to_str(ap, format);
-			ft_strncat(str, field, ft_strlen(field));
-			str_pos += ft_strlen(field) - 1;
-			free(field);
+			format += ap_to_str(str, ap, format);
+			str_pos = ft_strlen(str);
 		}
 		else
-			str[str_pos] = *format;
-		format++;
-		str_pos++;
+			str[str_pos++] = *format++;
 	}
 	return str_pos;
 }
