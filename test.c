@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/24 00:15:53 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 15:34:55 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int main(void)
 	run_test("hex: %x, %X\n", 255, 36);
 	run_test("Percent: %%\n");
 
+	run_test("Char->Int: %hhd\n", 'a');
+	
 	free(test);
 	return (0);
 }

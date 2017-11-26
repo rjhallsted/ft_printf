@@ -6,13 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 21:29:05 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/25 00:47:07 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 16:36:11 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
+#include "../../inc/ft_printf.h"
 
 #include <stdio.h>
 	
@@ -27,7 +28,7 @@ int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 		if (*format == '%')
 		{
 			format++;
-			format += ap_to_str(str, ap, format);
+			format += ft_vsnprintf_ap_to_str(str, ap, format);
 			str_pos = ft_strlen(str);
 		}
 		else

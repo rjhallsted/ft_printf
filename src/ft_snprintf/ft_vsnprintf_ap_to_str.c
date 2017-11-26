@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/25 01:12:32 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/11/25 16:22:32 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdarg.h>
 #include "../../inc/libft.h"
 #include "../../inc/ft_printf.h"
+
+#include <stdio.h>
 
 static void *get_arg(va_list ap, int type)
 {
@@ -75,6 +77,7 @@ static char *ap_to_str_char(va_list ap, int arg_type)
 	unsigned char	*ptr;
 	char			*str;
 	
+	printf("in func\n");	
 	str = ft_strnew(1);
 	//char is to promotable to int, thus we use int below. Will need
 	//to protect against things a bit.
@@ -135,6 +138,8 @@ static char *ap_to_str_percent(void)
 
 static void *get_input_format_func(const char *f)
 {
+	if (*f == 'h' || *f == 'l' || *f == 'j' || *f == 'z')
+		return (get_input_format_func(f + 1));
 	if (*f == 's' || *f == 'S')
 		return (&ap_to_str_str);
 	else if (*f == 'p')
@@ -206,7 +211,9 @@ static char *get_field(va_list ap, const char *format)
 	char *(*func)(va_list, int);
 
 	type = get_conversion_type(format);
+	printf("Got conversion type: %d\n", type);
 	func = get_input_format_func(format);
+	printf("Got function: %p\n", func);
 	return (func(ap, type));
 }
 
@@ -216,7 +223,7 @@ int get_format_spec_len(const char *format)
 	return (1);
 }
 
-int ap_to_str(char *str, va_list ap, const char *format)
+int ft_vsnprintf_ap_to_str(char *str, va_list ap, const char *format)
 {
 	char	*field;
 
