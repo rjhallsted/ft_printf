@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/25 17:16:10 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/11/29 18:56:29 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void *get_arg(va_list ap, int type)
 	int				*int_val;
 	unsigned int	*uint_val;
 	
-	if (type == TYPE_INT)
+	if (type == TYPE_INT || type == TYPE_CHAR)
 	{
 		int_val = malloc(sizeof(int));
 		*int_val = va_arg(ap, int);
 		return ((void *)int_val);
 	}
-	else if (type == TYPE_UINT)
+	else if (type == TYPE_UINT || type == TYPE_UCHAR)
 	{
 		uint_val = malloc(sizeof(unsigned int));
 		*uint_val = va_arg(ap, unsigned int);
@@ -211,16 +211,16 @@ static char *get_field(va_list ap, const char *format)
 	char *(*func)(va_list, int);
 
 	type = get_conversion_type(format);
-	printf("Got conversion type: %d\n", type);
 	func = get_input_format_func(format);
-	printf("Got function: %p\n", func);
 	return (func(ap, type));
 }
 
 int get_format_spec_len(const char *format)
 {
-	format++;
-	return (1);
+	if (*format == 'h' || *format == 'l' || *format == 'j' || *format == 'z')
+		return (1 + get_format_spec_len(format + 1));
+	else
+		return (1);
 }
 
 int ft_vsnprintf_ap_to_str(char *str, va_list ap, const char *format)
