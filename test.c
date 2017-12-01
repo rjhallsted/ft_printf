@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/25 15:34:55 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:56:52 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ int main(void)
 	run_test("Percent: %%\n");
 
 	run_test("Char->Int: %hhd\n", 'a');
-	
+	run_test("UChar->Uint: %hhu\n", 'a');
+	run_test("Short->Int: %hd\n", (short)32);
+	run_test("Ushort->Uint: %hu\n", (unsigned short)32);
+
 	free(test);
 	return (0);
 }

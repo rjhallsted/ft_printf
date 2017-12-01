@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/29 18:56:29 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:56:44 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void *get_arg(va_list ap, int type)
 {
 	int				*int_val;
 	unsigned int	*uint_val;
+	short int		*sh_int_val;
+	unsigned short int *ush_int_val;
 	
 	if (type == TYPE_INT || type == TYPE_CHAR)
 	{
@@ -33,6 +35,18 @@ static void *get_arg(va_list ap, int type)
 		uint_val = malloc(sizeof(unsigned int));
 		*uint_val = va_arg(ap, unsigned int);
 		return ((void *)uint_val);
+	}
+	else if (type == TYPE_SH_INT)
+	{
+		sh_int_val = get_arg(ap, TYPE_INT);
+		*sh_int_val = (short int)*sh_int_val;
+		return ((void *)sh_int_val);
+	}
+	else if (type == TYPE_USH_INT)
+	{
+		ush_int_val = get_arg(ap, TYPE_UINT);
+		*ush_int_val = (unsigned short int)*ush_int_val;
+		return ((void *)ush_int_val);
 	}
 	else if (type == TYPE_STR)
 		return ((va_arg(ap, char *)));
