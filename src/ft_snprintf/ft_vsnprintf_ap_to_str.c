@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 12:32:04 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/02 12:46:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 13:02:40 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,29 @@ static void *get_input_format_func(const char *f)
 	return (NULL);
 }
 
+static int conversion_type_l_switch(int next_type)
+{
+	if (next_type == TYPE_UINT)
+		return (TYPE_UL_INT);
+	if (next_type == TYPE_INT)
+		return (TYPE_L_INT);
+	if (next_type == TYPE_CHAR)
+		return (TYPE_WINT);
+	if (next_type == TYPE_STR)
+		return (TYPE_WCHAR);
+	return (0);
+}
+
 static int get_conversion_type(const char *f)
 {
-	int next_type;
-	if (*f == 'h')
-	{
-		if (*(f + 1) == 'h')
-			return (TYPE_UCHAR);
-		else
-			return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_USH_INT : TYPE_SH_INT);
-	}
-	if (*f == 'l')
-	{
-		if (*(f + 1) == 'l')
-			return ((get_conversion_type(f + 2) == TYPE_UINT) ? TYPE_ULL_INT : TYPE_LL_INT);
-		else
-		{
-			next_type = get_conversion_type(f + 1);
-			if (next_type == TYPE_UINT)
-				return (TYPE_UL_INT);
-			if (next_type == TYPE_INT)
-				return (TYPE_L_INT);
-			if (next_type == TYPE_CHAR)
-				return (TYPE_WINT);
-			if (next_type == TYPE_STR)
-				return (TYPE_WCHAR);
-		}
-	}
+	if (*f == 'h' && *(f + 1) == 'h')
+		return (TYPE_UCHAR);
+	else if (*f == 'h')
+		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_USH_INT : TYPE_SH_INT);
+	if (*f == 'l' && *(f + 1) == 'l')
+		return ((get_conversion_type(f + 2) == TYPE_UINT) ? TYPE_ULL_INT : TYPE_LL_INT);
+	else if (*f == 'l')
+		return (conversion_type_l_switch(get_conversion_type(f + 1)));
 	if (*f == 'j')
 		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_UINTMAX : TYPE_INTMAX);
 	if (*f == 'z')
@@ -79,8 +75,8 @@ static int get_conversion_type(const char *f)
 		return (TYPE_CHAR);
 	if (*f == 'o' || *f == 'O' || *f == 'u' || *f == 'U' || *f == 'x' || *f == 'X')
 		return (TYPE_UINT);
-	if (*f == '%')
-		return (TYPE_INT);
+//	if (*f == '%')
+//		return (TYPE_INT);
 	return (0);
 }
 
