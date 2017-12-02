@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/11/29 18:54:32 by suvitiel         ###   ########.fr        #
+#    Updated: 2017/12/01 15:47:55 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -56,7 +56,8 @@ SNPRINTF	=	$(addprefix ft_snprintf/,	\
 				type_funcs/ints				\
 				type_funcs/ints2			\
 				type_funcs/ints3			\
-				type_funcs/other			)
+				type_funcs/other			\
+				type_funcs/dispatch			)
 
 PRINTING	=	$(PRINTF)					\
 				ft_putchar					\

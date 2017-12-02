@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/30 17:56:44 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:16:03 by suvitiel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,59 +17,24 @@
 
 #include <stdio.h>
 
-static void *get_arg(va_list ap, int type)
-{
-	int				*int_val;
-	unsigned int	*uint_val;
-	short int		*sh_int_val;
-	unsigned short int *ush_int_val;
-	
-	if (type == TYPE_INT || type == TYPE_CHAR)
-	{
-		int_val = malloc(sizeof(int));
-		*int_val = va_arg(ap, int);
-		return ((void *)int_val);
-	}
-	else if (type == TYPE_UINT || type == TYPE_UCHAR)
-	{
-		uint_val = malloc(sizeof(unsigned int));
-		*uint_val = va_arg(ap, unsigned int);
-		return ((void *)uint_val);
-	}
-	else if (type == TYPE_SH_INT)
-	{
-		sh_int_val = get_arg(ap, TYPE_INT);
-		*sh_int_val = (short int)*sh_int_val;
-		return ((void *)sh_int_val);
-	}
-	else if (type == TYPE_USH_INT)
-	{
-		ush_int_val = get_arg(ap, TYPE_UINT);
-		*ush_int_val = (unsigned short int)*ush_int_val;
-		return ((void *)ush_int_val);
-	}
-	else if (type == TYPE_STR)
-		return ((va_arg(ap, char *)));
-	else if (type == TYPE_PTR)
-		return ((va_arg(ap, void *)));
-	else
-		return (NULL);
-}
-
 static char *ap_to_str_str(va_list ap, int arg_type)
 {
+	char *(*func)(va_list);
 	char *str;
 
-	str = (char *)get_arg(ap, arg_type);
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	str = func(ap);
 	return (ft_strdup(str));
 }
 
 static char *ap_to_str_sdec(va_list ap, int arg_type)
 {
+	void	*(*func)(va_list);
 	int		*ptr;
 	char	*str;
-	
-	ptr = (int *)get_arg(ap, arg_type);
+
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	ptr = (int *)func(ap);
 	str = ft_itoa(*ptr);
 	free(ptr);
 	return (str);
@@ -77,56 +42,54 @@ static char *ap_to_str_sdec(va_list ap, int arg_type)
 
 static char *ap_to_str_udec(va_list ap, int arg_type)
 {
-	unsigned int	*ptr;
-	char			*str;
+	unsigned int	(*func)(va_list);
+	unsigned int	val;
 
-	ptr = (unsigned int *)get_arg(ap, arg_type);
-	str = ft_uitoa(*ptr);
-	free(ptr);
-	return (str);
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	val = func(ap);
+	return (ft_uitoa(val));
 }
 
 static char *ap_to_str_char(va_list ap, int arg_type)
 {
-	unsigned char	*ptr;
+	int				(*func)(va_list);
 	char			*str;
 	
-	printf("in func\n");	
 	str = ft_strnew(1);
 	//char is to promotable to int, thus we use int below. Will need
 	//to protect against things a bit.
 	if (arg_type == TYPE_CHAR || arg_type == TYPE_UCHAR)
 		arg_type = TYPE_INT;
-	ptr = (unsigned char *)get_arg(ap, arg_type);
-	str[0] = *ptr;
-	free(ptr);
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	str[0] = (unsigned char)func(ap);
 	return (str);
 }
 
 static char *ap_to_str_octal(va_list ap, int arg_type)
 {
-	unsigned int	*ptr;
+	unsigned int	(*func)(va_list);
+	unsigned int	val;
 	char			*str;
 
-	ptr = (unsigned int *)get_arg(ap, arg_type);
-	str = ft_itoa_base(*ptr, 8);
-	free(ptr);
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	val = func(ap);
+	str = ft_itoa_base(val, 8);
 	return (str);
 }
 
 static char *ap_to_str_pointer(va_list ap, int arg_type)
 {
+	void *(*func)(va_list);
 	void *ptr;
 	char *addr;
-	char *padding;
 	char *padded_addr;
 
-	ptr = get_arg(ap, arg_type);
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	ptr = func(ap);
 	if (ptr != NULL)
 	{
 		addr = ft_itoa_base((int)ptr, 16);
-		padding = "0x7fff";
-		padded_addr = ft_strjoin(padding, addr);
+		padded_addr = ft_strjoin("0x7fff", addr);
 		free(addr);
 		return (padded_addr);
 	}
@@ -136,13 +99,12 @@ static char *ap_to_str_pointer(va_list ap, int arg_type)
 
 static char *ap_to_str_hex(va_list ap, int arg_type)
 {
-	unsigned int	*ptr;
-	char			*str;
+	unsigned int	(*func)(va_list);
+	unsigned int	val;
 
-	ptr = (unsigned int *)get_arg(ap, arg_type);
-	str = ft_itoa_base(*ptr, 16);
-	free(ptr);
-	return (str);
+	func = ft_vsnprintf_func_dispatch(arg_type);
+	val = func(ap);
+	return (ft_itoa_base(val, 16));
 }
 
 static char *ap_to_str_percent(void)

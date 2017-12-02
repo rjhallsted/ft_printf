@@ -6,7 +6,7 @@
 /*   By: suvitiel <suvitiel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 16:19:26 by suvitiel          #+#    #+#             */
-/*   Updated: 2017/11/25 16:43:06 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:21:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ uintmax_t				ft_vsnprintf_get_uintmax(va_list ap)
 	return (va_arg(ap, uintmax_t));
 }
 
-size_t					ft_vsnprintf_get_sizet(va_list ap)
+size_t					ft_vsnprintf_get_size_t(va_list ap)
 {
 	return (va_arg(ap, size_t));
 }
 
-ssize_t					ft_vsnprintf_get_ssizet(va_list ap)
+ssize_t					ft_vsnprintf_get_ssize_t(va_list ap)
 {
 	return (va_arg(ap, ssize_t));
 }
