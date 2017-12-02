@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 11:18:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/01 16:16:03 by suvitiel         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:32:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,11 @@ static char *ap_to_str_str(va_list ap, int arg_type)
 
 static char *ap_to_str_sdec(va_list ap, int arg_type)
 {
-	void	*(*func)(va_list);
-	int		*ptr;
+	int		(*func)(va_list);
 	char	*str;
 
 	func = ft_vsnprintf_func_dispatch(arg_type);
-	ptr = (int *)func(ap);
-	str = ft_itoa(*ptr);
-	free(ptr);
+	str = ft_itoa(func(ap));
 	return (str);
 }
 
