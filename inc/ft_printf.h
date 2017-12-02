@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/01 16:17:34 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 12:50:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include <stdarg.h>
 
 int						ft_vsnprintf_ap_to_str(char *str, va_list ap, const char *format);
+char					*ft_vsnprintf_ap_to_str_char(va_list ap, int arg_type);
+char					*ft_vsnprintf_ap_to_str_hex(va_list ap, int arg_type);
+char					*ft_vsnprintf_ap_to_str_octal(va_list ap, int arg_type);
+char					*ft_vsnprintf_ap_to_str_percent(void);
+char					*ft_vsnprintf_ap_to_str_ptr(va_list ap, int arg_type);
+char					*ft_vsnprintf_ap_to_str_sdec(va_list ap, int arg_type);
+char					*ft_vsnprintf_ap_to_str_str(va_list ap, int arg_type);
+char					*ft_vsnprintf_ap_to_str_udec(va_list ap, int arg_type);
 void					*ft_vsnprintf_func_dispatch(int type);
 int						ft_vsnprintf_get_int(va_list ap);
 unsigned int			ft_vsnprintf_get_uint(va_list ap);
