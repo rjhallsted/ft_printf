@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 12:32:04 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/02 13:02:40 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 14:50:05 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,61 @@ static void *get_input_format_func(const char *f)
 	return (NULL);
 }
 
-static int conversion_type_l_switch(int next_type)
+static int conv_type_search(char *formats[20], const char *f)
 {
-	if (next_type == TYPE_UINT)
-		return (TYPE_UL_INT);
-	if (next_type == TYPE_INT)
-		return (TYPE_L_INT);
-	if (next_type == TYPE_CHAR)
-		return (TYPE_WINT);
-	if (next_type == TYPE_STR)
-		return (TYPE_WCHAR);
+	char spec[4];
+	int i;
+
+	ft_strncpy(spec, f, 3);
+	spec[3] = '\0';
+	i = 0;
+	while (i <= TYPE_LL_INT)
+	{
+		if (ft_strstr(formats[i], spec))
+			return (i);
+		i++;
+	}
+	spec[2] = '\0';
+	while (i <= TYPE_SSIZET)
+	{
+		if (ft_strstr(formats[i], spec))
+			return (i);
+		i++;
+	}
+	spec[1] = '\0';
+	while (i <= TYPE_CHAR)
+	{
+		if (ft_strstr(formats[i], spec))
+			return (i);
+		i++;
+	}
 	return (0);
 }
 
-static int get_conversion_type(const char *f)
+static int conv_type(const char *f)
 {
-	if (*f == 'h' && *(f + 1) == 'h')
-		return (TYPE_UCHAR);
-	else if (*f == 'h')
-		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_USH_INT : TYPE_SH_INT);
-	if (*f == 'l' && *(f + 1) == 'l')
-		return ((get_conversion_type(f + 2) == TYPE_UINT) ? TYPE_ULL_INT : TYPE_LL_INT);
-	else if (*f == 'l')
-		return (conversion_type_l_switch(get_conversion_type(f + 1)));
-	if (*f == 'j')
-		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_UINTMAX : TYPE_INTMAX);
-	if (*f == 'z')
-		return ((get_conversion_type(f + 1) == TYPE_UINT) ? TYPE_SIZET : TYPE_SSIZET);
-	if (*f == 's' || *f == 'S')
-		return (TYPE_STR);
-	if (*f == 'p')
-		return (TYPE_PTR);
-	if (*f == 'd' || *f == 'D' || *f == 'i')
-		return (TYPE_INT);
-	if (*f == 'c' || *f == 'C')
-		return (TYPE_CHAR);
-	if (*f == 'o' || *f == 'O' || *f == 'u' || *f == 'U' || *f == 'x' || *f == 'X')
-		return (TYPE_UINT);
-//	if (*f == '%')
-//		return (TYPE_INT);
-	return (0);
+	char *formats[20];
+
+	formats[TYPE_ULL_INT] = "llo,llO,llu,llU,llx,llX";
+	formats[TYPE_LL_INT] = "lld,llD,lli";
+	formats[TYPE_UCHAR] = "hh";
+	formats[TYPE_USH_INT] = "ho,hO,hu,hU,hx,hX";
+	formats[TYPE_SH_INT] = "hd,hD,hi";
+	formats[TYPE_UL_INT] = "lo,lO,lu,lU,lx,lX";
+	formats[TYPE_L_INT] = "ld,lD,li";
+	formats[TYPE_WINT] = "lc,lC";
+	formats[TYPE_WCHAR] = "ls,lS";
+	formats[TYPE_UINTMAX] = "jo,jO,ju,jU,jx,jX";
+	formats[TYPE_INTMAX] = "jd,jD,ji";
+	formats[TYPE_SIZET] = "zo,zO,zu,zU,zx,zX";
+	formats[TYPE_SSIZET] = "zd,zD,zi";
+	formats[TYPE_STR] = "s,S";
+	formats[TYPE_PTR] = "p";
+	formats[TYPE_UINT] = "o,O,u,U,x,X";
+	formats[TYPE_INT] = "d,D,i";
+	formats[TYPE_CHAR] = "c,C";
+
+	return (conv_type_search(formats, f));
 }
 
 static char *get_field(va_list ap, const char *format)
@@ -85,7 +100,7 @@ static char *get_field(va_list ap, const char *format)
 	int type;
 	char *(*func)(va_list, int);
 
-	type = get_conversion_type(format);
+	type = conv_type(format);
 	func = get_input_format_func(format);
 	return (func(ap, type));
 }

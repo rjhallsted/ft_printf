@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/02 12:50:56 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 14:40:46 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ size_t					ft_vsnprintf_get_size_t(va_list ap);
 void					*ft_vsnprintf_get_ptr(va_list ap);
 
 enum types {
-	TYPE_INT,
-	TYPE_UINT,
-	TYPE_SH_INT,
-	TYPE_USH_INT,
-	TYPE_L_INT,
-	TYPE_UL_INT,
-	TYPE_LL_INT,
 	TYPE_ULL_INT,
-	TYPE_WINT,
-	TYPE_CHAR,
+	TYPE_LL_INT,
 	TYPE_UCHAR,
-	TYPE_STR,
+	TYPE_USH_INT,
+	TYPE_SH_INT,
+	TYPE_UL_INT,
+	TYPE_L_INT,
 	TYPE_WCHAR,
-	TYPE_INTMAX,
+	TYPE_WINT,
 	TYPE_UINTMAX,
-	TYPE_SSIZET,
+	TYPE_INTMAX,
 	TYPE_SIZET,
-	TYPE_PTR 
+	TYPE_SSIZET,
+	TYPE_STR,
+	TYPE_PTR,
+	TYPE_UINT,
+	TYPE_INT,
+	TYPE_CHAR,
 };
 
 #endif
