@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:53:19 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/02 16:24:11 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 16:54:43 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int main(void)
 	run_test("Int:\t%d, %i\n", 12, -31);
 	run_test("Uint:\t%u\n", -12);
 	run_test("Ptr:\t%p\n", &test);
-	run_test("Str:\t%s, %S\n", "red", "blue");
+	run_test("Str:\t%s\n", "red");
 	run_test("Ssize_t:\t%zd, %zi\n", 12, -12);
-	run_test("Size_t:\t%zo, %zu, %zx, %zX\n", 12, 32, 32, 49);
+	run_test("Size_t:\t%zo, %zu, %zx, %zX\n", 12, -32, 32, 49);
 	run_test("IntMax:\t%jd, %ji\n", 12334153213541, -12341341234143);
 	run_test("UintMax:\t%jo, %ju, %jx, %jX\n", 123, 21451, 1234, 1342351511);
 	//wchar
@@ -67,7 +67,7 @@ int main(void)
 	run_test("ULint:\t%lo, %O, %lu, %U, %lx, %lX\n", 132, 123412415, 124151553, 15135235, 12414, 1315151255);
 	run_test("Shint:\t%hd, %hi\n", 123, -124);
 	run_test("UShint:\t%ho, %hu, %hx, %hX\n", 124124, 1241, 124, 1234);
-	run_test("Uchar:\t%hh\n", 'a');
+	run_test("Uchar:\t%hhc\n", 'a');
 	run_test("LLint:\t%lld, %lli\n", 1234567, -123425325);
 	run_test("ULLint:\t%llo, %llu, %llx, %llX\n", 12, 123412342134, 1341243214, 152353151313);
 	

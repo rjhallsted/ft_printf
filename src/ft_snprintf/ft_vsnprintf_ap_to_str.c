@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 12:32:04 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/02 16:25:44 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 16:55:03 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int conv_type_search(char *formats[20], const char *f)
 	ft_strncpy(spec, f, 3);
 	spec[3] = '\0';
 	i = 0;
-	while (i <= TYPE_LL_INT)
+	while (i <= TYPE_UCHAR)
 	{
 		if (ft_strstr(formats[i], spec))
 			return (i);
@@ -75,7 +75,7 @@ static int conv_type(const char *f)
 
 	formats[TYPE_ULL_INT] = "llo,llu,llx,llX";
 	formats[TYPE_LL_INT] = "lld,lli";
-	formats[TYPE_UCHAR] = "hh";
+	formats[TYPE_UCHAR] = "hhc,hhC";
 	formats[TYPE_USH_INT] = "ho,hu,hx,hX";
 	formats[TYPE_SH_INT] = "hd,hi";
 	formats[TYPE_UL_INT] = "lo,O,lu,U,lx,lX";
@@ -94,6 +94,8 @@ static int conv_type(const char *f)
 
 	return (conv_type_search(formats, f));
 }
+
+#include <stdio.h>
 
 static char *get_field(va_list ap, const char *format)
 {
