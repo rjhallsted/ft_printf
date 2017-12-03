@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 12:32:04 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/02 14:50:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/02 16:25:44 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,23 @@ static int conv_type(const char *f)
 {
 	char *formats[20];
 
-	formats[TYPE_ULL_INT] = "llo,llO,llu,llU,llx,llX";
-	formats[TYPE_LL_INT] = "lld,llD,lli";
+	formats[TYPE_ULL_INT] = "llo,llu,llx,llX";
+	formats[TYPE_LL_INT] = "lld,lli";
 	formats[TYPE_UCHAR] = "hh";
-	formats[TYPE_USH_INT] = "ho,hO,hu,hU,hx,hX";
-	formats[TYPE_SH_INT] = "hd,hD,hi";
-	formats[TYPE_UL_INT] = "lo,lO,lu,lU,lx,lX";
-	formats[TYPE_L_INT] = "ld,lD,li";
+	formats[TYPE_USH_INT] = "ho,hu,hx,hX";
+	formats[TYPE_SH_INT] = "hd,hi";
+	formats[TYPE_UL_INT] = "lo,O,lu,U,lx,lX";
+	formats[TYPE_L_INT] = "ld,D,li";
 	formats[TYPE_WINT] = "lc,lC";
 	formats[TYPE_WCHAR] = "ls,lS";
-	formats[TYPE_UINTMAX] = "jo,jO,ju,jU,jx,jX";
-	formats[TYPE_INTMAX] = "jd,jD,ji";
-	formats[TYPE_SIZET] = "zo,zO,zu,zU,zx,zX";
-	formats[TYPE_SSIZET] = "zd,zD,zi";
+	formats[TYPE_UINTMAX] = "jo,ju,jx,jX";
+	formats[TYPE_INTMAX] = "jd,ji";
+	formats[TYPE_SIZET] = "zo,zu,zx,zX";
+	formats[TYPE_SSIZET] = "zd,zi";
 	formats[TYPE_STR] = "s,S";
 	formats[TYPE_PTR] = "p";
-	formats[TYPE_UINT] = "o,O,u,U,x,X";
-	formats[TYPE_INT] = "d,D,i";
+	formats[TYPE_UINT] = "o,u,x,X";
+	formats[TYPE_INT] = "d,i";
 	formats[TYPE_CHAR] = "c,C";
 
 	return (conv_type_search(formats, f));
@@ -107,6 +107,7 @@ static char *get_field(va_list ap, const char *format)
 
 int get_format_spec_len(const char *format)
 {
+	//This will return an incorrect result for %hhh, %lji, %zz, etc. Need to fix
 	if (*format == 'h' || *format == 'l' || *format == 'j' || *format == 'z')
 		return (1 + get_format_spec_len(format + 1));
 	else
