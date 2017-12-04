@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_snprintf.c                                      :+:      :+:    :+:   */
+/*   ft_vsnprintf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 21:29:05 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/30 15:29:59 by suvitiel         ###   ########.fr       */
+/*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
+/*   Updated: 2017/12/04 11:38:27 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
-#include "../../inc/ft_printf.h"
 
-#include <stdio.h>
-	
 int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 {
 	size_t	str_pos;
@@ -35,15 +32,4 @@ int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
 			str[str_pos++] = *format++;
 	}
 	return str_pos;
-}
-
-int	ft_snprintf(char *str, size_t size, const char *format, ...)
-{
-	va_list	ap;
-	size_t	print_len;
-
-	va_start(ap, format);
-	print_len = ft_vsnprintf(str, size, format, ap);
-	va_end(ap);
-	return (print_len);
 }

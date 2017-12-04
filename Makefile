@@ -6,14 +6,14 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/02 12:46:50 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/04 11:41:52 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		= 	libftprintf.a
 CC			=	gcc
 EXTRA_FLAGS =	-Weverything -Wno-cast-qual
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra
 
 LIST		=	ft_lst_itemcpy				\
 				ft_lst_remove_if			\
@@ -48,18 +48,10 @@ MEM			=	ft_bzero					\
 				ft_memrealloc
 
 PRINTF		=	$(addprefix ft_printf/,		\
-				ft_printf)
+				ft_printf					)
 
-SNPRINTF	=	$(addprefix ft_snprintf/,	\
-				ft_snprintf					\
-				ft_vsnprintf_ap_to_str		\
-				type_funcs/ints				\
-				type_funcs/ints2			\
-				type_funcs/ints3			\
-				type_funcs/other			\
-				type_funcs/dispatch			\
-				format_funcs/numbers		\
-				format_funcs/other			)
+VSN_PRINTF	=	$(addprefix ft_vsnprintf/,	\
+				ft_vsnprintf				)
 
 PRINTING	=	$(PRINTF)					\
 				ft_putchar					\
@@ -71,10 +63,10 @@ PRINTING	=	$(PRINTF)					\
 				ft_putstr					\
 				ft_putstr_fd				\
 
-STR			=	$(SNPRINTF)					\
-				ft_atoi						\
+STR			=	ft_atoi						\
 				ft_itoa						\
 				ft_itoa_base				\
+				ft_snprintf					\
 				ft_strcat					\
 				ft_strchr					\
 				ft_strclr					\
@@ -103,7 +95,8 @@ STR			=	$(SNPRINTF)					\
 				ft_strtrim					\
 				ft_tolower					\
 				ft_toupper					\
-				ft_uitoa
+				ft_uitoa					\
+				$(VSN_PRINTF)
 
 UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\
