@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/04 11:41:52 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/04 13:39:59 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -51,7 +51,8 @@ PRINTF		=	$(addprefix ft_printf/,		\
 				ft_printf					)
 
 VSN_PRINTF	=	$(addprefix ft_vsnprintf/,	\
-				ft_vsnprintf				)
+				ft_vsnprintf				\
+				specifiers					x)
 
 PRINTING	=	$(PRINTF)					\
 				ft_putchar					\
