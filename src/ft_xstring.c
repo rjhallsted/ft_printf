@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_digitcount_base.c                               :+:      :+:    :+:   */
+/*   ft_xstring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/03 13:58:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 14:23:29 by rhallste         ###   ########.fr       */
+/*   Created: 2017/12/04 14:10:46 by rhallste          #+#    #+#             */
+/*   Updated: 2017/12/04 14:14:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "../inc/libft.h"
 
-int	ft_digitcount_base(unsigned long n, unsigned int base)
+char *ft_xstring(unsigned char c, size_t times)
 {
-	int i;
+	char *str;
 
-	if (n == 0)
-		return (1);
-	i = 0;
-	while (n > 0)
-	{
-		i++;
-		n /= base;
-	}
-	return (i);
+	str = ft_strnew(times);
+	ft_memset((void *)str, c, times);
+	return (str);
 }
