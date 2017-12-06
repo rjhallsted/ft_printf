@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 13:59:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:38:33 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	ft_format_s
 	int			conversion;
 }				ft_format_t;
 
-int				ft_printf(char *format, ...);
+int				ft_printf(const char *format, ...);
 int				ft_snprintf(char *str, size_t size, const char *format, ...);
 int				ft_vsnprintf(char *str, size_t size, const char *format,
 							va_list ap);

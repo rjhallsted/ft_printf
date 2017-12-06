@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/22 10:47:04 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 20:31:42 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:38:55 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 char		*ft_itoa(int n)
 {
-	return (ft_lltoa(n);
+	return (ft_lltoa(n));
 }

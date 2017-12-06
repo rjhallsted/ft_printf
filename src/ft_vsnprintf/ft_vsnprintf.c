@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 13:58:12 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:46:41 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ static char			*ap_to_str(va_list ap, ft_format_t format)
 	return (NULL);
 }
 
+static int			get_format_jump(ft_format_t format)
+{
+	int jump;
+
+	jump = 1;
+	if (format.len_mod == CHAR_MOD || format.len_mod == LONGLONG_MOD)
+		jump += 2;
+	else if (format.len_mod != NONE_MOD)
+		jump++;
+	return (jump);
+}
+
 static int			add_formatted_var(char *str, va_list ap,
 									  const char *format_str)
 {
@@ -59,12 +71,12 @@ static int			add_formatted_var(char *str, va_list ap,
 		format = get_format_struct(format_str);
 		if (format.conversion == NONE_T)
 			return (0);
-		if (!(var_string = ap_to_str(ap, format)))
+		if (!(var_str = ap_to_str(ap, format)))
 			return (-1);
-		ft_strcat(str, var_string);
-		free(var_string);
+		ft_strcat(str, var_str);
+		free(var_str);
 	}
-//	return (get_format_jump(format_str));
+	return (get_format_jump(format));
 }
 
 int					ft_vsnprintf(char *str, size_t size, const char *format,
