@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 11:33:39 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:18:25 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct		s_list
 
 int					ft_atoi(char const *str);
 void				ft_bzero(void *s, size_t n);
-int					ft_digitcount(unsigned int n);
-int					ft_digitcount_base(unsigned int n, unsigned int base);
+int					ft_digitcount(unsigned long long n);
+int					ft_digitcount_base(unsigned long long n, unsigned int base);
 void				ft_free_2d_array(void ***array, size_t size);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -57,6 +57,8 @@ void				ft_lst_remove_if(t_list **begin_list, void *data_ref,
 						int (*cmp)());
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *));
 t_list				*ft_lstnew(void const *content, size_t content_size);
+char				*ft_ltoa(long n);
+char				*ft_ltoa_base(long n, unsigned int base);
 void				*ft_memalloc(size_t len);
 void				*ft_memchr(void const *s, int c, size_t n);
 void				*ft_memccpy(void *dds, void const *src, int c, size_t n);

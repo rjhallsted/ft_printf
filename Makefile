@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/04 14:16:10 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/05 20:18:50 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -67,6 +67,8 @@ PRINTING	=	$(PRINTF)					\
 STR			=	ft_atoi						\
 				ft_itoa						\
 				ft_itoa_base				\
+				ft_ltoa						\
+				ft_ltoa_base				\
 				ft_snprintf					\
 				ft_strcat					\
 				ft_strchr					\

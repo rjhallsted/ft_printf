@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:21:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 14:26:02 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 19:51:33 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_ltoa_base(long n, unsigned int base)
 	int		len;
 
 	if (base == 10)
-		return (ft_itoa(n));
+		return (ft_ltoa(n));
 	base_key = "0123456789abcdef";
 	len = ft_digitcount_base((unsigned long)n, base);
 	if (!(new = ft_strnew(len) (NULL);

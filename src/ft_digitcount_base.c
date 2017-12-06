@@ -6,13 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 13:58:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 14:23:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:16:57 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-int	ft_digitcount_base(unsigned long n, unsigned int base)
+int	ft_digitcount_base(unsigned long long n, unsigned int base)
 {
 	int i;
 
