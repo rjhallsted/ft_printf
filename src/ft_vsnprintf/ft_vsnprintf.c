@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 20:46:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:15:31 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static int			add_formatted_var(char *str, va_list ap,
 			return (-1);
 		ft_strcat(str, var_str);
 		free(var_str);
+		return (get_format_jump(format));
 	}
-	return (get_format_jump(format));
 }
 
 int					ft_vsnprintf(char *str, size_t size, const char *format,
@@ -95,7 +95,6 @@ int					ft_vsnprintf(char *str, size_t size, const char *format,
 			increase = add_formatted_var(str, ap, format);
 			if (increase == -1)
 				return (-1);
-			format += add_formatted_var(str, ap, format);
 			str_pos = ft_strlen(str);
 		}
 		else
