@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 13:29:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 21:39:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_vsnprintf_check_shorthand(const char *format_str, ft_format_t *format)
 	return (0);
 }
 
-int	ft_vsnprintf_get_length_mod(const char *format_str)
+int	ft_vsnprintf_get_len_mod(const char *format_str)
 {
 	if (*format_str == 'h')
 	{
