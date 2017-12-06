@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 21:39:28 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:40:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ int	ft_vsnprintf_get_len_mod(const char *format_str)
 
 int	ft_vsnprintf_get_conversion(const char *format_str)
 {
-	if (ft_strchr("dicC", *format_str))
+	if (ft_strchr("cC", *format_str))
+		return (CHAR_T);
+	if (ft_strchr("di", *format_str))
 		return (INT_T);
 	if (ft_strchr("ouxX", *format_str))
 		return (UINT_T);

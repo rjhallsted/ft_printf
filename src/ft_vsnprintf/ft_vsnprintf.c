@@ -6,13 +6,15 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 22:15:31 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:44:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
+
+#include <stdio.h>
 
 static ft_format_t	get_format_struct(const char *format_str)
 {
@@ -25,14 +27,15 @@ static ft_format_t	get_format_struct(const char *format_str)
 			format_str += 2;
 		else if (format.len_mod != NONE_MOD)
 			format_str++;
-		format.conversion = ft_vsnprintf_get_conversion(format_str);
+		else
+			format.conversion = ft_vsnprintf_get_conversion(format_str);
 	}
 	return (format);
 }
 
 static char			*ap_to_str(va_list ap, ft_format_t format)
 {
-	if (format.conversion == INT_T)
+	if (format.conversion == INT_T || format.conversion == CHAR_T)
 		return (ft_vsnprintf_ap_int_to_str(ap, format));
 	if (format.conversion == UINT_T)
 		return (ft_vsnprintf_ap_uint_to_str(ap, format));
@@ -92,9 +95,9 @@ int					ft_vsnprintf(char *str, size_t size, const char *format,
 		if (*format == '%')
 		{
 			format++;
-			increase = add_formatted_var(str, ap, format);
-			if (increase == -1)
+			if ((increase = add_formatted_var(str, ap, format)) == -1)
 				return (-1);
+			format += increase;
 			str_pos = ft_strlen(str);
 		}
 		else

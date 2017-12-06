@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 22:00:57 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:36:29 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void run_test(const char *format, ...)
 	color = (result) ? "\e[0;32m" : "\e[0;31m";
 	printf("%s%-30s -> %d%s\n", color, format, result, "\e[0;m");
 	if (!result)
-		printf("%s\t%s%s\n", color, actual, "\e[0;m");
+	{
+		printf("\t%s%s%s\n", color, expected, "\e[0;m");
+		printf("\t%s%s%s\n", color, actual, "\e[0;m");
+	}
 }
 
 int main(void)

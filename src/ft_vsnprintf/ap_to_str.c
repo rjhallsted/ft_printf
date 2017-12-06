@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 21:37:52 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:43:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 	long long int signed_int;
 
 	signed_int = va_arg(ap, long long int);
-	if (format.len_mod == CHAR_MOD)
+	if (format.len_mod == CHAR_MOD || format.conversion == CHAR_T)
 		return (ft_xstring((unsigned char)signed_int, 1));
 	if (format.len_mod == SHORT_MOD)
 		signed_int = (short)signed_int;

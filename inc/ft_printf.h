@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 21:31:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 22:40:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ enum types {
 	NONE_T = -1,
 	INT_T = 0,
 	UINT_T,
+	CHAR_T,
 	STR_T,
 	PTR_T
 };
