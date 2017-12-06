@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 22:40:53 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:31:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@ int ft_vsnprintf_check_shorthand(const char *format_str, ft_format_t *format)
 	{
 		format->len_mod = LONG_MOD;
 		format->conversion = INT_T;
+		format->shorthand = 1;
 		return (1);
 	}
 	if (*format_str == 'O' || *format_str == 'U')
 	{
 		format->len_mod = LONG_MOD;
 		format->conversion = UINT_T;
+		format->shorthand = 1;
 		return (1);
 	}
+	format->shorthand = 0;
 	return (0);
 }
 

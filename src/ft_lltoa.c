@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 20:29:28 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 22:24:44 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:27:45 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 char		*ft_lltoa(long long n)
 {
-	char	*new;
-	int		len;
-	int		start;
-	int		mod_by;
-	int		tmp;
+	char		*new;
+	int			len;
+	int			start;
+	int			mod_by;
+	long long	tmp;
 
 	tmp = (n == LLONG_MIN) ? n + 1 : n;
 	len = (n < 0) ? ft_digitcount(tmp * -1) + 1 : ft_digitcount(tmp);

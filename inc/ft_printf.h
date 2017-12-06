@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 22:40:28 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:30:25 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	ft_format_s
 	size_t		precision;
 	int			len_mod;
 	int			conversion;
+	int			shorthand;
 }				ft_format_t;
 
 int				ft_printf(const char *format, ...);

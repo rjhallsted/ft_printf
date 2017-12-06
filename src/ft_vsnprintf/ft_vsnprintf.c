@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 22:44:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:31:54 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int			get_format_jump(ft_format_t format)
 	jump = 1;
 	if (format.len_mod == CHAR_MOD || format.len_mod == LONGLONG_MOD)
 		jump += 2;
-	else if (format.len_mod != NONE_MOD)
+	else if (format.len_mod != NONE_MOD && !format.shorthand)
 		jump++;
 	return (jump);
 }
