@@ -6,30 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:21:59 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 19:51:33 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:33:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "../inc/libft.h"
 
 char	*ft_ltoa_base(long n, unsigned int base)
 {
-	char	*new;
-	char	*base_key;
-	int		len;
-
-	if (base == 10)
-		return (ft_ltoa(n));
-	base_key = "0123456789abcdef";
-	len = ft_digitcount_base((unsigned long)n, base);
-	if (!(new = ft_strnew(len) (NULL);
-	len--;
-	while (len >= 0)
-	{
-		new[len] = base_key[n % (int)base];
-		n /= base;
-		len--;
-	}
-	return (new);
+	return (ft_ltoa_base(n, base));
 }

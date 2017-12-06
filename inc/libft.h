@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 20:18:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/05 20:35:15 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 char				*ft_ltoa(long n);
 char				*ft_ltoa_base(long n, unsigned int base);
+char				*ft_lltoa(long long n);
+char				*ft_lltoa_base(long long n, unsigned int base);
 void				*ft_memalloc(size_t len);
 void				*ft_memchr(void const *s, int c, size_t n);
 void				*ft_memccpy(void *dds, void const *src, int c, size_t n);
