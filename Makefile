@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/05 21:33:49 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/06 11:45:45 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -102,6 +102,8 @@ STR			=	ft_atoi						\
 				ft_tolower					\
 				ft_toupper					\
 				ft_uitoa					\
+				ft_ultoa					\
+				ft_ulltoa					\
 				ft_xstring					\
 				$(VSN_PRINTF)
 

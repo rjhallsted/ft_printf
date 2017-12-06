@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/05 21:35:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 11:43:46 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ char				*ft_strsub(char const *s1, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 void				ft_swap(int *a, int *b);
 char				*ft_uitoa(unsigned int n);
+char				*ft_ultoa(unsigned long n);
+char				*ft_ulltoa(unsigned long long n);
 char				*ft_xstring(unsigned char c, size_t times);
 
 #endif

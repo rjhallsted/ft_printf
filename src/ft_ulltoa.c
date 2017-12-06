@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_ulltoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 14:23:24 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 11:42:07 by rhallste         ###   ########.fr       */
+/*   Created: 2017/12/06 11:39:42 by rhallste          #+#    #+#             */
+/*   Updated: 2017/12/06 11:41:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-char		*ft_uitoa(unsigned int n)
+char	*ft_ulltoa(unsigned long long n)
 {
-	return (ft_ulltoa(n));
+	char	*new;
+	int		len;
+
+	len = ft_digitcount(n);
+	if (!(new = ft_strnew((size_t)len)))
+		return (NULL);
+	while (len-- > 0)
+	{
+		new[len] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (new);
 }
