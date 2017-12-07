@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 11:43:46 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 17:49:49 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
 
@@ -32,9 +33,11 @@ typedef struct		s_list
 
 int					ft_atoi(char const *str);
 void				ft_bzero(void *s, size_t n);
-int					ft_digitcount(unsigned long long n);
-int					ft_digitcount_base(unsigned long long n, unsigned int base);
+int					ft_digitcount(uintmax_t n);
+int					ft_digitcount_base(uintmax_t n, unsigned int base);
 void				ft_free_2d_array(void ***array, size_t size);
+char				*ft_intmaxtoa(intmax_t n);
+char				*ft_intmaxtoa_base(intmax_t n, unsigned int base);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);

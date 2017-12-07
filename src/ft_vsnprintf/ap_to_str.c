@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 17:27:52 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 17:41:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@
 
 char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 {
-	long long signed_int;
+	intmax_t signed_int;
 
-	signed_int = va_arg(ap, long long);
+	signed_int = va_arg(ap, intmax_t);
 	if (format.len_mod == CHAR_MOD || format.conversion == CHAR_T)
 		return (ft_xstring((unsigned char)signed_int, 1));
 	if (format.len_mod == SHORT_MOD)
 		signed_int = (short)signed_int;
 	else if (format.len_mod == LONG_MOD)
 		signed_int = (long)signed_int;
+	else if (format.len_mod == LONGLONG_MOD)
+		signed_int = (long long)signed_int;
 	else if (format.len_mod == SIZET_MOD)
 		signed_int = (size_t)signed_int;
 	else if (format.len_mod == NONE_MOD)
 		signed_int = (int)signed_int;
-	return (ft_lltoa(signed_int));	
+	return (ft_intmaxtoa(signed_int));
 }
 
 char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format)

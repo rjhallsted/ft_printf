@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/06 11:45:45 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/06 17:46:52 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -66,11 +66,13 @@ PRINTING	=	$(PRINTF)					\
 				ft_putstr_fd				
 
 STR			=	ft_atoi						\
+				ft_intmaxtoa				\
+				ft_intmaxtoa_base			\
 				ft_itoa						\
 				ft_itoa_base				\
 				ft_ltoa						\
-				ft_lltoa					\
 				ft_ltoa_base				\
+				ft_lltoa					\
 				ft_lltoa_base				\
 				ft_snprintf					\
 				ft_strcat					\
