@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:21:56 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:46:19 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_vsnprintf_get_conversion(const char *format_str)
 		return (INT_T);
 	if (ft_strchr("ouxX", *format_str))
 		return (UINT_T);
-	if (*format_str == 's' || *format_str == 'S')
+	if (*format_str == 's')
 		return (STR_T);
 	if (*format_str == 'p')
 		return (PTR_T);

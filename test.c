@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:39:12 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:46:45 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void run_test(const char *format, ...)
 int main(void)
 {
 	run_test("No spec:");
+	run_test("Percent: %%");
+
+	run_test("Strings: %s, %s", "running really", "successfully damn fast");
 
 	run_test("Ints: %d, %i", 5, -12);
 	run_test("Char: %c", 'a');
