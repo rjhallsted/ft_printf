@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:27:17 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:39:12 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,15 @@ int main(void)
 	run_test("LLong: %lld, %lld", (long long)123124129184912849, (long long)-12412941928491);
 	run_test("Size_t: %zd, %zu, %zd, %zu", 12, (ssize_t)-12, (ssize_t)-12, 12);
 	run_test("IntMax: %jd, %ji", 1234214142141421, -12312414);
-
+	run_test("CharMod: %hhd", 18314);
+	
 	run_test("Bases: %x, %o", 1235, 12414);
 
-//	run_test("Unsigned Ints: %u, %x, %o", 5, 12, 123);
+	run_test("Unsigned Ints: %u, %x, %o", 5, 12, 123);
+	run_test("ULong: %lu, %U, %O", 12351253312, 123423523523);
+	run_test("ULLong: %llu, %llu", 123124129184912849, 12412941928491);
+	run_test("UIntMax: %ju, %jo", 1234214142141421, 12312414);
+	run_test("UCharMod: %hhu", 18314);
 
 	return (0);
 }
