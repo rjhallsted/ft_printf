@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 17:51:22 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:00:43 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ void run_test(const char *format, ...)
 int main(void)
 {
 	run_test("No spec:");
+
 	run_test("Ints: %d, %i", 5, -12);
 	run_test("Char: %c", 'a');
 	run_test("Long: %ld, %D", (long)12351253312, (long)-123423523523);
 	run_test("LLong: %lld, %lld", (long long)123124129184912849, (long long)-12412941928491);
 	run_test("Size_t: %zd, %zu, %zd, %zu", 12, (ssize_t)-12, (ssize_t)-12, 12);
 	run_test("IntMax: %jd, %ji", 1234214142141421, -12312414);
+
+	run_test("Unsigned Ints: %u, %x, %o", 5, 12, 123);
+
 	return (0);
 }
