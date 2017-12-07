@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 11:27:52 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 17:22:12 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int main(void)
 	run_test("Char: %c", 'a');
 	run_test("Long: %ld, %D", (long)12351253312, (long)-123423523523);
 	run_test("LLong: %lld, %lld", (long long)123124129184912849, (long long)-12412941928491);
+	run_test("Size_t: %zd, %zu, %zd, %zu", 12, (ssize_t)-12, (ssize_t)-12, 12);
 	return (0);
 }

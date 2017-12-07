@@ -6,15 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 11:31:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 17:31:51 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
-
-#include <stdio.h>
 
 static ft_format_t	get_format_struct(const char *format_str)
 {
@@ -27,8 +25,7 @@ static ft_format_t	get_format_struct(const char *format_str)
 			format_str += 2;
 		else if (format.len_mod != NONE_MOD)
 			format_str++;
-		else
-			format.conversion = ft_vsnprintf_get_conversion(format_str);
+		format.conversion = ft_vsnprintf_get_conversion(format_str);
 	}
 	return (format);
 }
