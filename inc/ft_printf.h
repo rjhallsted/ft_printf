@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 11:30:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:25:33 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,13 @@ enum len_mods {
 	LONGLONG_MOD,
 	INTMAX_MOD,
 	SIZET_MOD
-};		
+};
+
+enum display_mods {
+	NONE_DISP = -1,
+	HEX_DISP = 0,
+	OCT_DISP = 1
+};
 
 typedef struct	ft_format_s
 {
@@ -45,6 +51,7 @@ typedef struct	ft_format_s
 	size_t		precision;
 	int			len_mod;
 	int			conversion;
+	int			disp_mod;
 	int			shorthand;
 }				ft_format_t;
 
@@ -56,6 +63,7 @@ int				ft_vsnprintf_check_shorthand(const char *format_str,
 											 ft_format_t *format);
 int				ft_vsnprintf_get_len_mod(const char *format_str);
 int				ft_vsnprintf_get_conversion(const char *format_str);
+int				ft_vsnprintf_get_disp_mod(const char *format_str);
 char			*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format);
 char			*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format);
 char			*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format);

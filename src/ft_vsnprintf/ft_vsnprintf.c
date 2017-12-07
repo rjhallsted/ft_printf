@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 17:31:51 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:22:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static ft_format_t	get_format_struct(const char *format_str)
 		else if (format.len_mod != NONE_MOD)
 			format_str++;
 		format.conversion = ft_vsnprintf_get_conversion(format_str);
+		format.disp_mod = ft_vsnprintf_get_disp_mod(format_str);
 	}
 	return (format);
 }

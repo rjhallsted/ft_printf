@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 17:53:40 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:30:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 {
-	intmax_t signed_int;
-
+	intmax_t		signed_int;
+	
 	signed_int = va_arg(ap, intmax_t);
 	if (format.len_mod == CHAR_MOD || format.conversion == CHAR_T)
 		return (ft_xstring((unsigned char)signed_int, 1));
@@ -36,7 +36,8 @@ char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 
 char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format)
 {
-	uintmax_t unsigned_int;
+	uintmax_t		unsigned_int;
+	unsigned int	base;
 
 	unsigned_int = va_arg(ap, uintmax_t);
 	if (format.len_mod == CHAR_MOD || format.conversion == CHAR_T)
@@ -51,7 +52,9 @@ char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format)
 		unsigned_int = (size_t)unsigned_int;
 	else if (format.len_mod == NONE_MOD)
 		unsigned_int = (unsigned int)unsigned_int;
-	return (ft_uintmaxtoa(unsigned_int));		
+	base = (format.disp_mod == OCT_DISP) ? 8 : 10;
+	base = (format.disp_mod == HEX_DISP) ? 16 : base;
+	return (ft_uintmaxtoa_base(unsigned_int, base));		
 }
 
 char	*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format)
