@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 14:10:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:42:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static ft_format_t	get_format_struct(const char *format_str)
 	if (format.precision != -1)
 	{
 		format_str++;
-		if (ft_isdigit(*format_str))
-			format_str += ft_digitcount(format.precision);
+		if (*format_str == '-')
+			format_str++;
+		while (ft_isdigit(*format_str))
+			format_str++;
 	}
 	if (!(ft_vsnprintf_check_shorthand(format_str, &format)))
 	{
