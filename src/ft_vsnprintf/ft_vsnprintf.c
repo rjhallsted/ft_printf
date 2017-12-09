@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:22:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/08 18:34:43 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char			*ap_to_str(va_list ap, ft_format_t format)
 	if (format.conversion == UINT_T)
 		return (ft_vsnprintf_ap_uint_to_str(ap, format));
 	if (format.conversion == STR_T)
-		return (ft_strdup(va_arg(ap, char *)));
+		return (ft_vsnprintf_ap_str_to_str(ap, format));
 	if (format.conversion == PTR_T)
 		return (ft_vsnprintf_ap_ptr_to_str(ap, format));
 	return (NULL);

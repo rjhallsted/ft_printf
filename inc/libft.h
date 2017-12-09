@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:09:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/08 18:49:18 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ char				*ft_ultoa(unsigned long n);
 char				*ft_ultoa_base(unsigned long n, unsigned int base);
 char				*ft_ulltoa(unsigned long long n);
 char				*ft_ulltoa_base(unsigned long long n, unsigned int base);
+size_t				ft_wstrlen(const wchar_t *s);
 char				*ft_xstring(unsigned char c, size_t times);
 
 #endif
