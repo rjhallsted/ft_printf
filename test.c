@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/08 18:28:47 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/08 19:08:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int main(void)
 	run_test("CharMod: %hhd", 18314);
 	run_test("ShortInt: %hd", -12423);
 	
-	run_test("Bases: %x, %o", 1235, 12414);
+	run_test("Bases: %x, %X,  %o", 1235, 1235, 12414);
 
 	run_test("Unsigned Ints: %u, %x, %o", 5, 12, 123);
 	run_test("ULong: %lu, %U, %O", 12351253312, 123423523523);
