@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/08 19:18:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:12:08 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,21 @@ char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format)
 
 char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
 {
+	int		i;
+	size_t	len;
+	char	*new;
+	wchar_t	*wide;
+	
 	if (format.len_mod == LONG_MOD)
-		return (ft_wcrtostr(va_arg(ap, wchar_t *)));
+	{
+		wide = va_arg(ap, wchar_t *);
+		len = ft_wstrlen(wide);
+		new = ft_strnew(len);
+		i = -1;
+		while (++i < (int)len)
+			new[i] = (char)wide[i];
+		return (new);
+	}
 	else
 		return (ft_strdup(va_arg(ap, char *)));
 }
