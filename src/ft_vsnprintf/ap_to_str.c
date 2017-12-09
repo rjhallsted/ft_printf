@@ -6,13 +6,37 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 13:20:17 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 14:03:51 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
+
+//probably shouldn't free s here, but rather in it's original function, for clarity.
+static char *handle_precision(ft_format_t format, char *s)
+{
+	char *precise;
+	char *tmp;
+	
+	if (format.precision == -1)
+		return (s);
+	if (format.conversion == STR_T)
+	{
+		precise = ft_strsub(s, 0, format.precision);
+		free(s);
+		return (precise);
+	}
+	else
+	{
+		tmp = ft_xstring('0', format.precision - ft_strlen(s));
+		precise = ft_strjoin(tmp, s);
+		free(tmp);
+		free(s);
+		return (precise);
+	}
+}
 
 char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 {
@@ -33,13 +57,14 @@ char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 		signed_int = (size_t)signed_int;
 	else if (format.len_mod == NONE_MOD)
 		signed_int = (int)signed_int;
-	return (ft_intmaxtoa(signed_int));
+	return (handle_precision(format, ft_intmaxtoa(signed_int)));
 }
 
 char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t fmt)
 {
 	uintmax_t		unsigned_int;
 	unsigned int	b;
+	char			*new;
 
 	unsigned_int = va_arg(ap, uintmax_t);
 	if (fmt.conversion == CHAR_T)
@@ -59,8 +84,10 @@ char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t fmt)
 	b = (fmt.disp_mod == OCT_DISP) ? 8 : 10;
 	b = (fmt.disp_mod == HEX_DISP || fmt.disp_mod == HEX_UP_DISP) ? 16 : b;
 	if (fmt.disp_mod == HEX_UP_DISP)
-		return (ft_strtoup(ft_uintmaxtoa_base(unsigned_int, b))); 
-	return (ft_uintmaxtoa_base(unsigned_int, b));
+		new = ft_strtoup(ft_uintmaxtoa_base(unsigned_int, b));
+	else
+		new = ft_uintmaxtoa_base(unsigned_int, b);
+	return (handle_precision(fmt, new));
 }
 
 char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
@@ -78,10 +105,13 @@ char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
 		i = -1;
 		while (++i < (int)len)
 			new[i] = (char)wide[i];
-		return (new);
+		return (handle_precision(format, new));
 	}
 	else
-		return (ft_strdup(va_arg(ap, char *)));
+	{
+		new = ft_strdup(va_arg(ap, char *));
+		return (handle_precision(format, new));
+	}
 }
 
 char	*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format)
