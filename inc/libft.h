@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/08 19:19:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/08 23:39:14 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_list
 # define MAX(a, b) ((a > b) ? a : b)
 # define UNSI unsigned int
 # define UNSL unsigned long
+# define WCHAR_SIZE sizeof(wchar_t)
 
 int					ft_atoi(char const *str);
 void				ft_bzero(void *s, size_t n);
