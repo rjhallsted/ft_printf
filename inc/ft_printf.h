@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/08 18:35:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:14:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ enum len_mods {
 enum display_mods {
 	NONE_DISP = -1,
 	HEX_DISP = 0,
-	OCT_DISP = 1
+	HEX_UP_DISP,
+	OCT_DISP
 };
 
 typedef struct	ft_format_s

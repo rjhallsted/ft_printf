@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 12:12:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:29:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,31 @@ char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 	return (ft_intmaxtoa(signed_int));
 }
 
-char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format)
+char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t fmt)
 {
 	uintmax_t		unsigned_int;
-	unsigned int	base;
+	unsigned int	b;
 
 	unsigned_int = va_arg(ap, uintmax_t);
-	if (format.conversion == CHAR_T)
+	if (fmt.conversion == CHAR_T)
 		return (ft_xstring((unsigned char)unsigned_int, 1));
-	if (format.len_mod == CHAR_MOD)
+	if (fmt.len_mod == CHAR_MOD)
 		unsigned_int = (unsigned char)unsigned_int;
-	if (format.len_mod == SHORT_MOD)
+	if (fmt.len_mod == SHORT_MOD)
 		unsigned_int = (unsigned short)unsigned_int;
-	else if (format.len_mod == LONG_MOD)
+	else if (fmt.len_mod == LONG_MOD)
 		unsigned_int = (unsigned long)unsigned_int;
-	else if (format.len_mod == LONGLONG_MOD)
+	else if (fmt.len_mod == LONGLONG_MOD)
 		unsigned_int = (unsigned long long)unsigned_int;
-	else if (format.len_mod == SIZET_MOD)
+	else if (fmt.len_mod == SIZET_MOD)
 		unsigned_int = (size_t)unsigned_int;
-	else if (format.len_mod == NONE_MOD)
+	else if (fmt.len_mod == NONE_MOD)
 		unsigned_int = (unsigned int)unsigned_int;
-	base = (format.disp_mod == OCT_DISP) ? 8 : 10;
-	base = (format.disp_mod == HEX_DISP) ? 16 : base;
-	return (ft_uintmaxtoa_base(unsigned_int, base));		
+	b = (fmt.disp_mod == OCT_DISP) ? 8 : 10;
+	b = (fmt.disp_mod == HEX_DISP || fmt.disp_mod == HEX_UP_DISP) ? 16 : b;
+	if (fmt.disp_mod == HEX_UP_DISP)
+		return (ft_strtoup(ft_uintmaxtoa_base(unsigned_int, b))); 
+	return (ft_uintmaxtoa_base(unsigned_int, b));
 }
 
 char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:46:19 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:16:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ int	ft_vsnprintf_get_conversion(const char *format_str)
 
 int	ft_vsnprintf_get_disp_mod(const char *format_str)
 {
-	if (*format_str == 'x' || *format_str == 'X')
+	if (*format_str == 'x')
 		return (HEX_DISP);
+	if (*format_str == 'X')
+		return (HEX_UP_DISP);
 	if (*format_str == 'o')
 		return (OCT_DISP);
 	return (NONE_DISP);
