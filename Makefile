@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/09 14:25:59 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/09 15:17:52 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -74,6 +74,7 @@ STR			=	ft_atoi						\
 				ft_ltoa_base				\
 				ft_lltoa					\
 				ft_lltoa_base				\
+				ft_padnumstr				\
 				ft_snprintf					\
 				ft_strcat					\
 				ft_strchr					\

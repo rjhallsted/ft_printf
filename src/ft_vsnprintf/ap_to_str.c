@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 14:25:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:24:47 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 //probably shouldn't free s here, but rather in it's original function, for clarity.
 static char *handle_precision(ft_format_t format, char *s)
 {
-	char *precise;
-	char *tmp;
-	
+	char 	*precise;
+
 	if (format.precision == -1)
 		return (s);
 	if (format.conversion == STR_T)
@@ -32,9 +31,7 @@ static char *handle_precision(ft_format_t format, char *s)
 	}
 	else if (format.precision - (int)ft_strlen(s) > 0)
 	{
-		tmp = ft_xstring('0', format.precision - ft_strlen(s));
-		precise = ft_strjoin(tmp, s);
-		free(tmp);
+		precise = ft_padnumstr(s, format.precision - ft_strlen(s));
 		free(s);
 		return (precise);
 	}
