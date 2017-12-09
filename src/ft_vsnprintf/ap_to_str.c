@@ -6,13 +6,15 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 14:03:51 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 14:25:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
+
+#include <stdio.h>
 
 //probably shouldn't free s here, but rather in it's original function, for clarity.
 static char *handle_precision(ft_format_t format, char *s)
@@ -28,7 +30,7 @@ static char *handle_precision(ft_format_t format, char *s)
 		free(s);
 		return (precise);
 	}
-	else
+	else if (format.precision - (int)ft_strlen(s) > 0)
 	{
 		tmp = ft_xstring('0', format.precision - ft_strlen(s));
 		precise = ft_strjoin(tmp, s);
@@ -36,6 +38,7 @@ static char *handle_precision(ft_format_t format, char *s)
 		free(s);
 		return (precise);
 	}
+	return (s);
 }
 
 char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
@@ -114,7 +117,7 @@ char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
 	}
 }
 
-char	*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format)
+char	*ft_vsnprintf_ap_ptr_to_str(va_list ap)
 {
 	void *ptr;
 	char *hex;

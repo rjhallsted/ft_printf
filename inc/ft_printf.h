@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 13:45:52 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 14:10:37 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	ft_format_s
 {
 	char		*flags;
 	size_t		field_width;
-	size_t		precision;
+	int			precision;
 	int			len_mod;
 	int			conversion;
 	int			disp_mod;
@@ -69,7 +69,7 @@ int				ft_vsnprintf_get_disp_mod(const char *format_str);
 int				ft_vsnprintf_get_precision(const char *format_str);
 char			*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format);
 char			*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format);
-char			*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format);
+char			*ft_vsnprintf_ap_ptr_to_str(va_list ap);
 char			*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 18:06:13 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 18:07:09 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 14:08:05 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 char	*ft_ultoa_base(unsigned long n, unsigned int base)
 {
-	return (ft_ultoa_base(n, base));
+	return (ft_uintmaxtoa_base(n, base));
 }
