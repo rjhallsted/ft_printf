@@ -6,13 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 12:51:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 13:41:55 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
-int ft_vsnprintf_check_shorthand(const char *fmt_str, ft_format_t *format)
+int		ft_vsnprintf_check_shorthand(const char *fmt_str, ft_format_t *format)
 {
 	if (ft_strchr("DCOU", *fmt_str))
 	{
@@ -34,7 +34,7 @@ int ft_vsnprintf_check_shorthand(const char *fmt_str, ft_format_t *format)
 	return (format->shorthand);
 }
 
-int	ft_vsnprintf_get_len_mod(const char *format_str)
+int		ft_vsnprintf_get_len_mod(const char *format_str)
 {
 	if (*format_str == 'h')
 	{
@@ -53,7 +53,7 @@ int	ft_vsnprintf_get_len_mod(const char *format_str)
 	return (NONE_MOD);
 }
 
-int	ft_vsnprintf_get_conversion(const char *format_str)
+int		ft_vsnprintf_get_conversion(const char *format_str)
 {
 	if (*format_str == 'c' || *format_str == 'C')
 		return (CHAR_T);
@@ -68,7 +68,7 @@ int	ft_vsnprintf_get_conversion(const char *format_str)
 	return (NONE_T);
 }
 
-int	ft_vsnprintf_get_disp_mod(const char *format_str)
+int		ft_vsnprintf_get_disp_mod(const char *format_str)
 {
 	if (*format_str == 'x')
 		return (HEX_DISP);
@@ -77,4 +77,15 @@ int	ft_vsnprintf_get_disp_mod(const char *format_str)
 	if (*format_str == 'o')
 		return (OCT_DISP);
 	return (NONE_DISP);
+}
+
+int		ft_vsnprintf_get_precision(const char *format_str)
+{
+	if (*format_str != '.')
+		return (-1);
+	format_str++;
+	if (ft_isdigit(*format_str))
+		return (ft_atoi(format_str));
+	else
+		return (0);
 }

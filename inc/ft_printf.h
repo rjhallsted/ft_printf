@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 12:14:20 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 13:45:52 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	ft_format_s
 	int			conversion;
 	int			disp_mod;
 	int			shorthand;
+	size_t		str_jump;
 }				ft_format_t;
 
 int				ft_printf(const char *format, ...);
@@ -65,6 +66,7 @@ int				ft_vsnprintf_check_shorthand(const char *format_str,
 int				ft_vsnprintf_get_len_mod(const char *format_str);
 int				ft_vsnprintf_get_conversion(const char *format_str);
 int				ft_vsnprintf_get_disp_mod(const char *format_str);
+int				ft_vsnprintf_get_precision(const char *format_str);
 char			*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format);
 char			*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format);
 char			*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format);
