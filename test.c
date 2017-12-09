@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 12:58:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 13:16:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int main(void)
 	run_test("UIntMax: %ju, %jo", 1234214142141421, 12312414);
 	run_test("UCharMod: %hhu", 18314);
 	run_test("ShortUint: %hu", 12341);
+
+	run_test("Pointer: %p", &wide_chars);
 
 	return (0);
 }

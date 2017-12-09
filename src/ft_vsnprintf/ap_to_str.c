@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 12:54:42 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 13:20:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,13 @@ char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
 
 char	*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format)
 {
-	return (ft_strdup(""));
+	void *ptr;
+	char *hex;
+	char *new;
+	
+	ptr = va_arg(ap, void *);
+	hex = ft_uintmaxtoa_base((unsigned long)ptr, 16);
+	new = ft_strjoin("0x", hex);
+	free(hex);
+	return (new);
 }
