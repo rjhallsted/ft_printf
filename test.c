@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 11:22:11 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:53:48 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int main(void)
 	run_test("IntMax: %jd, %ji", 1234214142141421, -12312414);
 	run_test("CharMod: %hhd", 18314);
 	run_test("ShortInt: %hd", -12423);
+	run_test("WideInt: %lc, %C", (wint_t)123, (wint_t)124141);
 	
 	run_test("Bases: %x, %X,  %o", 1235, 1235, 12414);
 
