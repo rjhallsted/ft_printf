@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 15:37:40 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 16:09:19 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,9 @@ int		ft_vsnprintf_get_precision(const char *format_str)
 	}
 	else
 		return (0);
+}
+
+int		ft_vsnprintf_get_field_width(const char *format_str)
+{
+	return ((ft_isdigit(*format_str) ? ft_atoi(format_str) : 0));
 }
