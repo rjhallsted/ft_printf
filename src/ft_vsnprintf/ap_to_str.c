@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 16:52:07 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 17:00:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*handle_field_width(ft_format_t format, char *s)
 {
 	char *widened;
 	char *padding;
-	
+
 	if (format.field_width <= ft_strlen(s))
 		return (s);
 	padding = ft_xstring(' ', format.field_width - ft_strlen(s));
@@ -62,10 +62,14 @@ static char	*process_return(ft_format_t format, char *s)
 char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 {
 	intmax_t		signed_int;
+	char			*new;
 	
 	signed_int = va_arg(ap, intmax_t);
 	if (format.conversion == CHAR_T)
-		return (ft_xstring((unsigned char)signed_int, 1));
+	{
+		new = ft_xstring((unsigned char)signed_int, 1);
+		return (process_return(format, new));
+	}
 	if (format.len_mod == CHAR_MOD)
 		signed_int = (char)signed_int;
 	else if (format.len_mod == SHORT_MOD)
@@ -89,7 +93,10 @@ char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t fmt)
 
 	unsigned_int = va_arg(ap, uintmax_t);
 	if (fmt.conversion == CHAR_T)
-		return (ft_xstring((unsigned char)unsigned_int, 1));
+	{
+		new = ft_xstring((unsigned char)unsigned_int, 1);
+		return (process_return(fmt, new));
+	}
 	if (fmt.len_mod == CHAR_MOD)
 		unsigned_int = (unsigned char)unsigned_int;
 	if (fmt.len_mod == SHORT_MOD)
@@ -135,7 +142,7 @@ char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
 	}
 }
 
-char	*ft_vsnprintf_ap_ptr_to_str(va_list ap)
+char	*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format)
 {
 	void *ptr;
 	char *hex;
@@ -145,5 +152,5 @@ char	*ft_vsnprintf_ap_ptr_to_str(va_list ap)
 	hex = ft_uintmaxtoa_base((unsigned long)ptr, 16);
 	new = ft_strjoin("0x", hex);
 	free(hex);
-	return (new);
+	return (process_return(format, new));
 }
