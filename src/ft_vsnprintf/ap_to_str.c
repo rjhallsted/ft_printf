@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 15:24:47 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/09 16:52:07 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ static char *handle_precision(ft_format_t format, char *s)
 	return (s);
 }
 
+static char	*handle_field_width(ft_format_t format, char *s)
+{
+	char *widened;
+	char *padding;
+	
+	if (format.field_width <= ft_strlen(s))
+		return (s);
+	padding = ft_xstring(' ', format.field_width - ft_strlen(s));
+	widened = ft_strjoin(padding, s);
+	free(s);
+	free(padding);
+	return (widened);
+}
+
+static char	*process_return(ft_format_t format, char *s)
+{
+	s = handle_precision(format, s);
+	s = handle_field_width(format, s);
+	return (s);
+}
+
 char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 {
 	intmax_t		signed_int;
@@ -57,7 +78,7 @@ char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format)
 		signed_int = (size_t)signed_int;
 	else if (format.len_mod == NONE_MOD)
 		signed_int = (int)signed_int;
-	return (handle_precision(format, ft_intmaxtoa(signed_int)));
+	return (process_return(format, ft_intmaxtoa(signed_int)));
 }
 
 char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t fmt)
@@ -87,7 +108,7 @@ char	*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t fmt)
 		new = ft_strtoup(ft_uintmaxtoa_base(unsigned_int, b));
 	else
 		new = ft_uintmaxtoa_base(unsigned_int, b);
-	return (handle_precision(fmt, new));
+	return (process_return(fmt, new));
 }
 
 char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
@@ -105,12 +126,12 @@ char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format)
 		i = -1;
 		while (++i < (int)len)
 			new[i] = (char)wide[i];
-		return (handle_precision(format, new));
+		return (process_return(format, new));
 	}
 	else
 	{
 		new = ft_strdup(va_arg(ap, char *));
-		return (handle_precision(format, new));
+		return (process_return(format, new));
 	}
 }
 
