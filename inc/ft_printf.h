@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 16:59:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:37:05 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ enum display_mods {
 typedef struct	ft_format_s
 {
 	char		*flags;
-	size_t		field_width;
+	int			field_width;
 	int			precision;
 	int			len_mod;
 	int			conversion;

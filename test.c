@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/11 15:05:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:19:41 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void run_test(const char *format, ...)
 	printf("%s%-30s -> %d%s\n", color, format, result, "\e[0;m");
 	if (!result)
 	{
-		printf("\t%s%s%s\n", color, expected, "\e[0;m");
-		printf("\t%s%s%s\n", color, actual, "\e[0;m");
+		printf("\t%s|%s|%s\n", color, expected, "\e[0;m");
+		printf("\t%s|%s|%s\n", color, actual, "\e[0;m");
 	}
 }
 
@@ -48,7 +48,7 @@ int main(void)
 	run_test("No spec:");
 	run_test("Percent: %%");
 
-	run_test("Strings: %.s, %s", "running really", "successfully damn fast");
+	run_test("Strings: %.s, %-25s", "running really", "successfully damn fast");
 	run_test("Wide chars: %ls", wide_chars);
 
 	run_test("Ints: %.d, %.4i", 5, -12);

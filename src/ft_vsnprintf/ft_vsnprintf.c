@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 16:58:38 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:36:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static ft_format_t	get_format_struct(const char *format_str)
 
 	str_hold = format_str;
 	format.field_width = ft_vsnprintf_get_field_width(format_str);
+	if (format.field_width < 0)
+		format_str++;
 	if (format.field_width)
 		while (ft_isdigit(*format_str))
 			format_str++;

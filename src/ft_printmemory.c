@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 13:39:24 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 13:40:46 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:17:18 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void put_spacing(int a)
 	}
 }
 
-static void print_memory(const void *addr, size_t size)
+void		ft_printmemory(const void *addr, size_t size)
 {
 	const unsigned char	*mem;
 	size_t				i;

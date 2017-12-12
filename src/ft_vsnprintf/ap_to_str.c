@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/09 17:00:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 15:44:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,18 @@ static char *handle_precision(ft_format_t format, char *s)
 
 static char	*handle_field_width(ft_format_t format, char *s)
 {
-	char *widened;
-	char *padding;
-
-	if (format.field_width <= ft_strlen(s))
+	char	*widened;
+	char	*padding;
+	int		len;
+	int		right_side;
+	
+	len = ft_strlen(s);
+	right_side = (format.field_width < 0);
+	format.field_width *= (right_side) ? -1 : 1;
+	if (format.field_width <= len)
 		return (s);
-	padding = ft_xstring(' ', format.field_width - ft_strlen(s));
-	widened = ft_strjoin(padding, s);
+	padding = ft_xstring(' ', format.field_width - len);
+	widened = (right_side) ? ft_strjoin(s, padding) : ft_strjoin(padding, s);
 	free(s);
 	free(padding);
 	return (widened);
