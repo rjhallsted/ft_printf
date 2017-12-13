@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 17:18:04 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:30:47 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int main(void)
 	ft_printf("%s\n", "actual printf test");
 
 	run_test("4i 42: %4i", 42);
+	run_test("04i 42: %04i", 42); 
 	
 	return (0);
 }

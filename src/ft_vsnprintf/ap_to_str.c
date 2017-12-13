@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 17:28:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:27:15 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static char *handle_flags(ft_format_t format, char *s)
 	}
 	else
 		new = s;
+	if (ft_strchr(flags, '0') && !ft_strchr(flags, '-') && format.field_width > -1)
+		ft_strreplace(new, ' ', '0');
 	return (new);
 }
 

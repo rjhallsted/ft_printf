@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 17:13:13 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:23:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static ft_format_t	get_format_struct(const char *format_str)
 	const char	*str_hold;
 
 	str_hold = format_str;
-	ft_memset(format.flags, '.', 4);
-	format.flags[4] = '\0';
+	ft_memset(format.flags, '.', 5);
+	format.flags[5] = '\0';
 	ft_vsnprintf_get_flags(&format, format_str);
 	while (ft_strchr(FT_FORMAT_FLAGS, *format_str))
 		   format_str++;

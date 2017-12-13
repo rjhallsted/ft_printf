@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 13:41:48 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:32:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ size_t				ft_strlen(char const *s);
 int					ft_strncmp(char const *s1, char const*s2, size_t n);
 char				*ft_strncpy(char *dst, char const *src, size_t len);
 char				*ft_strrchr(char const *s, int c);
+void				ft_strreplace(char *s, int old, int new);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(char const *big, char const *little);
 char				*ft_strsub(char const *s1, unsigned int start, size_t len);

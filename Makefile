@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/12 13:42:15 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/13 10:29:40 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -99,6 +99,7 @@ STR			=	ft_atoi						\
 				ft_strnew					\
 				ft_strnstr					\
 				ft_strrchr					\
+				ft_strreplace				\
 				ft_strsplit					\
 				ft_strstr					\
 				ft_strsub					\
