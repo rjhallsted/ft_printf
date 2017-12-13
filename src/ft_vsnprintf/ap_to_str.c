@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 11:02:53 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:42:03 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ static char	*handle_field_width(ft_format_t format, char *s)
 
 static char	*process_return(ft_format_t format, char *s)
 {
-	
 	s = handle_precision(format, s);
 	s = handle_field_width(format, s);
 	s = handle_flags(format, s);
