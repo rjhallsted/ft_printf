@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 17:01:39 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 17:24:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,16 @@ static char	*handle_field_width(ft_format_t format, char *s)
 	char	*padding;
 	int		len;
 	int		right_side;
+	int		pad_len;
 	
 	len = ft_strlen(s);
 	right_side = (format.field_width < 0);
 	format.field_width *= (right_side) ? -1 : 1;
 	if (format.field_width <= len)
 		return (s);
+	pad_len = format.field_width - len;
+	if (ft_strchr(format.flags, ' ') && !right_side)
+		pad_len--;
 	padding = ft_xstring(' ', format.field_width - len);
 	widened = (right_side) ? ft_strjoin(s, padding) : ft_strjoin(padding, s);
 	free(s);
