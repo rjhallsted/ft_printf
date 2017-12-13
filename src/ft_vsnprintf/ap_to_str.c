@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 10:48:28 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:58:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,16 @@ static char *handle_flags(ft_format_t format, char *s)
 			tmp = "0";
 		new = ft_strjoin(tmp, s);
 		free(s);
+		s = new;
 	}
-	s = new;
-	if (ft_strchr(flags, ' ') && !ft_strchr(s, '-') && format.field_width > -1)
+	if (ft_strchr(flags, '+') && !ft_strchr(s, '-'))
+	{
+		new = ft_strjoin("+", s);
+		free(s);
+		s = new;
+	}
+	if (ft_strchr(flags, ' ') && !ft_strchr(s, '-') && format.field_width > -1
+		&& !ft_strchr(flags, '+'))
 	{
 		new = ft_strjoin(" ", s);
 		free(s);

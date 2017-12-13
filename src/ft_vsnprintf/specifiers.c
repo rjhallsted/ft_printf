@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 10:40:24 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:55:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void	ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str)
 			flags[FLAGS_SHARP_KEY] = '#';
 		if (*format_str == ' ')
 			flags[FLAGS_SPACE_KEY] = ' ';
+		if (*format_str == '+')
+			flags[FLAGS_PLUS_KEY] = '+';
 		if (*format_str == '-')
 			flags[FLAGS_MINUS_KEY] = '-';
 		if (*format_str == '0')

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 10:47:04 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:59:15 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int main(void)
 	run_test("#o INT_MIN: %#o", INT_MIN);
 	run_test("o INT_MIN: %o", INT_MIN);
 	run_test("#X INT_MIN: %#X", INT_MIN);
-
+	run_test("+i 42: %+i", 42);
 	return (0);
 }
