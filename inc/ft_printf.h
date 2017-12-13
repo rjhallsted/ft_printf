@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 10:23:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:40:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ enum display_mods {
 
 enum flag_keys {
 	FLAGS_SPACE_KEY,
-	FLAGS_HASH_KEY,
+	FLAGS_SHARP_KEY,
 	FLAGS_MINUS_KEY,
 	FLAGS_PLUS_KEY,
 	FLAGS_ZERO_KEY,
 };
 
 # ifndef FT_FORMAT_FLAGS
-#  define FT_FORMAT_FLAGS " -0"
+#  define FT_FORMAT_FLAGS "# -0"
 # endif
 
 typedef struct	ft_format_s

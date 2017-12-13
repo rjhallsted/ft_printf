@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 10:35:59 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 10:48:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,33 @@ static char *handle_flags(ft_format_t format, char *s)
 {
 	char	*flags;
 	char	*new;
+	char	*tmp;
 
 	flags = format.flags;
+	new = s;
+	if (ft_strchr(flags, '#') && format.disp_mod != NONE_DISP)
+	{
+		tmp = "";
+		if (format.disp_mod == HEX_DISP)
+			tmp = "0x";
+		else if (format.disp_mod == HEX_UP_DISP)
+			tmp = "0X";
+		else if (format.disp_mod == OCT_DISP && *s != '0')
+			tmp = "0";
+		new = ft_strjoin(tmp, s);
+		free(s);
+	}
+	s = new;
 	if (ft_strchr(flags, ' ') && !ft_strchr(s, '-') && format.field_width > -1)
 	{
 		new = ft_strjoin(" ", s);
 		free(s);
 	}
-	else
-		new = s;
+	s = new;
 	if (ft_strchr(flags, '0') && !ft_strchr(flags, '-')
 		&& format.field_width > -1 && format.precision == -1)
-		ft_strreplace(new, ' ', '0');
-	return (new);
+		ft_strreplace(s, ' ', '0');
+	return (s);
 }
 
 //probably shouldn't free s here, but rather in it's original function, for clarity.
