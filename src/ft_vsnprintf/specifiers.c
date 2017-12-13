@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 16:53:20 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 17:10:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,13 @@ int		ft_vsnprintf_get_precision(const char *format_str)
 		return (0);
 }
 
-int		ft_vsnprintf_get_field_width(const char *format_str)
+int		ft_vsnprintf_get_field_width(const char *format_str, char *flags)
 {
-	return (ft_atoi(format_str));
+	int num;
+	
+	num = (ft_strchr(flags, '-')) ? -1 : 1;
+	num *= ft_atoi(format_str);
+	return (num);
 }
 
 void	ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str)
@@ -109,6 +113,8 @@ void	ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str)
 	{
 		if (*format_str == ' ')
 			flags[FLAGS_SPACE_KEY] = ' ';
+		if (*format_str == '-')
+			flags[FLAGS_MINUS_KEY] = '-';
 		format_str++;
 	}
 }
