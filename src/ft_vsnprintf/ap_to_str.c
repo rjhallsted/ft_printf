@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 15:44:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 17:01:39 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 #include "../../inc/libft.h"
 
 #include <stdio.h>
+
+static char *handle_flags(ft_format_t format, char *s)
+{
+	char	*flags;
+	char	*new;
+
+	flags = format.flags;
+	if (ft_strchr(flags, ' ') && !ft_strchr(s, '-') && format.field_width > -1)
+	{
+		new = ft_strjoin(" ", s);
+		free(s);
+	}
+	else
+		new = s;
+	return (new);
+}
 
 //probably shouldn't free s here, but rather in it's original function, for clarity.
 static char *handle_precision(ft_format_t format, char *s)
@@ -59,8 +75,10 @@ static char	*handle_field_width(ft_format_t format, char *s)
 
 static char	*process_return(ft_format_t format, char *s)
 {
+	
 	s = handle_precision(format, s);
 	s = handle_field_width(format, s);
+	s = handle_flags(format, s);
 	return (s);
 }
 

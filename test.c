@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 15:51:02 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 16:17:44 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int main(void)
 	run_test("Strings: %.s, % -25s", "running really", "successfully damn fast");
 	run_test("Wide chars: %ls", wide_chars);
 
-	run_test("Ints: %.d, %.4i", 5, -12);
+	run_test("Ints: %.d, % 5.4i", 5, -12);
 	run_test("Char: %.c", 'a');
 	run_test("Long: %.-3ld, %D", (long)12351253312, (long)-123423523523);
 	run_test("LLong: %lld, %lld", (long long)123124129184912849, (long long)-12412941928491);
 	run_test("Size_t: %zd, %zu, %zd, %zu", 12, (ssize_t)-12, (ssize_t)-12, 12);
 	run_test("IntMax: %jd, %ji", 1234214142141421, -12312414);
 	run_test("CharMod: %hhd", 18314);
-	run_test("ShortInt: %hd", -12423);
+	run_test("ShortInt: % 4.5hd", 42);
 	run_test("WideInt: %lc, %3C", (wint_t)123, (wint_t)124);
 	
 	run_test("Bases: %x, %X,  %12o", 1235, 1235, 12414);

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 16:11:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 16:56:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ enum display_mods {
 	OCT_DISP
 };
 
-# ifndef FT_FORMAT_FLAGS_SIZE
-#  define FT_FORMAT_FLAGS_SIZE 100
-# endif
+enum flag_keys {
+	FLAGS_SPACE_KEY,
+	FLAGS_HASH_KEY,
+	FLAGS_MINUS_KEY,
+	FLAGS_ZERO_KEY
+};
+
 # ifndef FT_FORMAT_FLAGS
 #  define FT_FORMAT_FLAGS " "
 # endif
 
 typedef struct	ft_format_s
 {
-	char		flags[FT_FORMAT_FLAGS_SIZE];
+	char		flags[5];
 	int			field_width;
 	int			precision;
 	int			len_mod;
