@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 15:50:24 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 16:12:40 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ static ft_format_t	get_format_struct(const char *format_str)
 	const char	*str_hold;
 
 	str_hold = format_str;
-	while (*format_str == ' ')
-		format_str++;
+	ft_bzero(format.flags, FT_FORMAT_FLAGS_SIZE);
+	ft_vsnprintf_get_flags(&format, format_str);
+	while (ft_strchr(FT_FORMAT_FLAGS, *format_str))
+		   format_str++;
 	format.field_width = ft_vsnprintf_get_field_width(format_str);
 	if (format.field_width < 0)
 		format_str++;

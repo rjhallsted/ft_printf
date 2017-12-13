@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/12 15:34:58 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/12 16:08:47 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,13 @@ int		ft_vsnprintf_get_precision(const char *format_str)
 int		ft_vsnprintf_get_field_width(const char *format_str)
 {
 	return (ft_atoi(format_str));
+}
+
+void	ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str)
+{
+	char *flags;
+
+	flags = format->flags;
+	while (ft_strchr(FT_FORMAT_FLAGS, *format_str))
+		*flags++ = *format_str++;
 }
