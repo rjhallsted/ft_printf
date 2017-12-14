@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/13 10:29:40 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/13 18:07:29 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -85,6 +85,7 @@ STR			=	ft_atoi						\
 				ft_strdel					\
 				ft_strdup					\
 				ft_strequ					\
+				ft_strinsert				\
 				ft_striter					\
 				ft_striteri					\
 				ft_strjoin					\

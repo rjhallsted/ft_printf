@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 13:41:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 18:35:24 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ static ft_format_t	get_format_struct(const char *format_str)
 	return (format);
 }
 
-static char			*ap_to_str(va_list ap, ft_format_t format)
+static char			*ap_to_str(va_list ap, ft_format_t format, char *s)
 {
 	if (format.conversion == INT_T || format.conversion == CHAR_T)
-		return (ft_vsnprintf_ap_int_to_str(ap, format));
+		return (ft_vsnprintf_ap_int_to_str(ap, format, s));
 	if (format.conversion == UINT_T)
-		return (ft_vsnprintf_ap_uint_to_str(ap, format));
+		return (ft_vsnprintf_ap_uint_to_str(ap, format, s));
 	if (format.conversion == STR_T)
-		return (ft_vsnprintf_ap_str_to_str(ap, format));
+		return (ft_vsnprintf_ap_str_to_str(ap, format, s));
 	if (format.conversion == PTR_T)
-		return (ft_vsnprintf_ap_ptr_to_str(ap, format));
+		return (ft_vsnprintf_ap_ptr_to_str(ap, format, s));
 	return (NULL);
 }
 
@@ -70,7 +70,6 @@ static int			add_formatted_var(char *str, va_list ap,
 									  const char *format_str)
 {
 	ft_format_t	format;
-	char		*var_str;
 
 	if (*format_str == '%')
 	{
@@ -82,10 +81,8 @@ static int			add_formatted_var(char *str, va_list ap,
 		format = get_format_struct(format_str);
 		if (format.conversion == NONE_T)
 			return (0);
-		if (!(var_str = ap_to_str(ap, format)))
+		if (!(ap_to_str(ap, format, str)))
 			return (-1);
-		ft_strcat(str, var_str);
-		free(var_str);
 		return (format.str_jump);
 	}
 }
@@ -103,7 +100,7 @@ int					ft_vsnprintf(char *str, size_t size, const char *format,
 		if (*format == '%')
 		{
 			format++;
-			if ((increase = add_formatted_var(str, ap, format)) == -1)
+			if ((increase = add_formatted_var(str + str_pos, ap, format)) == -1)
 				return (-1);
 			format += increase;
 			str_pos = ft_strlen(str);
