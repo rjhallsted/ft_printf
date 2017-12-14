@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 13:42:49 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 20:10:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int main(void)
 	run_test("#X INT_MIN: %#X", INT_MIN);
 	run_test("+i 42: %+i", 42);
 	run_test("Null c: %c", '\0');
+	printf("real:%c\n", '\0');
+	ft_printf("ft :%c\n", '\0');
 	return (0);
 }
