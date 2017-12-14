@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 19:18:33 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:45:29 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #include <stdarg.h>
 #include "../../inc/libft.h"
 
-#include <stdio.h>
-
 static char *handle_flags(ft_format_t format, char *s)
 {
 	char	*flags;
 	char	*tmp;
-	
+
 	flags = format.flags;
 	if (ft_strchr(flags, '#') && format.disp_mod != NONE_DISP)
 	{
@@ -48,13 +46,11 @@ static char *handle_flags(ft_format_t format, char *s)
 	return (s);
 }
 
-//probably shouldn't free s here, but rather in it's original function, for clarity.
 static char *handle_precision(ft_format_t format, char *s)
 {
 	char 	*tmp;
 	int		neg;
 	
-	printf("precision(%d, %d): %s\n", format.precision, format.conversion, s);
 	neg = (*s == '-') ? 1 : 0;
 	if (format.precision == -1)
 		return (s);
@@ -63,12 +59,8 @@ static char *handle_precision(ft_format_t format, char *s)
 	else if (format.precision - (int)ft_strlen(s) + neg > 0)
 	{
 		tmp = ft_xstring('0', format.precision - ft_strlen(s) + neg);
-		printf("tmp: %s", tmp);
-		printf("pre-sert: %s\n", s);
 		ft_strinsert(s, tmp, neg);
-		printf("post-sert: %s\n", s);
 	}
-	printf("post-precision: %s\n", s);
 	return (s);
 }
 
@@ -78,8 +70,6 @@ static char	*handle_field_width(ft_format_t format, char *s)
 	int		len;
 	int		right_side;
 
-	printf("field_width: %s\n", s);
-	
 	len = ft_strlen(s);
 	right_side = (format.field_width < 0);
 	format.field_width *= (right_side) ? -1 : 1;
@@ -93,8 +83,6 @@ static char	*handle_field_width(ft_format_t format, char *s)
 	else
 		ft_strinsert(s, padding, 0);
 	free(padding);
-
-	printf("post-field: %s\n", s);
 	return (s);
 }
 

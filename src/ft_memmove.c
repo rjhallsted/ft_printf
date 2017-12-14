@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 18:55:02 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/22 10:02:38 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:44:38 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void		*ft_memmove(void *dst, const void *src, size_t len)
 	const char	*src_str;
 
 	dst_str = dst;
-	src_str = dst;
-	if (dst_str > src_str && dst_str - src_str < (long)len)
+	src_str = src;
+	if (dst_str > src_str && dst_str - src_str <= (long)len)
 	{
 		while (len > 0)
 		{
