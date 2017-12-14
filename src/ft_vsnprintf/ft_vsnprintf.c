@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 18:35:24 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 20:08:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static ft_format_t	get_format_struct(const char *format_str)
 	}
 	format_str++;
 	format.str_jump = format_str - str_hold;
+	format.is_nullchar = 0;
 	return (format);
 }
 

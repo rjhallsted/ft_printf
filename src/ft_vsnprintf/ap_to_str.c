@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 19:45:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 20:06:58 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char	*handle_field_width(ft_format_t format, char *s)
 	int		len;
 	int		right_side;
 
-	len = ft_strlen(s);
+	len = (format.is_nullchar) ? 1 : ft_strlen(s);
 	right_side = (format.field_width < 0);
 	format.field_width *= (right_side) ? -1 : 1;
 	if (format.field_width <= len)
@@ -78,7 +78,9 @@ static char	*handle_field_width(ft_format_t format, char *s)
 	if (ft_strchr(format.flags, ' ') && !right_side)
 		format.field_width--;
 	padding = ft_xstring(' ', format.field_width - len);
-	if (right_side)
+	if (right_side && format.is_nullchar)
+		ft_strcat(s + 1, padding);
+	else if (right_side)
 		ft_strcat(s, padding);
 	else
 		ft_strinsert(s, padding, 0);
@@ -102,9 +104,9 @@ char	*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format, char *s)
 	signed_int = va_arg(ap, intmax_t);
 	if (format.conversion == CHAR_T)
 	{
-		tmp = ft_xstring((unsigned char)signed_int, 1);
-		ft_strcpy(s, tmp);
-		free(tmp);
+		*s = (unsigned char)signed_int;
+		*(s + 1) = '\0';
+		format.is_nullchar = (*s == '\0');
 		return (process_return(format, s));
 	}
 	if (format.len_mod == CHAR_MOD)

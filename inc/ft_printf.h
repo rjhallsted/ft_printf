@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 18:25:08 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:52:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct	ft_format_s
 	int			disp_mod;
 	int			shorthand;
 	size_t		str_jump;
+	int			is_nullchar;
 }				ft_format_t;
 
 int				ft_printf(const char *format, ...);
