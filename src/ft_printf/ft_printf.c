@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 19:01:29 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 20:30:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:27:50 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	ft_printf(const char *format, ...)
 	va_list	ap;
 	size_t	len;
 	
-	str = ft_strnew(1000);
+	str = ft_strnew(100000);
 	va_start(ap, format);
-	len = ft_vsnprintf(str, 1000, format, ap);
+	len = ft_vsnprintf(str, 100000, format, ap);
 	va_end(ap);
 	write(1, str, len);
 	free(str);
