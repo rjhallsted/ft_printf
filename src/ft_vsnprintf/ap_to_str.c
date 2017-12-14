@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 21:16:53 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:23:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,9 @@ char	*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format, char *s)
 	}
 	else
 	{
-		ft_strcpy(s, va_arg(ap, char *));
+		new = va_arg(ap, char *);
+		new = (new) ? new : "(null)";
+		ft_strcpy(s, new);
 		return (process_return(format, s));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 20:10:53 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:23:00 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ void run_test(const char *format, ...)
 int main(void)
 {
 	wchar_t	wide_chars[4] = {0x00f5, 0x00f6, 0x00f7, L'\0'};
-
+	char *nil;
+	nil = NULL;
+	
 	printf("NULL c:%4c\n", '\0');
 	ft_printf("ftNULL c:%4c\n", '\0');
 	
 	run_test("No spec:");
 	run_test("Percent: %%");
 
-	run_test("Strings: %.s, % -25s", "running really", "successfully damn fast");
+	run_test("Strings: %.s, % -25s, %s", "running really", "successfully damn fast", NULL);
 	run_test("Wide chars: %ls", wide_chars);
 
 	run_test("Ints: %.d, % 5.4i", 5, -12);
