@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 20:28:43 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:17:44 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,24 @@ int					ft_vsnprintf(char *str, size_t size, const char *format,
 	size_t	str_pos;
 	int		increase;
 	
-	ft_bzero(str, size);
+	ft_memset(str, '.', size);
+	str[0] = '\0';
 	str_pos = 0;
-	while (*format && str_pos < size - 1)
+	while (*format && str_pos < size)
 	{
 		if (*format == '%')
 		{
 			format++;
-			ft_memset(str + str_pos + 1, '.', 2);
 			if ((increase = add_formatted_var(str + str_pos, ap, format)) == -1)
 				return (-1);
 			format += increase;
-			if (str[str_pos] == '\0' && str[str_pos + 1] == '\0')
+			str_pos += ft_strlen(str + str_pos);
+			if (str[str_pos + 1] == '\0')
 				str_pos++;
-			else
-				str_pos += ft_strlen(str + str_pos);
 		}
 		else
 			str[str_pos++] = *format++;
+		str[str_pos] = '\0';
 	}
 	return str_pos;
 }

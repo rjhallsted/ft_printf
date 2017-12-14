@@ -6,13 +6,15 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 20:06:58 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/13 21:16:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
+
+#include <stdio.h>
 
 static char *handle_flags(ft_format_t format, char *s)
 {
@@ -55,7 +57,7 @@ static char *handle_precision(ft_format_t format, char *s)
 	if (format.precision == -1)
 		return (s);
 	if (format.conversion == STR_T)
-		ft_strclr(s + format.precision);
+		s[format.precision] = '\0';
 	else if (format.precision - (int)ft_strlen(s) + neg > 0)
 	{
 		tmp = ft_xstring('0', format.precision - ft_strlen(s) + neg);
