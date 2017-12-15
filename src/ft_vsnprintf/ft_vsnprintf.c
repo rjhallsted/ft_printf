@@ -6,13 +6,39 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 21:17:44 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/14 23:30:47 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
+
+static char			*format_struct2(ft_format_t *format, const char *format_str)
+{
+	format->precision = ft_vsnprintf_get_precision(format_str);
+	if (format->precision != -1)
+	{
+		format_str++;
+		if (*format_str == '-')
+			format_str++;
+		while (ft_isdigit(*format_str))
+			format_str++;
+	}
+	if (!(ft_vsnprintf_check_shorthand(format_str, format)))
+	{
+		format->len_mod = ft_vsnprintf_get_len_mod(format_str);
+		if (format->len_mod == CHAR_MOD || format->len_mod == LONGLONG_MOD)
+			format_str += 2;
+		else if (format->len_mod != NONE_MOD)
+			format_str++;
+		format->conversion = ft_vsnprintf_get_conversion(format_str);
+		format->disp_mod = ft_vsnprintf_get_disp_mod(format_str);
+	}
+	format_str++;
+	format->is_nullchar = 0;
+	return ((char *)format_str);
+}
 
 static ft_format_t	get_format_struct(const char *format_str)
 {
@@ -29,42 +55,9 @@ static ft_format_t	get_format_struct(const char *format_str)
 	if (format.field_width)
 		while (ft_isdigit(*format_str))
 			format_str++;
-	format.precision = ft_vsnprintf_get_precision(format_str);
-	if (format.precision != -1)
-	{
-		format_str++;
-		if (*format_str == '-')
-			format_str++;
-		while (ft_isdigit(*format_str))
-			format_str++;
-	}
-	if (!(ft_vsnprintf_check_shorthand(format_str, &format)))
-	{
-		format.len_mod = ft_vsnprintf_get_len_mod(format_str);
-		if (format.len_mod == CHAR_MOD || format.len_mod == LONGLONG_MOD)
-			format_str += 2;
-		else if (format.len_mod != NONE_MOD)
-			format_str++;
-		format.conversion = ft_vsnprintf_get_conversion(format_str);
-		format.disp_mod = ft_vsnprintf_get_disp_mod(format_str);
-	}
-	format_str++;
+	format_str = format_struct2(&format, format_str);
 	format.str_jump = format_str - str_hold;
-	format.is_nullchar = 0;
 	return (format);
-}
-
-static char			*ap_to_str(va_list ap, ft_format_t format, char *s)
-{
-	if (format.conversion == INT_T || format.conversion == CHAR_T)
-		return (ft_vsnprintf_ap_int_to_str(ap, format, s));
-	if (format.conversion == UINT_T)
-		return (ft_vsnprintf_ap_uint_to_str(ap, format, s));
-	if (format.conversion == STR_T)
-		return (ft_vsnprintf_ap_str_to_str(ap, format, s));
-	if (format.conversion == PTR_T)
-		return (ft_vsnprintf_ap_ptr_to_str(ap, format, s));
-	return (NULL);
 }
 
 static int			add_formatted_var(char *str, va_list ap,
@@ -82,7 +75,7 @@ static int			add_formatted_var(char *str, va_list ap,
 		format = get_format_struct(format_str);
 		if (format.conversion == NONE_T)
 			return (0);
-		if (!(ap_to_str(ap, format, str)))
+		if (!(ft_vsnprintf_ap_to_str(ap, format, str)))
 			return (-1);
 		return (format.str_jump);
 	}

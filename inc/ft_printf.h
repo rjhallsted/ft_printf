@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 19:52:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/14 23:42:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ int				ft_vsnprintf_get_disp_mod(const char *format_str);
 int				ft_vsnprintf_get_precision(const char *format_str);
 int				ft_vsnprintf_get_field_width(const char *format_str, char *flags);
 void			ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str);
-char			*ft_vsnprintf_ap_int_to_str(va_list ap, ft_format_t format, char *s);
-char			*ft_vsnprintf_ap_uint_to_str(va_list ap, ft_format_t format, char *s);
-char			*ft_vsnprintf_ap_ptr_to_str(va_list ap, ft_format_t format, char *s);
-char			*ft_vsnprintf_ap_str_to_str(va_list ap, ft_format_t format, char *s);
+char			*ft_vsnprintf_ap_to_str(va_list ap, ft_format_t format, char *s);
+char			*ft_vsnprintf_process_return(ft_format_t format, char *s);
 
 #endif
