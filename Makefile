@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/15 00:04:41 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/15 12:27:50 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,6 +53,7 @@ PRINTF		=	$(addprefix ft_printf/,		\
 VSN_PRINTF	=	$(addprefix ft_vsnprintf/,	\
 				ft_vsnprintf				\
 				specifiers					\
+				specifiers2					\
 				ap_to_str					\
 				ap_helpers					\
 				process_return				)
