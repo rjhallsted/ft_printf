@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/14 23:45:45 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 00:04:05 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ static char	*ap_int_to_str(va_list ap, ft_format_t format, char *s)
 	
 	signed_int = va_arg(ap, intmax_t);
 	if (format.conversion == CHAR_T)
-	{
-		*s = (unsigned char)signed_int;
-		*(s + 1) = '\0';
-		format.is_nullchar = (*s == '\0');
-		return (ft_vsnprintf_process_return(format, s));
-	}
+		return(ft_vsnprintf_apchar_to_str(format, signed_int, s));
 	if (format.len_mod == CHAR_MOD)
 		signed_int = (char)signed_int;
 	else if (format.len_mod == SHORT_MOD)
@@ -48,7 +43,6 @@ static char	*ap_int_to_str(va_list ap, ft_format_t format, char *s)
 static char	*ap_uint_to_str(va_list ap, ft_format_t fmt, char *s)
 {
 	uintmax_t		unsigned_int;
-	unsigned int	b;
 	char			*new;
 
 	unsigned_int = va_arg(ap, uintmax_t);
@@ -71,17 +65,7 @@ static char	*ap_uint_to_str(va_list ap, ft_format_t fmt, char *s)
 		unsigned_int = (size_t)unsigned_int;
 	else if (fmt.len_mod == NONE_MOD)
 		unsigned_int = (unsigned int)unsigned_int;
-	b = (fmt.disp_mod == OCT_DISP) ? 8 : 10;
-	b = (fmt.disp_mod == HEX_DISP || fmt.disp_mod == HEX_UP_DISP) ? 16 : b;
-	if (fmt.disp_mod == HEX_UP_DISP)
-	{
-		new = ft_uintmaxtoa_base(unsigned_int, b);
-		ft_strtoup(new);
-	}
-	else
-		new = ft_uintmaxtoa_base(unsigned_int, b);
-	ft_strcpy(s, new);
-	free(new);
+	ft_vsnprintf_apuint_helper(&fmt, unsigned_int, s);
 	return (ft_vsnprintf_process_return(fmt, s));
 }
 
