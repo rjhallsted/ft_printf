@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 21:23:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:48:38 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int main(void)
 	char *nil;
 	nil = NULL;
 	
-	printf("NULL c:%4c\n", '\0');
-	ft_printf("ftNULL c:%4c\n", '\0');
+//	printf("NULL c:%4c\n", '\0');
+//	ft_printf("ftNULL c:%4c\n", '\0');
 	
 	run_test("No spec:");
 	run_test("Percent: %%");
@@ -77,7 +77,7 @@ int main(void)
 
 	run_test("Pointer: %p", &wide_chars);
 
-	ft_printf("%s\n", "actual printf test");
+//	ft_printf("%s\n", "actual printf test");
 
 	run_test("4i 42: %4i", 42);
 	run_test("04i 42: %04i", 42); 
@@ -87,7 +87,7 @@ int main(void)
 	run_test("#X INT_MIN: %#X", INT_MIN);
 	run_test("+i 42: %+i", 42);
 	run_test("Null c: %c", '\0');
-	printf("real:%c\n", '\0');
-	ft_printf("ft :%c\n", '\0');
+//	printf("real:%c\n", '\0');
+//	ft_printf("ft :%c\n", '\0');
 	return (0);
 }

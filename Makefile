@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2017/12/15 12:27:50 by rhallste         ###   ########.fr        #
+#    Updated: 2017/12/15 22:39:22 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,10 +47,7 @@ MEM			=	ft_bzero					\
 				ft_memset					\
 				ft_memrealloc
 
-PRINTF		=	$(addprefix ft_printf/,		\
-				ft_printf					)
-
-VSN_PRINTF	=	$(addprefix ft_vsnprintf/,	\
+VSNPRINTF	=	$(addprefix ft_vsnprintf/,	\
 				ft_vsnprintf				\
 				specifiers					\
 				specifiers2					\
@@ -58,7 +55,13 @@ VSN_PRINTF	=	$(addprefix ft_vsnprintf/,	\
 				ap_helpers					\
 				process_return				)
 
-PRINTING	=	$(PRINTF)					\
+VPRINTF		=	$(addprefix ft_vprintf/,	\
+				ft_vprintf					\
+				ap_to_str					\
+				ap_helpers					\
+				process_return				)
+
+PRINTING	=	ft_printf					\
 				ft_printmemory				\
 				ft_putchar					\
 				ft_putchar_fd				\
@@ -67,7 +70,8 @@ PRINTING	=	$(PRINTF)					\
 				ft_putnbr					\
 				ft_putnbr_fd				\
 				ft_putstr					\
-				ft_putstr_fd				
+				ft_putstr_fd				\
+				$(VPRINTF)
 
 STR			=	ft_atoi						\
 				ft_intmaxtoa				\
@@ -92,6 +96,7 @@ STR			=	ft_atoi						\
 				ft_striter					\
 				ft_striteri					\
 				ft_strjoin					\
+				ft_strjoinfree				\
 				ft_strlcat					\
 				ft_strlen					\
 				ft_strmap					\
@@ -122,7 +127,7 @@ STR			=	ft_atoi						\
 				ft_ulltoa_base				\
 				ft_wstrlen					\
 				ft_xstring					\
-				$(VSN_PRINTF)
+				$(VSNPRINTF)
 
 UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 20:45:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:42:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct	s_ft_format
 }				t_format;
 
 int				ft_printf(const char *format, ...);
+int				ft_vprintf(const char *format, va_list ap);
 int				ft_snprintf(char *str, size_t size,
 							const char *format, ...);
 int				ft_vsnprintf(char *str, size_t size, const char *format,
@@ -87,11 +88,16 @@ void			ft_vsnprintf_get_flags(t_format *format,
 										const char *format_str);
 char			*ft_vsnprintf_ap_to_str(va_list ap, t_format format,
 										char *s);
+void			ft_vprintf_ap_to_str(va_list ap, t_format format, char **s);
 char			*ft_vsnprintf_process_return(t_format format,
 											char *s);
+void			ft_vprintf_process_return(t_format format, char **s);
 char			*ft_vsnprintf_apchar_to_str(t_format fmt,
 											intmax_t signed_int, char *s);
+void			ft_vprintf_apchar_to_str(t_format fmt,
+											intmax_t signed_int, char **s);
 void			ft_vsnprintf_apuint_helper(t_format *fmt,
 										uintmax_t uint, char *s);
-
+void			ft_vprintf_apuint_helper(t_format *fmt,
+										uintmax_t uint, char **s);
 #endif
