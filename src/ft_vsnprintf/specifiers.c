@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 20:56:34 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 11:39:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		ft_vsnprintf_get_conversion(const char *format_str)
 {
+	if (*format_str == '%')
+		return (PERCENT_T);
 	if (*format_str == 'c' || *format_str == 'C')
 		return (CHAR_T);
 	if (*format_str == 'd' || *format_str == 'i')

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 20:51:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 11:46:54 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,17 @@ static int		add_formatted_var(char *str, va_list ap,
 {
 	t_format	format;
 
-	if (*format_str == '%')
+	format = get_format_struct(format_str);
+	if (format.conversion == NONE_T)
+		return (0);
+	if (format.conversion == PERCENT_T)
 	{
-		ft_strcat(str, "%");
-		return (1);
+		ft_strinsert(str, "%", 0);
+		ft_vsnprintf_process_return(format, str);
 	}
-	else
-	{
-		format = get_format_struct(format_str);
-		if (format.conversion == NONE_T)
-			return (0);
-		if (!(ft_vsnprintf_ap_to_str(ap, format, str)))
-			return (-1);
-		return (format.str_jump);
-	}
+	else if (!(ft_vsnprintf_ap_to_str(ap, format, str)))
+		return (-1);
+	return (format.str_jump);
 }
 
 int				ft_vsnprintf(char *str, size_t size, const char *format,

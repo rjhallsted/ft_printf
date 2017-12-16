@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:42:56 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 11:38:13 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ enum	e_types {
 	UINT_T,
 	CHAR_T,
 	STR_T,
-	PTR_T
+	PTR_T,
+	PERCENT_T
 };
 
 enum	e_len_mods {
