@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:50:10 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 14:45:45 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 14:50:46 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_vprintf_apchar_to_str(t_format *fmt, intmax_t signed_int, char **s)
 	**s = (unsigned char)signed_int;
 	if (**s == '\0')
 		fmt->is_nullchar = ISNULLCHAR_LEFT;
-	if (fmt->field_width > 0)
+	if (**s == '\0' && fmt->field_width > 0)
 		fmt->is_nullchar = ISNULLCHAR_RIGHT;
 	ft_vprintf_process_return(fmt, s);
 }
