@@ -6,14 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:10:46 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/04 14:14:00 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:57:59 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "../inc/libft.h"
 
-char *ft_xstring(unsigned char c, size_t times)
+char	*ft_xstring(unsigned char c, size_t times)
 {
 	char *str;
 

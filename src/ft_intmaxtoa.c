@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 17:41:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/06 17:43:15 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 21:06:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char		*ft_intmaxtoa(intmax_t n)
 	mod_by = (n < 0) ? -10 : 10;
 	while (len-- > start)
 	{
-		new[len] = ((n % mod_by) * (mod_by / 10))  + '0';
+		new[len] = ((n % mod_by) * (mod_by / 10)) + '0';
 		n /= 10;
 	}
 	return (new);
