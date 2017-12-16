@@ -6,10 +6,11 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 14:28:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 14:45:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include "../../inc/libft.h"
@@ -36,7 +37,7 @@ static char		*format_struct2(t_format *format, const char *format_str)
 		format->disp_mod = ft_vsnprintf_get_disp_mod(format_str);
 	}
 	format_str++;
-	format->is_nullchar = 0;
+	format->is_nullchar = ISNULLCHAR_NO;
 	return ((char *)format_str);
 }
 
@@ -93,12 +94,16 @@ int				ft_vprintf(const char *fmt_str, va_list ap)
 			fmt_str += increase;
 			if (format.is_nullchar)
 				len++;
+			if (format.is_nullchar == ISNULLCHAR_LEFT)
+				write(1, "\0", 1);
 			if (str)
 			{
 				len += ft_strlen(str);
 				ft_putstr(str);
 				free(str);
 			}
+			if (format.is_nullchar == ISNULLCHAR_RIGHT)
+				write(1, "\0", 1);
 		}
 		else
 		{

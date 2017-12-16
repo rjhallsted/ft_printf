@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 14:32:09 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 14:45:01 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ enum	e_flag_keys {
 	FLAGS_PLUS_KEY,
 	FLAGS_ZERO_KEY,
 };
+
+enum	e_isnullchar {
+	ISNULLCHAR_NO,
+	ISNULLCHAR_LEFT,
+	ISNULLCHAR_RIGHT
+};
+
 
 # ifndef FT_FORMAT_FLAGS
 #  define FT_FORMAT_FLAGS " #-+0"
