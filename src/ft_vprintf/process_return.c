@@ -6,12 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 12:15:34 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 12:43:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../inc/libft.h"
+
+#include <stdio.h>
 
 static void	handle_flags(t_format format, char **s)
 {
@@ -27,7 +29,20 @@ static void	handle_flags(t_format format, char **s)
 			tmp = "0X";
 		else if (format.disp_mod == OCT_DISP && **s != '0')
 			tmp = "0";
-		*s = ft_strjoinfree(tmp, *s, 2);
+		if (!ft_strchr(*s, ' '))
+			*s = ft_strjoinfree(tmp, *s, 2);
+		else
+		{
+			if (ft_strnstr(*s, "  ", ft_strlen(*s)) && format.disp_mod != OCT_DISP)
+				ft_strncpy(ft_strrchr(*s, ' ') - 1, tmp, 2);
+			else if (format.disp_mod == OCT_DISP)
+				**s = '0';
+			else
+			{
+				*s = ft_strjoinfree(" ", *s, 2);
+				ft_strncpy(*s, tmp, ft_strlen(tmp));
+			}
+		}
 	}
 	if (ft_strchr(format.flags, ' ') && !ft_strchr(*s, '-')
 		&& format.field_width > -1)
@@ -104,5 +119,5 @@ void	ft_vprintf_process_return(t_format format, char **s)
 	handle_precision(format, s);
 	handle_field_width(format, s);
 	if (format.conversion != PERCENT_T)
-		handle_flags(format, s);
+		handle_flags(format, s);	
 }
