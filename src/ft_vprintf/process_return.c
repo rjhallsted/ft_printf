@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:47:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:00:30 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	handle_precision(t_format format, char **s)
 	int		neg;
 
 	neg = (**s == '-') ? 1 : 0;
-	if (format.conversion == STR_T)
+	if (format.conversion == STR_T && format.precision > -1)
 	{
 		tmp = ft_strsub(*s, 0, format.precision);
 		free(*s);

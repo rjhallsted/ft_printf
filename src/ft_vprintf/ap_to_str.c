@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:43:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:58:37 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	ap_str_to_str(va_list ap, t_format format, char **s)
 		new = va_arg(ap, char *);
 		new = (new) ? new : "(null)";
 		*s = ft_strdup(new);
-		free(new);
 		ft_vprintf_process_return(format, s);
 	}
 }

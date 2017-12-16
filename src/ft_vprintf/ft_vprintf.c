@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:41:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:03:59 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,10 @@ int				ft_vprintf(const char *format, va_list ap)
 				free(str);
 			}
 			else
+			{
 				ft_putstr(format);
+				format += ft_strlen(format);
+			}
 		}
 	}
 	return (len);

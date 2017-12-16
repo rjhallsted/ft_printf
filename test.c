@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 21:13:18 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:48:38 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:49:24 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main(void)
 
 	run_test("Pointer: %p", &wide_chars);
 
-//	ft_printf("%s\n", "actual printf test");
+	ft_printf("%s\n", "actual printf test");
 
 	run_test("4i 42: %4i", 42);
 	run_test("04i 42: %04i", 42); 
