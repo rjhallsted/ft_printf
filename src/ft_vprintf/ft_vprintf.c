@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 23:14:10 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:30:51 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,12 @@ int				ft_vprintf(const char *format, va_list ap)
 			if ((increase = format_var(&str, format, ap)) == -1)
 				return (-1);
 			format += increase;
-			len += ft_strlen(str);
-			ft_putstr(str);
-			free(str);
+			if (str)
+			{
+				len += ft_strlen(str); // this won't be correct when you write a nullchar
+				ft_putstr(str);
+				free(str);
+			}
 		}
 		else
 		{
