@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 12:54:50 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:25:09 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,16 @@ static char	*handle_flags(t_format format, char *s)
 			tmp = "0X";
 		else if (format.disp_mod == OCT_DISP && *s != '0')
 			tmp = "0";
-		if (!(ft_strchr(s, ' ')))
-			ft_strinsert(s, tmp, 0);
+		if (!(ft_strchr(s, ' ')) || ft_strchr(format.flags, '-'))
+		{
+			if ((int)ft_strlen(s) == ABS(format.field_width))
+			{
+				ft_strinsert(s, tmp, 0);
+				s[ABS(format.field_width)] = '\0';
+			}
+			else
+				ft_strinsert(s, tmp, 0);
+		}
 		else
 		{
 			if (ft_strnstr(s, "  ", ft_strlen(s)) && format.disp_mod != OCT_DISP)

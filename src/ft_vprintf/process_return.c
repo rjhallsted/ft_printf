@@ -6,22 +6,17 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 12:53:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:22:12 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../inc/libft.h"
 
-#include <stdio.h>
-
 static void	handle_flags(t_format format, char **s)
 {
 	char	*tmp;
 
-	if (ft_strchr(format.flags, ' ') && !ft_strchr(*s, '-')
-		&& format.field_width > -1)
-		*s = ft_strjoinfree(" ", *s, 2);
 	if (ft_strchr(format.flags, '#') && format.disp_mod != NONE_DISP
 		&& **s != '0')
 	{
@@ -32,8 +27,21 @@ static void	handle_flags(t_format format, char **s)
 			tmp = "0X";
 		else if (format.disp_mod == OCT_DISP && **s != '0')
 			tmp = "0";
-		if (!ft_strchr(*s, ' '))
-			*s = ft_strjoinfree(tmp, *s, 2);
+		if (!ft_strchr(*s, ' ') || ft_strchr(format.flags, '-'))
+		{
+			tmp = ft_strjoin(tmp, *s);
+			if ((int)ft_strlen(*s) == ABS(format.field_width))
+			{
+				free(*s);
+				*s = ft_strsub(tmp, 0, ABS(format.field_width));
+				free(tmp);
+			}
+			else
+			{
+				free(*s);
+				*s = tmp;
+			}
+		}
 		else
 		{
 			if (ft_strnstr(*s, "  ", ft_strlen(*s)) && format.disp_mod != OCT_DISP)
@@ -52,6 +60,9 @@ static void	handle_flags(t_format format, char **s)
 			}
 		}
 	}
+	if (ft_strchr(format.flags, ' ') && !ft_strchr(*s, '-')
+		&& format.field_width > -1)
+		*s = ft_strjoinfree(" ", *s, 2);
 	if (ft_strchr(format.flags, '0') && !ft_strchr(format.flags, '-')
 		&& format.field_width > -1 && format.precision == -1)
 		ft_strreplace(*s, ' ', '0');

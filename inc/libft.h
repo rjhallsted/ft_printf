@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:31:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:17:01 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_list
 
 # define MIN(a, b) ((a < b) ? a : b)
 # define MAX(a, b) ((a > b) ? a : b)
+# define ABS(a) ((a < 0) ? a * -1 : a)
 # define UNSI unsigned int
 # define UNSL unsigned long
 # define WCHAR_SIZE sizeof(wchar_t)
