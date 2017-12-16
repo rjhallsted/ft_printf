@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 12:02:56 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 12:15:39 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static char	*handle_flags(t_format format, char *s)
 {
 	char	*tmp;
 
-	if (ft_strchr(format.flags, '#') && format.disp_mod != NONE_DISP)
+	if (ft_strchr(format.flags, '#') && format.disp_mod != NONE_DISP
+		&& *s != '0')
 	{
 		tmp = "";
 		if (format.disp_mod == HEX_DISP)
