@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 23:03:59 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:14:10 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				ft_vprintf(const char *format, va_list ap)
 				return (-1);
 			format += increase;
 			len += ft_strlen(str);
-			ft_putstr(str); //still need to figure out writing null chars
+			ft_putstr(str);
 			free(str);
 		}
 		else

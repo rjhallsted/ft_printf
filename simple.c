@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 23:01:02 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 23:01:35 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 23:14:50 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main(void)
 {
-	ft_printf("%s\n", "TESTING it out");
+//	ft_printf("%s\n", "TESTING it out");
+//	ft_printf("%+3d\n", 5);
+	ft_printf("%+i\n", 42);
 	return (0);
 }
