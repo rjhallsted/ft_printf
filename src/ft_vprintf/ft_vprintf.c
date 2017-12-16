@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 11:46:31 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 14:28:05 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,82 +40,81 @@ static char		*format_struct2(t_format *format, const char *format_str)
 	return ((char *)format_str);
 }
 
-static t_format	get_format_struct(const char *format_str)
+static void		set_format_struct(const char *format_str, t_format *format)
 {
-	t_format	format;
 	const char	*str_hold;
 
 	str_hold = format_str;
-	ft_memset(format.flags, '.', 5);
-	format.flags[5] = '\0';
-	ft_vsnprintf_get_flags(&format, format_str);
+	ft_memset(format->flags, '.', 5);
+	format->flags[5] = '\0';
+	ft_vsnprintf_get_flags(format, format_str);
 	while (ft_strchr(FT_FORMAT_FLAGS, *format_str))
 		format_str++;
-	format.field_width = ft_vsnprintf_get_field_width(format_str, format.flags);
-	if (format.field_width)
+	format->field_width = ft_vsnprintf_get_field_width(format_str, format->flags);
+	if (format->field_width)
 		while (ft_isdigit(*format_str))
 			format_str++;
-	format_str = format_struct2(&format, format_str);
-	format.str_jump = format_str - str_hold;
-	return (format);
+	format_str = format_struct2(format, format_str);
+	format->str_jump = format_str - str_hold;
 }
 
-static int			format_var(char **str, const char *format_str, va_list ap)
+static int		format_var(char **str, const char *format_str, va_list ap, t_format *format)
 {
-	t_format	format;
-
-	format = get_format_struct(format_str);
-	if (format.conversion == NONE_T)
+	set_format_struct(format_str, format);
+	if (format->conversion == NONE_T)
 		return (0);
-	if (format.conversion == PERCENT_T)
+	if (format->conversion == PERCENT_T)
 	{
 		*str = ft_strdup("%");
 		ft_vprintf_process_return(format, str);
 	}
 	else
 		ft_vprintf_ap_to_str(ap, format, str);
-	return (format.str_jump);
+	return (format->str_jump);
 }
 
-int				ft_vprintf(const char *format, va_list ap)
+int				ft_vprintf(const char *fmt_str, va_list ap)
 {
-	int		increase;
-	size_t	len;
-	char	*str;
-	char	*pos;
+	int			increase;
+	size_t		len;
+	char		*str;
+	char		*pos;
+	t_format	format;
 
 	str = NULL;
 	len = 0;
-	while (*format)
+	while (*fmt_str)
 	{
-		if (*format == '%')
+		if (*fmt_str == '%')
 		{
-			format++;
-			if ((increase = format_var(&str, format, ap)) == -1)
+			fmt_str++;
+			if ((increase = format_var(&str, fmt_str, ap, &format)) == -1)
 				return (-1);
-			format += increase;
+			fmt_str += increase;
+			if (format.is_nullchar)
+				len++;
 			if (str)
 			{
-				len += ft_strlen(str); // this won't be correct when you write a nullchar
+				len += ft_strlen(str);
 				ft_putstr(str);
 				free(str);
 			}
 		}
 		else
 		{
-			if ((pos = ft_strchr(format, '%')))
+			if ((pos = ft_strchr(fmt_str, '%')))
 			{
-				str = ft_strsub(format, 0, (size_t)(pos - format));
-				format += ft_strlen(str);
+				str = ft_strsub(fmt_str, 0, (size_t)(pos - fmt_str));
+				fmt_str += ft_strlen(str);
 				len += ft_strlen(str);
 				ft_putstr(str);
 				free(str);
 			}
 			else
 			{
-				ft_putstr(format);
-				len += ft_strlen(format);
-				format += ft_strlen(format);
+				ft_putstr(fmt_str);
+				len += ft_strlen(fmt_str);
+				fmt_str += ft_strlen(fmt_str);
 			}
 		}
 	}

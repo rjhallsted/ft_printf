@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 13:39:07 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 13:51:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static char	*handle_precision(t_format format, char *s)
 		return (s);
 	if (format.conversion == STR_T)
 		s[format.precision] = '\0';
-	else if (format.precision - (int)ft_strlen(s) + neg > 0)
+	else if (format.precision - (int)ft_strlen(s) + neg > 0
+		&& !format.is_nullchar)
 	{
 		tmp = ft_xstring('0', format.precision - ft_strlen(s) + neg);
 		ft_strinsert(s, tmp, neg);
