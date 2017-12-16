@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 00:04:05 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:49:09 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include <stdarg.h>
 #include "../../inc/libft.h"
 
-static char	*ap_int_to_str(va_list ap, ft_format_t format, char *s)
+static char	*ap_int_to_str(va_list ap, t_format format, char *s)
 {
 	intmax_t		signed_int;
 	char			*tmp;
-	
+
 	signed_int = va_arg(ap, intmax_t);
 	if (format.conversion == CHAR_T)
-		return(ft_vsnprintf_apchar_to_str(format, signed_int, s));
+		return (ft_vsnprintf_apchar_to_str(format, signed_int, s));
 	if (format.len_mod == CHAR_MOD)
 		signed_int = (char)signed_int;
 	else if (format.len_mod == SHORT_MOD)
@@ -34,13 +34,13 @@ static char	*ap_int_to_str(va_list ap, ft_format_t format, char *s)
 		signed_int = (size_t)signed_int;
 	else if (format.len_mod == NONE_MOD)
 		signed_int = (int)signed_int;
-	tmp =  ft_intmaxtoa(signed_int);
-	ft_strcpy(s,tmp);
+	tmp = ft_intmaxtoa(signed_int);
+	ft_strcpy(s, tmp);
 	free(tmp);
 	return (ft_vsnprintf_process_return(format, s));
 }
 
-static char	*ap_uint_to_str(va_list ap, ft_format_t fmt, char *s)
+static char	*ap_uint_to_str(va_list ap, t_format fmt, char *s)
 {
 	uintmax_t		unsigned_int;
 	char			*new;
@@ -69,13 +69,13 @@ static char	*ap_uint_to_str(va_list ap, ft_format_t fmt, char *s)
 	return (ft_vsnprintf_process_return(fmt, s));
 }
 
-static char	*ap_str_to_str(va_list ap, ft_format_t format, char *s)
+static char	*ap_str_to_str(va_list ap, t_format format, char *s)
 {
 	int		i;
 	size_t	len;
 	char	*new;
 	wchar_t	*wide;
-	
+
 	if (format.len_mod == LONG_MOD)
 	{
 		wide = va_arg(ap, wchar_t *);
@@ -97,7 +97,7 @@ static char	*ap_str_to_str(va_list ap, ft_format_t format, char *s)
 	}
 }
 
-static char	*ap_ptr_to_str(va_list ap, ft_format_t format, char *s)
+static char	*ap_ptr_to_str(va_list ap, t_format format, char *s)
 {
 	void *ptr;
 	char *tmp;
@@ -110,7 +110,7 @@ static char	*ap_ptr_to_str(va_list ap, ft_format_t format, char *s)
 	return (ft_vsnprintf_process_return(format, s));
 }
 
-char			*ft_vsnprintf_ap_to_str(va_list ap, ft_format_t format, char *s)
+char		*ft_vsnprintf_ap_to_str(va_list ap, t_format format, char *s)
 {
 	if (format.conversion == INT_T || format.conversion == CHAR_T)
 		return (ap_int_to_str(ap, format, s));

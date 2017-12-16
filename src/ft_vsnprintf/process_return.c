@@ -6,20 +6,18 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/14 23:46:58 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:55:59 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../inc/libft.h"
 
-static char *handle_flags(ft_format_t format, char *s)
+static char	*handle_flags(t_format format, char *s)
 {
-	char	*flags;
 	char	*tmp;
 
-	flags = format.flags;
-	if (ft_strchr(flags, '#') && format.disp_mod != NONE_DISP)
+	if (ft_strchr(format.flags, '#') && format.disp_mod != NONE_DISP)
 	{
 		tmp = "";
 		if (format.disp_mod == HEX_DISP)
@@ -30,26 +28,25 @@ static char *handle_flags(ft_format_t format, char *s)
 			tmp = "0";
 		ft_strinsert(s, tmp, 0);
 	}
-	if (ft_strchr(flags, ' ') && !ft_strchr(s, '-') && format.field_width > -1)
+	if (ft_strchr(format.flags, ' ') && !ft_strchr(s, '-')
+		&& format.field_width > -1)
 		ft_strinsert(s, " ", 0);
-	if (ft_strchr(flags, '0') && !ft_strchr(flags, '-')
+	if (ft_strchr(format.flags, '0') && !ft_strchr(format.flags, '-')
 		&& format.field_width > -1 && format.precision == -1)
 		ft_strreplace(s, ' ', '0');
-	if (ft_strchr(flags, '+') && !ft_strchr(s, '-'))
-	{
-		if (*s == '0' || *s == ' ')
-			*s = '+';
-		else
-			ft_strinsert(s, "+", 0);
-	}
+	if (ft_strchr(format.flags, '+') && !ft_strchr(s, '-')
+		&& (*s == '0' || *s == ' '))
+		*s = '+';
+	else if (ft_strchr(format.flags, '+') && !ft_strchr(s, '-'))
+		ft_strinsert(s, "+", 0);
 	return (s);
 }
 
-static char *handle_precision(ft_format_t format, char *s)
+static char	*handle_precision(t_format format, char *s)
 {
-	char 	*tmp;
+	char	*tmp;
 	int		neg;
-	
+
 	neg = (*s == '-') ? 1 : 0;
 	if (format.precision == -1)
 		return (s);
@@ -63,7 +60,7 @@ static char *handle_precision(ft_format_t format, char *s)
 	return (s);
 }
 
-static char	*handle_field_width(ft_format_t format, char *s)
+static char	*handle_field_width(t_format format, char *s)
 {
 	char	*padding;
 	int		len;
@@ -87,11 +84,10 @@ static char	*handle_field_width(ft_format_t format, char *s)
 	return (s);
 }
 
-char	*ft_vsnprintf_process_return(ft_format_t format, char *s)
+char		*ft_vsnprintf_process_return(t_format format, char *s)
 {
 	s = handle_precision(format, s);
 	s = handle_field_width(format, s);
 	s = handle_flags(format, s);
 	return (s);
 }
-

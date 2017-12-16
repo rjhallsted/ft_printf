@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:10:41 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 12:27:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:56:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_vsnprintf_get_disp_mod(const char *format_str)
 int		ft_vsnprintf_get_precision(const char *format_str)
 {
 	int precision;
-	
+
 	if (*format_str != '.')
 		return (-1);
 	format_str++;
@@ -57,13 +57,13 @@ int		ft_vsnprintf_get_precision(const char *format_str)
 int		ft_vsnprintf_get_field_width(const char *format_str, char *flags)
 {
 	int num;
-	
+
 	num = (ft_strchr(flags, '-')) ? -1 : 1;
 	num *= ft_atoi(format_str);
 	return (num);
 }
 
-void	ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str)
+void	ft_vsnprintf_get_flags(t_format *format, const char *format_str)
 {
 	char *flags;
 

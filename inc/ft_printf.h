@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 00:44:01 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 00:00:35 by rhallste         ###   ########.fr       */
+/*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
+/*   Updated: 2017/12/15 20:45:54 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdarg.h>
 # include <string.h>
 
-enum types {
+enum	e_types {
 	NONE_T = -1,
 	INT_T = 0,
 	UINT_T,
@@ -28,7 +28,7 @@ enum types {
 	PTR_T
 };
 
-enum len_mods {
+enum	e_len_mods {
 	NONE_MOD = -1,
 	CHAR_MOD = 0,
 	SHORT_MOD,
@@ -38,14 +38,14 @@ enum len_mods {
 	SIZET_MOD
 };
 
-enum display_mods {
+enum	e_display_mods {
 	NONE_DISP = -1,
 	HEX_DISP = 0,
 	HEX_UP_DISP,
 	OCT_DISP
 };
 
-enum flag_keys {
+enum	e_flag_keys {
 	FLAGS_SPACE_KEY,
 	FLAGS_SHARP_KEY,
 	FLAGS_MINUS_KEY,
@@ -57,7 +57,7 @@ enum flag_keys {
 #  define FT_FORMAT_FLAGS " #-+0"
 # endif
 
-typedef struct	ft_format_s
+typedef struct	s_ft_format
 {
 	char		flags[6];
 	int			field_width;
@@ -68,24 +68,30 @@ typedef struct	ft_format_s
 	int			shorthand;
 	size_t		str_jump;
 	int			is_nullchar;
-}				ft_format_t;
+}				t_format;
 
 int				ft_printf(const char *format, ...);
-int				ft_snprintf(char *str, size_t size, const char *format, ...);
+int				ft_snprintf(char *str, size_t size,
+							const char *format, ...);
 int				ft_vsnprintf(char *str, size_t size, const char *format,
 							va_list ap);
 int				ft_vsnprintf_check_shorthand(const char *format_str,
-											 ft_format_t *format);
+											t_format *format);
 int				ft_vsnprintf_get_len_mod(const char *format_str);
 int				ft_vsnprintf_get_conversion(const char *format_str);
 int				ft_vsnprintf_get_disp_mod(const char *format_str);
 int				ft_vsnprintf_get_precision(const char *format_str);
-int				ft_vsnprintf_get_field_width(const char *format_str, char *flags);
-void			ft_vsnprintf_get_flags(ft_format_t *format, const char *format_str);
-char			*ft_vsnprintf_ap_to_str(va_list ap, ft_format_t format, char *s);
-char			*ft_vsnprintf_process_return(ft_format_t format, char *s);
-char			*ft_vsnprintf_apchar_to_str(ft_format_t fmt, intmax_t signed_int,
+int				ft_vsnprintf_get_field_width(const char *format_str,
+											char *flags);
+void			ft_vsnprintf_get_flags(t_format *format,
+										const char *format_str);
+char			*ft_vsnprintf_ap_to_str(va_list ap, t_format format,
+										char *s);
+char			*ft_vsnprintf_process_return(t_format format,
 											char *s);
-void			ft_vsnprintf_apuint_helper(ft_format_t *fmt, uintmax_t uint, char *s);
+char			*ft_vsnprintf_apchar_to_str(t_format fmt,
+											intmax_t signed_int, char *s);
+void			ft_vsnprintf_apuint_helper(t_format *fmt,
+										uintmax_t uint, char *s);
 
 #endif

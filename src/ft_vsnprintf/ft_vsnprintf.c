@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:36:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/14 23:30:47 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:51:21 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdarg.h>
 #include "../../inc/libft.h"
 
-static char			*format_struct2(ft_format_t *format, const char *format_str)
+static char		*format_struct2(t_format *format, const char *format_str)
 {
 	format->precision = ft_vsnprintf_get_precision(format_str);
 	if (format->precision != -1)
@@ -40,9 +40,9 @@ static char			*format_struct2(ft_format_t *format, const char *format_str)
 	return ((char *)format_str);
 }
 
-static ft_format_t	get_format_struct(const char *format_str)
+static t_format	get_format_struct(const char *format_str)
 {
-	ft_format_t format;
+	t_format	format;
 	const char	*str_hold;
 
 	str_hold = format_str;
@@ -50,7 +50,7 @@ static ft_format_t	get_format_struct(const char *format_str)
 	format.flags[5] = '\0';
 	ft_vsnprintf_get_flags(&format, format_str);
 	while (ft_strchr(FT_FORMAT_FLAGS, *format_str))
-		   format_str++;
+		format_str++;
 	format.field_width = ft_vsnprintf_get_field_width(format_str, format.flags);
 	if (format.field_width)
 		while (ft_isdigit(*format_str))
@@ -60,10 +60,10 @@ static ft_format_t	get_format_struct(const char *format_str)
 	return (format);
 }
 
-static int			add_formatted_var(char *str, va_list ap,
-									  const char *format_str)
+static int		add_formatted_var(char *str, va_list ap,
+									const char *format_str)
 {
-	ft_format_t	format;
+	t_format	format;
 
 	if (*format_str == '%')
 	{
@@ -81,12 +81,12 @@ static int			add_formatted_var(char *str, va_list ap,
 	}
 }
 
-int					ft_vsnprintf(char *str, size_t size, const char *format,
-								 va_list ap)
+int				ft_vsnprintf(char *str, size_t size, const char *format,
+								va_list ap)
 {
 	size_t	str_pos;
 	int		increase;
-	
+
 	ft_memset(str, '.', size);
 	str[0] = '\0';
 	str_pos = 0;
@@ -106,5 +106,5 @@ int					ft_vsnprintf(char *str, size_t size, const char *format,
 			str[str_pos++] = *format++;
 		str[str_pos] = '\0';
 	}
-	return str_pos;
+	return (str_pos);
 }

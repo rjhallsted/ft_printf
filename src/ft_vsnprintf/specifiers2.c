@@ -6,13 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 12:26:58 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 12:27:22 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:44:53 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
-int		ft_vsnprintf_check_shorthand(const char *fmt_str, ft_format_t *format)
+int		ft_vsnprintf_check_shorthand(const char *fmt_str, t_format *format)
 {
 	if (ft_strchr("DCOU", *fmt_str))
 	{
