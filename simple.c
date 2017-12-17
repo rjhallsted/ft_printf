@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 23:01:02 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 13:34:30 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/17 12:07:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int main(void)
 	ft_printf("%#-08x\n", 42);
 	ft_printf("@moulitest: %#.x %#.0x\n", 0, 0);
 	ft_printf("@moulitest: %5.x %5.0x\n", 0, 0);
+	ft_printf("%-+10.5d\n", 4242);
 	return (0);
 }
