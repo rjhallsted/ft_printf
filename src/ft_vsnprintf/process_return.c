@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 15:26:58 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 16:01:40 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static char	*handle_flags(t_format format, char *s)
 			tmp = "0";
 		if (!(ft_strchr(s, ' ')) || ft_strchr(format.flags, '-'))
 		{
-			if ((int)ft_strlen(s) == ABS(format.field_width) && ABS(format.field_width) > 0)
+			if ((int)ft_strlen(s) == ABS(format.field_width)
+				&& (ABS(format.field_width) > 0 || format.disp_mod == HEX_DISP || format.disp_mod == HEX_UP_DISP))
 			{
 				ft_strinsert(s, tmp, 0);
 				s[ABS(format.field_width)] = '\0';
@@ -62,7 +63,7 @@ static char	*handle_flags(t_format format, char *s)
 		&& format.field_width > -1 && format.precision == -1)
 		ft_strreplace(s, ' ', '0');
 	if (ft_strchr(format.flags, '+') && !ft_strchr(s, '-')
-		&& (*s == '0' || *s == ' '))
+		&& ((*s == '0' && ft_strlen(s) > 1) || *s == ' '))
 		*s = '+';
 	else if (ft_strchr(format.flags, '+') && !ft_strchr(s, '-'))
 		ft_strinsert(s, "+", 0);
