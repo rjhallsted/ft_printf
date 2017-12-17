@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 16:11:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/16 16:18:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,12 @@ static char	*handle_flags(t_format format, char *s)
 	}
 	if (ft_strchr(format.flags, '+') && !ft_strchr(s, '-')
 		&& ((*s == '0' && ft_strlen(s) > 1) || *s == ' '))
-		*s = '+';
+	{
+		if (*s == '0' && ft_strlen(s) > 1)
+			*s = '+';
+		else
+			*(ft_strrchr(s, ' ')) = '+';
+	}
 	else if (ft_strchr(format.flags, '+') && !ft_strchr(s, '-'))
 		ft_strinsert(s, "+", 0);
 	return (s);
