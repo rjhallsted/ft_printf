@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/17 12:07:55 by rhallste         ###   ########.fr       */
+/*   Updated: 2017/12/17 12:19:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	handle_flags(t_format *format, char **s)
 			**s = '-';
 		}
 	}
-	if (ft_strchr(format->flags, '+')
+	if (ft_strchr(format->flags, '+') && !ft_strchr(*s, '-')
 		&& ((**s == '0' && ft_strlen(*s) > 1) || **s == ' '))
 	{
 		if (ft_strchr(format->flags, '0') && **s == '0' && ft_strlen(*s) > 1)
@@ -115,7 +115,8 @@ static void	handle_precision(t_format *format, char **s)
 		if (neg)
 			free(tmp2);
 	}
-	else if (format->precision == 0 && format->disp_mod != NONE_DISP)
+	else if (format->precision == 0 && (format->disp_mod != NONE_DISP
+							|| (ft_atoi(*s) == 0 && format->conversion != PERCENT_T)))
 	{
 		free(*s);
 		*s = ft_strdup("");
