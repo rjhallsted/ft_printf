@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/01/11 21:39:22 by rhallste         ###   ########.fr        #
+#    Updated: 2018/01/11 21:48:19 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,14 +47,6 @@ MEM			=	ft_bzero					\
 				ft_memset					\
 				ft_memrealloc
 
-VSNPRINTF	=	$(addprefix ft_vsnprintf/,	\
-				ft_vsnprintf				\
-				specifiers					\
-				specifiers2					\
-				ap_to_str					\
-				ap_helpers					\
-				process_return				)
-
 VPRINTF		=	$(addprefix ft_vprintf/,	\
 				ft_vprintf					\
 				ap_to_str					\
@@ -84,7 +76,6 @@ STR			=	ft_atoi						\
 				ft_lltoa					\
 				ft_lltoa_base				\
 				ft_padnumstr				\
-				ft_snprintf					\
 				ft_strcat					\
 				ft_strchr					\
 				ft_strclr					\
@@ -127,8 +118,7 @@ STR			=	ft_atoi						\
 				ft_ulltoa					\
 				ft_ulltoa_base				\
 				ft_wstrlen					\
-				ft_xstring					\
-				$(VSNPRINTF)
+				ft_xstring
 
 UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\
