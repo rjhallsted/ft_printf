@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/04 12:39:28 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:45:52 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,45 +87,46 @@ static const char	*set_len_mod(const char *format_str, t_format *format)
 		else if (*format_str == 'z')
 			format->len_mod = SIZET_MOD;
 		else
-			format->len_mod == NONE_MOD;
+			format->len_mod = NONE_MOD;
 		if (format->len_mod != NONE_MOD)
 			format_str++;
 	}
 	return (format_str);
 }
 
-//jump table for conversions here (need to figure out the structure for these)
+/*
+ * The indexes in this array correspond to e_types
+ */
+static const char *type_keys[] = { "diD", "ouxXOU", "cC", "s", "p", "%"};
+static const char disp_keys[] = { 'x', 'X', 'o' };
 
 static const char	*set_conversion(const char *format_str, t_format *format)
 {
+	int type;
+	int disp;
+
 	if (ft_strchr("DCUO", *format_str))
-		format->len_mod == LONG_MOD;
-	if (*format_str == '%')
-		format->conversion = PERCENT_T;
-	else if (ft_strchr("cC", *format_str))
-		format->conversion = CHAR_T;
-	else if (ft_strchr("diD", *format_str))
-		format->conversion = INT_T;
-	else if (ft_strchr("ouxXOU", *format_str))
-		format->conversion = UINT_T;
-	else if (*format_str == 's')
-		format->conversion = STR_T;
-	else if (*format_str == 'p')
-		format->conversion = PTR_T;
-	else
-		format->conversion = NONE_T;
-	if (*format_str == 'x')
-		format->disp_mod = HEX_DISP;
-	else if (*format_str == 'X')
-		format->disp_mod = HEX_UP_DISP;
-	else if (*format_str == 'o')
-		format->disp_mod = OCT_DISP;
-	else
-		format->disp_mod = NONE_DISP;
-	if (ft_strchr("DCUO", *format_str))
+		format->len_mod = LONG_MOD;
+	format->conversion = NONE_T;
+	type = 0;
+	while (type < 6 && format->conversion == NONE_T)
+	{
+		if (ft_strchr(type_keys[type], *format_str))
+			format->conversion = type;
+		type++;
+	}
+	format->disp_mod = NONE_MOD;
+	disp = 0;
+	while (disp < 3 && format->disp_mod == NONE_MOD)
+	{
+		if (disp_keys[disp] == *format_str)
+			format->disp_mod = disp;
+		disp++;
+	}
+//	if (ft_strchr("DCUO", *format_str))
 		format_str++;
-	else if (!format->conversion != NONE_MOD)
-		format_str += 2;
+//	else if (format->conversion != NONE_T)
+//		format_str += 2;
 	return (format_str);
 }
 
