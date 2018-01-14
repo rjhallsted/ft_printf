@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/11 22:22:03 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/14 13:47:19 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,30 +98,24 @@ static void	handle_precision(t_format *format, char **s)
 	int		neg;
 
 	neg = (**s == '-') ? 1 : 0;
-	if (format->conversion == STR_T && format->precision > -1)
+	if (format->conversion == STR_T)
 	{
-		tmp = ft_strsub(*s, 0, format->precision);
-		free(*s);
-		*s = tmp;
+		if (format->precision < (int)ft_strlen(*s) && format->precision > -1)
+			ft_strclr(*s + format->precision);
 	}
 	else if (format->precision - (int)ft_strlen(*s) + neg > 0
 		&& !format->is_nullchar)
 	{
 		tmp = ft_xstring('0', format->precision - ft_strlen(*s) + neg);
-		tmp2 = (neg) ? ft_strjoin(tmp, (*s) + 1) : ft_strjoin(tmp, *s);
-		free(tmp);
+		tmp2 = (neg) ? ft_strjoinfree(tmp, (*s) + 1, 1) : ft_strjoinfree(tmp, *s, 1);
 		free(*s);
-		*s = (neg) ? ft_strjoin("-", tmp2) : tmp2;
-		if (neg)
-			free(tmp2);
+		*s = (neg) ? ft_strjoinfree("-", tmp2, 2) : tmp2;
 	}
 	else if (format->precision == 0 && (format->disp_mod != NONE_DISP
 							|| (ft_atoi(*s) == 0 && format->conversion != PERCENT_T)))
-	{
-		free(*s);
-		*s = ft_strdup("");
-	}
+		ft_strclr(*s);
 }
+
 
 static void	handle_field_width(t_format *format, char **s)
 {
@@ -155,8 +149,38 @@ static void	handle_field_width(t_format *format, char **s)
 	free(padding);
 }
 
+#include <stdio.h>
+
+static void	print_format(t_format *format)
+{
+	printf("--------------\n");
+	printf("Flags:\n");
+	if( format->flags[FLAGS_SPACE_KEY])
+		printf("->space\n");
+	if( format->flags[FLAGS_SHARP_KEY])
+		printf("->sharp\n");
+	if (format->flags[FLAGS_MINUS_KEY])
+		printf("->minus\n");
+	if (format->flags[FLAGS_PLUS_KEY])
+		printf("->plus\n");
+	if (format->flags[FLAGS_ZERO_KEY])
+		printf("->zero\n");
+	printf("Field width-> %d\n", format->field_width);
+	printf("Precision-> %d\n", format->precision);
+	printf("len_mod-> %d\n", format->len_mod);
+	printf("conversion-> %d\n", format->conversion);
+	printf("disp_mod-> %d\n", format->disp_mod);
+	printf("shorthand-> %d\n", format->shorthand);
+	printf("str_jump-> %zu\n", format->str_jump);
+	printf("is_nullchar-> %d\n", format->is_nullchar);
+	printf("-------------\n");
+}
+
 void	ft_vprintf_process_return(t_format *format, char **s)
 {
+	if (1 == 2)
+		print_format(format);
+	
 	handle_precision(format, s);
 	handle_field_width(format, s);
 	if (format->conversion != PERCENT_T)

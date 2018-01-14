@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/11 21:45:52 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/14 12:19:01 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static const char	*set_field_width(const char *format_str, t_format *format)
 	{
 		num = (format->flags[FLAGS_MINUS_KEY]) ? -1 : 1;
 		num *= ft_atoi(format_str);
-		format_str += ft_digitcount(num);
+		format_str += ft_digitcount(ABS(num));
 	}
 	else
 		num = 0;
