@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/14 13:47:19 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/14 13:53:37 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,24 +129,21 @@ static void	handle_field_width(t_format *format, char **s)
 	format->field_width *= (right_side) ? -1 : 1;
 	if (format->field_width <= len)
 		return;
-	if (ft_strchr(format->flags, ' ') && !right_side)
+	if (format->flags[FLAGS_SPACE_KEY] && !right_side)
 		format->field_width--;
 	padding = ft_xstring(' ', format->field_width - len);
 	if (right_side && format->is_nullchar)
 	{
 		free(*s);
-		*s = ft_strnew(ft_strlen(padding) + 1);
-		**s = '\0';
-		ft_strcat((*s) + 1, padding);
-		return;
+		tmp = ft_strnew(ft_strlen(padding) + 1);
+		*tmp = '\0';
+		ft_strcat((tmp) + 1, padding);
 	}
 	else if (right_side)
-		tmp = ft_strjoin(*s, padding);
+		tmp = ft_strjoinfree(*s, padding, 3);
 	else
-		tmp = ft_strjoin(padding, *s);
-	free(*s);
+		tmp = ft_strjoinfree(padding, *s, 3);
 	*s = tmp;
-	free(padding);
 }
 
 #include <stdio.h>
