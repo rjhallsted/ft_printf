@@ -6,61 +6,92 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/14 13:53:37 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/14 14:39:03 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../inc/libft.h"
 
-static void	handle_flags(t_format *format, char **s)
+static void	handle_sharp_flag(t_format *format, char **s)
 {
-	char	*tmp;
+	char 	*tmp;
+	char	*orig;
+	int		pad;
 
-	if (ft_strchr(format->flags, '#') && format->disp_mod != NONE_DISP
+	if (format->flags[FLAGS_SHARP_KEY] && format->disp_mod != NONE_DISP
 		&& **s != '0')
 	{
-		tmp = "";
-		if (format->disp_mod == HEX_DISP)
-			tmp = "0x";
-		else if (format->disp_mod == HEX_UP_DISP)
-			tmp = "0X";
-		else if (format->disp_mod == OCT_DISP && **s != '0')
-			tmp = "0";
-		if (!ft_strchr(*s, ' ') || ft_strchr(format->flags, '-'))
-		{
-			tmp = ft_strjoin(tmp, *s);
-			if ((int)ft_strlen(*s) == ABS(format->field_width)
-				&& (ABS(format->field_width) > 0 || format->disp_mod == HEX_DISP || format->disp_mod == HEX_UP_DISP))
-			{
-				free(*s);
-				*s = ft_strsub(tmp, 0, ABS(format->field_width));
-				free(tmp);
-			}
-			else
-			{
-				free(*s);
-				*s = tmp;
-			}
-		}
-		else
-		{
-			if (ft_strnstr(*s, "  ", ft_strlen(*s)) && format->disp_mod != OCT_DISP)
-			{
-				if (ft_strchr(format->flags, '0'))
-					ft_strncpy(*s, tmp, 2);
-				else
-					ft_strncpy(ft_strrchr(*s, ' ') - 1, tmp, 2);
-			}
-			else if (format->disp_mod == OCT_DISP)
-				*(ft_strrchr(*s, ' ')) = '0';
-			else
-			{
-				*s = ft_strjoinfree(" ", *s, 2);
-				ft_strncpy(*s, tmp, ft_strlen(tmp));
-			}
-		}
+		tmp = ft_strdup("0x");
+		tmp[1] = (format->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
+		tmp[1] = (format->disp_mod == OCT_DISP) ? '\0' : tmp[1];
+		pad = 0;
+		while (*s[pad] == ' ')
+			pad++;
+		orig = ft_strdup(*s + pad);
+		free(*s);
+		*s = ft_strjoinfree(tmp, orig, 3);
+		pad -= ft_strlen(tmp);
+		if (pad > 0)
+			*s = ft_strjoinfree(ft_xstring(' ', pad), *s, 3);
+		pad = 0;
+		while ((*s)[pad] && (*s)[pad] != ' ')
+			pad++;
+		while ((*s)[pad] && pad < format->field_width)
+			pad++;
+		ft_strclr(*s + pad);
 	}
+}
+
+static void	handle_flags(t_format *format, char **s)
+{
+//	char	*tmp;
+
+	handle_sharp_flag(format, s);
+	/* if (ft_strchr(format->flags, '#') && format->disp_mod != NONE_DISP */
+	/* 	&& **s != '0') */
+	/* { */
+	/* 	tmp = ""; */
+	/* 	if (format->disp_mod == HEX_DISP) */
+	/* 		tmp = "0x"; */
+	/* 	else if (format->disp_mod == HEX_UP_DISP) */
+	/* 		tmp = "0X"; */
+	/* 	else if (format->disp_mod == OCT_DISP && **s != '0') */
+	/* 		tmp = "0"; */
+	/* 	if (!ft_strchr(*s, ' ') || ft_strchr(format->flags, '-')) */
+	/* 	{ */
+	/* 		tmp = ft_strjoin(tmp, *s); */
+	/* 		if ((int)ft_strlen(*s) == ABS(format->field_width) */
+	/* 			&& (ABS(format->field_width) > 0 || format->disp_mod == HEX_DISP || format->disp_mod == HEX_UP_DISP)) */
+	/* 		{ */
+	/* 			free(*s); */
+	/* 			*s = ft_strsub(tmp, 0, ABS(format->field_width)); */
+	/* 			free(tmp); */
+	/* 		} */
+	/* 		else */
+	/* 		{ */
+	/* 			free(*s); */
+	/* 			*s = tmp; */
+	/* 		} */
+	/* 	} */
+	/* 	else */
+	/* 	{ */
+	/* 		if (ft_strnstr(*s, "  ", ft_strlen(*s)) && format->disp_mod != OCT_DISP) */
+	/* 		{ */
+	/* 			if (ft_strchr(format->flags, '0')) */
+	/* 				ft_strncpy(*s, tmp, 2); */
+	/* 			else */
+	/* 				ft_strncpy(ft_strrchr(*s, ' ') - 1, tmp, 2); */
+	/* 		} */
+	/* 		else if (format->disp_mod == OCT_DISP) */
+	/* 			*(ft_strrchr(*s, ' ')) = '0'; */
+	/* 		else */
+	/* 		{ */
+	/* 			*s = ft_strjoinfree(" ", *s, 2); */
+	/* 			ft_strncpy(*s, tmp, ft_strlen(tmp)); */
+	/* 		} */
+	/* 	} */
+	/* } */
 	if (ft_strchr(format->flags, ' ') && !ft_strchr(*s, '-')
 		&& format->field_width > -1 && !format->is_nullchar && format->conversion != UINT_T)
 		*s = ft_strjoinfree(" ", *s, 2);
