@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/15 16:08:50 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/15 16:18:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	handle_sharp_flag(t_format *format, char **s)
 static void	handle_flags(t_format *format, char **s)
 {
 	handle_sharp_flag(format, s);
-	if (ft_strchr(format->flags, ' ') && !ft_strchr(*s, '-')
-		&& format->field_width > -1 && !format->is_nullchar && format->conversion != UINT_T)
+	if (format->flags[FLAGS_SPACE_KEY] && **s != '-' && format->field_width > -1
+		&& !format->is_nullchar && format->conversion != UINT_T)
 		*s = ft_strjoinfree(" ", *s, 2);
 	if (ft_strchr(format->flags, '0') && !ft_strchr(format->flags, '-')
 		&& format->field_width > -1 && format->precision == -1)
@@ -98,8 +98,6 @@ static void	handle_field_width(t_format *format, char **s)
 	format->field_width *= (right_side) ? -1 : 1;
 	if (format->field_width <= len)
 		return;
-	if (format->flags[FLAGS_SPACE_KEY] && !right_side)
-		format->field_width--;
 	padding = ft_xstring(' ', format->field_width - len);
 	if (right_side && format->is_nullchar)
 	{
