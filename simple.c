@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 23:01:02 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/14 14:14:15 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/15 15:27:33 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int main(void)
 	/* ft_printf("%-.2s is a string\n", "this"); */
 	/* ft_printf("%.2s is a string", ""); */
 	/* ft_printf("%03.2d", -1); */
-	ft_printf("%#x\n", 42);
+	/* ft_printf("%#x\n", 42); */
+//	ft_printf("%#8x", 42);
+//	ft_printf("@moulitest: %#.x %#.0x", 0, 0);
+	ft_printf("@moulitest: %#.o %#.0o", 0, 0);
 	return (0);
 }
