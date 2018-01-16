@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/15 16:49:59 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/15 16:53:24 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,10 @@ static void	handle_sharp_flag(t_format *format, char **s)
 	}
 }
 
-static void	handle_flags(t_format *format, char **s)
+static void handle_zero_flag(t_format *format, char **s)
 {
 	char *tmp;
-	handle_sharp_flag(format, s);
-	if (format->flags[FLAGS_SPACE_KEY] && **s != '-' && format->field_width > -1
-		&& !format->is_nullchar && format->conversion != UINT_T)
-	{
-		tmp = (format->flags[FLAGS_ZERO_KEY]) ? "0" : " ";
-		*s = ft_strjoinfree(tmp, *s, 2);
-	}
+	
 	if (format->flags[FLAGS_ZERO_KEY] && format->field_width > (int)ft_strlen(*s)
 		&& format->precision == -1 && !(format->flags[FLAGS_MINUS_KEY]))
 	{
@@ -50,7 +44,22 @@ static void	handle_flags(t_format *format, char **s)
 			ft_memset(ft_strstr(*s, tmp), '0', 2);
 			ft_strncpy(*s, tmp, 2);
 		}
-	}	
+		free(tmp);
+	}
+}
+
+static void	handle_flags(t_format *format, char **s)
+{
+	char *tmp;
+	
+	handle_sharp_flag(format, s);
+	if (format->flags[FLAGS_SPACE_KEY] && **s != '-' && format->field_width > -1
+		&& !format->is_nullchar && format->conversion != UINT_T)
+	{
+		tmp = (format->flags[FLAGS_ZERO_KEY]) ? "0" : " ";
+		*s = ft_strjoinfree(tmp, *s, 2);
+	}
+	handle_zero_flag(format, s);
 	if (ft_strchr(format->flags, '+') && !ft_strchr(*s, '-') && format->conversion != UINT_T
 		&& ((**s == '0' && ft_strlen(*s) > 1) || **s == ' '))
 	{
