@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/17 22:17:42 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 22:20:26 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,6 @@ void	ft_vprintf_process_return(t_format *format, char **s)
 		print_format(format);
 
 	handle_precision(format, s);
-//	if (format->conversion != PERCENT_T)
-		handle_flags(format, s);
-//	printf("post-flags:%s\n", *s);
+	handle_flags(format, s);
 	handle_field_width(format, s);
 }
