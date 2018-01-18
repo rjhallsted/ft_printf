@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/17 20:44:11 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 20:47:14 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ static void handle_zero_flag(t_format *format, char **s)
 			ft_strncpy(*s, tmp, 2);
 		}
 		free(tmp);
+		tmp = ft_strchr(*s, '-');
+		if (tmp)
+		{
+			*tmp = '0';
+			**s = '-';
+		}
 	}
 }
 
