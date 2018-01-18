@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 09:29:25 by rhallste          #+#    #+#             */
-/*   Updated: 2017/09/25 13:59:10 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 21:19:13 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s && *s != c)
 		s++;
-	return ((*s == c) ? (char *)s : NULL);
+	if (*s)
+		return ((*s == c) ? (char *)s : NULL);
+	return (NULL);
 }

@@ -6,14 +6,15 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 23:01:02 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/15 16:41:46 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 21:21:59 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/libft.h"
+#include <stdio.h>
 
 int main(void)
 {
-	ft_printf("%03.2d\n", 1);
+	ft_printf("% ");
 	return (0);
 }

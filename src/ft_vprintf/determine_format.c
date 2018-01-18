@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/14 12:19:01 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 21:58:36 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 static const char	*set_flags(const char *format_str, t_format *format)
 {
-	char *flags;
-
-	flags = format->flags;
-	ft_bzero(flags, 5);
-	while (ft_strchr(FT_FORMAT_FLAGS, *format_str))
+	ft_bzero(format->flags, 5);
+	while (*format_str && ft_strchr(FT_FORMAT_FLAGS, *format_str))
 	{
 		if (*format_str == '#')
-			flags[FLAGS_SHARP_KEY] = 1;
+			format->flags[FLAGS_SHARP_KEY] = 1;
 		if (*format_str == ' ')
-			flags[FLAGS_SPACE_KEY] = 1;
+			format->flags[FLAGS_SPACE_KEY] = 1;
 		if (*format_str == '+')
-			flags[FLAGS_PLUS_KEY] = 1;
+			format->flags[FLAGS_PLUS_KEY] = 1;
 		if (*format_str == '-')
-			flags[FLAGS_MINUS_KEY] = 1;
+			format->flags[FLAGS_MINUS_KEY] = 1;
 		if (*format_str == '0')
-			flags[FLAGS_ZERO_KEY] = 1;
+			format->flags[FLAGS_ZERO_KEY] = 1;
 		format_str++;
 	}
 	return (format_str);
@@ -102,31 +99,28 @@ static const char disp_keys[] = { 'x', 'X', 'o' };
 
 static const char	*set_conversion(const char *format_str, t_format *format)
 {
-	int type;
-	int disp;
+	int i;
 
 	if (ft_strchr("DCUO", *format_str))
 		format->len_mod = LONG_MOD;
 	format->conversion = NONE_T;
-	type = 0;
-	while (type < 6 && format->conversion == NONE_T)
+	i = 0;
+	while (i < 6 && format->conversion == NONE_T)
 	{
-		if (ft_strchr(type_keys[type], *format_str))
-			format->conversion = type;
-		type++;
+		if (ft_strchr(type_keys[i], *format_str))
+			format->conversion = i;
+		i++;
 	}
 	format->disp_mod = NONE_MOD;
-	disp = 0;
-	while (disp < 3 && format->disp_mod == NONE_MOD)
+	i = 0;
+	while (i < 3 && format->disp_mod == NONE_MOD)
 	{
-		if (disp_keys[disp] == *format_str)
-			format->disp_mod = disp;
-		disp++;
+		if (disp_keys[i] == *format_str)
+			format->disp_mod = i;
+		i++;
 	}
-//	if (ft_strchr("DCUO", *format_str))
+	if (format->conversion != NONE_T)
 		format_str++;
-//	else if (format->conversion != NONE_T)
-//		format_str += 2;
 	return (format_str);
 }
 
