@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/17 21:54:58 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 22:17:42 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ static void	handle_sharp_flag(t_format *format, char **s)
 static void handle_zero_flag(t_format *format, char **s)
 {
 	char *tmp;
-	
+
 	if (format->flags[FLAGS_ZERO_KEY] && format->field_width > (int)ft_strlen(*s)
 		&& format->precision == -1 && !(format->flags[FLAGS_MINUS_KEY]))
 	{
+//		printf("inner\n");
 		tmp = ft_xstring('0', format->field_width - ft_strlen(*s));
+//		printf("tmp:%s\n", tmp);
 		*s = ft_strjoinfree(tmp, *s, 3);
 		tmp = ft_strdup("0x");
 		tmp[1] = (format->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
@@ -60,7 +62,8 @@ static void	handle_flags(t_format *format, char **s)
 	
 	handle_sharp_flag(format, s);
 	if (format->flags[FLAGS_SPACE_KEY] && **s != '-' && format->field_width > -1
-		&& !format->is_nullchar && format->conversion != UINT_T)
+		&& !format->is_nullchar && format->conversion != UINT_T
+		&& format->conversion != PERCENT_T)
 	{
 		tmp = (format->flags[FLAGS_ZERO_KEY]) ? "0" : " ";
 		*s = ft_strjoinfree(tmp, *s, 2);
@@ -162,7 +165,8 @@ void	ft_vprintf_process_return(t_format *format, char **s)
 		print_format(format);
 
 	handle_precision(format, s);
-	if (format->conversion != PERCENT_T)
+//	if (format->conversion != PERCENT_T)
 		handle_flags(format, s);
+//	printf("post-flags:%s\n", *s);
 	handle_field_width(format, s);
 }
