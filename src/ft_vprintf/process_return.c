@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/15 16:53:24 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/17 20:44:11 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,14 @@ static void	handle_flags(t_format *format, char **s)
 		*s = ft_strjoinfree(tmp, *s, 2);
 	}
 	handle_zero_flag(format, s);
-	if (ft_strchr(format->flags, '+') && !ft_strchr(*s, '-') && format->conversion != UINT_T
-		&& ((**s == '0' && ft_strlen(*s) > 1) || **s == ' '))
+	if (format->flags[FLAGS_PLUS_KEY] && **s != '-' && format->conversion != UINT_T)
 	{
-		if (ft_strchr(format->flags, '0') && **s == '0' && ft_strlen(*s) > 1)
+		if ((format->flags[FLAGS_ZERO_KEY] || format->flags[FLAGS_SPACE_KEY])
+			&& **s != '-' && ft_strlen(*s) > 1)
 			**s = '+';
-		else if (ft_strchr(*s, ' ') && !ft_strchr(format->flags, '-'))
-			*(ft_strrchr(*s, ' ')) = '+';
 		else
-		{
 			*s = ft_strjoinfree("+", *s, 2);
-			(*s)[format->field_width] = '\0';
-		}
 	}
-	else if (ft_strchr(format->flags, '+') && !ft_strchr(*s, '-') && format->conversion != UINT_T)
-		*s = ft_strjoinfree("+", *s, 2);
 }
 
 static void	handle_precision(t_format *format, char **s)
