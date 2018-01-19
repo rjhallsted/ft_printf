@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 17:28:32 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 17:35:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	handle_flags(t_format *format, char **s)
 	if (format->flags[FLAGS_PLUS_KEY] && **s != '-' && format->conversion != UINT_T)
 	{
 		if ((format->flags[FLAGS_ZERO_KEY] || format->flags[FLAGS_SPACE_KEY])
-			&& **s != '-' && ft_strlen(*s) > 1)
+			&& **s != '-' && ft_strlen(*s) > 1 && format->field_width > -1)
 			**s = '+';
 		else
 			*s = ft_strjoinfree("+", *s, 2);
