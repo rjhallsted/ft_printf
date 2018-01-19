@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/17 21:58:32 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:33:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,63 +31,45 @@ static int		format_var(char **str, const char *format_str, va_list ap,
 	return (format->str_jump);
 }
 
-static void	print_format(t_format *format)
+static const char	*run_conversion(const char *fmt_str, va_list ap, size_t *len)
 {
-	printf("--------------\n");
-	printf("Flags:\n");
-	if( format->flags[FLAGS_SPACE_KEY])
-		printf("->space\n");
-	if( format->flags[FLAGS_SHARP_KEY])
-		printf("->sharp\n");
-	if (format->flags[FLAGS_MINUS_KEY])
-		printf("->minus\n");
-	if (format->flags[FLAGS_PLUS_KEY])
-		printf("->plus\n");
-	if (format->flags[FLAGS_ZERO_KEY])
-		printf("->zero\n");
-	printf("Field width-> %d\n", format->field_width);
-	printf("Precision-> %d\n", format->precision);
-	printf("len_mod-> %d\n", format->len_mod);
-	printf("conversion-> %d\n", format->conversion);
-	printf("disp_mod-> %d\n", format->disp_mod);
-	printf("shorthand-> %d\n", format->shorthand);
-	printf("str_jump-> %zu\n", format->str_jump);
-	printf("is_nullchar-> %d\n", format->is_nullchar);
-	printf("-------------\n");
+	int			increase;
+	char		*str;
+	t_format	format;
+
+	str = NULL;
+	fmt_str++;
+	if ((increase = format_var(&str, fmt_str, ap, &format)) == -1)
+		return (NULL);
+	fmt_str += increase;
+	if (format.is_nullchar)
+		(*len)++;
+	if (format.is_nullchar == ISNULLCHAR_LEFT)
+		write(1, "\0", 1);
+	if (str && format.conversion != NONE_T)
+	{
+		*len += ft_strlen(str);
+		ft_putstr(str);
+		free(str);
+	}
+	if (format.is_nullchar == ISNULLCHAR_RIGHT)
+		write(1, "\0", 1);
+	return (fmt_str);
 }
 
 int				ft_vprintf(const char *fmt_str, va_list ap)
 {
-	int			increase;
 	size_t		len;
-	char		*str;
 	char		*pos;
-	t_format	format;
 
-	str = NULL;
 	len = 0;
 	while (*fmt_str)
 	{
 		if (*fmt_str == '%')
 		{
-			fmt_str++;
-			if ((increase = format_var(&str, fmt_str, ap, &format)) == -1)
+			fmt_str = run_conversion(fmt_str, ap, &len);
+			if (!(fmt_str))
 				return (-1);
-			fmt_str += increase;
-			if (1 == 2)
-				print_format(&format);
-			if (format.is_nullchar)
-				len++;
-			if (format.is_nullchar == ISNULLCHAR_LEFT)
-				write(1, "\0", 1);
-			if (str && format.conversion != NONE_T)
-			{
-				len += ft_strlen(str);
-				ft_putstr(str);
-				free(str);
-			}
-			if (format.is_nullchar == ISNULLCHAR_RIGHT)
-				write(1, "\0", 1);
 		}
 		else
 		{
