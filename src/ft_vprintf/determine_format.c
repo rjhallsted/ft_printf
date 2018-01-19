@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 16:09:28 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 16:14:15 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,14 @@ void	ft_vprintf_determine_format(const char *format_str, t_format *format)
 
 	init_format(format);
 	start = format_str;
-	format_str = set_flags(format_str, format);
-	format_str = set_field_width(format_str, format);
-	format_str = set_precision(format_str, format);
-	format_str = set_len_mod(format_str, format);
-	format_str = set_conversion(format_str, format);
+	while (ft_strchr(FT_PRINTF_VALCHAR, *format_str)
+		&& format->conversion == NONE_T)
+	{
+		format_str = set_flags(format_str, format);
+		format_str = set_field_width(format_str, format);
+		format_str = set_precision(format_str, format);
+		format_str = set_len_mod(format_str, format);
+		format_str = set_conversion(format_str, format);
+	}
 	format->str_jump = format_str - start;
 }
