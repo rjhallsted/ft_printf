@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/17 21:58:36 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 16:09:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static const char	*set_flags(const char *format_str, t_format *format)
 {
-	ft_bzero(format->flags, 5);
 	while (*format_str && ft_strchr(FT_FORMAT_FLAGS, *format_str))
 	{
 		if (*format_str == '#')
@@ -34,17 +33,12 @@ static const char	*set_flags(const char *format_str, t_format *format)
 
 static const char	*set_field_width(const char *format_str, t_format *format)
 {
-	int num;
-
 	if (ft_isdigit(*format_str))
 	{
-		num = (format->flags[FLAGS_MINUS_KEY]) ? -1 : 1;
-		num *= ft_atoi(format_str);
-		format_str += ft_digitcount(ABS(num));
+		format->field_width = (format->flags[FLAGS_MINUS_KEY]) ? -1 : 1;
+		format->field_width *= ft_atoi(format_str);
+		format_str += ft_digitcount(ABS(format->field_width));
 	}
-	else
-		num = 0;
-	format->field_width = num;
 	return (format_str);
 }
 
@@ -57,8 +51,6 @@ static const char	*set_precision(const char *format_str, t_format *format)
 		if (ft_isdigit(*format_str))
 			format_str += ft_digitcount(format->precision);
 	}
-	else
-		format->precision = -1;
 	return (format_str);
 }
 
@@ -83,8 +75,6 @@ static const char	*set_len_mod(const char *format_str, t_format *format)
 			format->len_mod = INTMAX_MOD;
 		else if (*format_str == 'z')
 			format->len_mod = SIZET_MOD;
-		else
-			format->len_mod = NONE_MOD;
 		if (format->len_mod != NONE_MOD)
 			format_str++;
 	}
@@ -103,7 +93,6 @@ static const char	*set_conversion(const char *format_str, t_format *format)
 
 	if (ft_strchr("DCUO", *format_str))
 		format->len_mod = LONG_MOD;
-	format->conversion = NONE_T;
 	i = 0;
 	while (i < 6 && format->conversion == NONE_T)
 	{
@@ -124,10 +113,24 @@ static const char	*set_conversion(const char *format_str, t_format *format)
 	return (format_str);
 }
 
+static void init_format(t_format *format)
+{
+	ft_bzero(format->flags, 5);
+	format->conversion = NONE_T;
+	format->field_width = 0;
+	format->precision = -1;
+	format->len_mod = NONE_MOD;
+	format->disp_mod = NONE_DISP;
+	format->shorthand = 0;
+	format->str_jump = 0;
+	format->is_nullchar = ISNULLCHAR_NO;
+}
+
 void	ft_vprintf_determine_format(const char *format_str, t_format *format)
 {
 	const char *start;
 
+	init_format(format);
 	start = format_str;
 	format_str = set_flags(format_str, format);
 	format_str = set_field_width(format_str, format);

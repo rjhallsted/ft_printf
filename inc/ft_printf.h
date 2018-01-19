@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/14 12:10:25 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 15:59:23 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ enum	e_isnullchar {
 
 # ifndef FT_FORMAT_FLAGS
 #  define FT_FORMAT_FLAGS " #-+0"
+# endif
+
+# ifndef FT_PRINTF_VALCHAR
+#  define FT_PRINTF_VALCHAR "cdhijlopsuxzCDUX #-+%0123456789."
 # endif
 
 typedef struct	s_ft_format
