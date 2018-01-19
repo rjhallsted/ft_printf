@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 18:33:02 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:37:46 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,28 @@ static const char	*run_conversion(const char *fmt_str, va_list ap, size_t *len)
 	return (fmt_str);
 }
 
+static const char	*print_normal(const char *fmt_str, size_t *len)
+{
+	char *pos;
+	
+	if ((pos = ft_strchr(fmt_str, '%')))
+	{
+		write(1, fmt_str, pos - fmt_str);
+		*len += pos - fmt_str;
+		fmt_str += pos - fmt_str;
+	}
+	else
+	{
+		ft_putstr(fmt_str);
+		*len += ft_strlen(fmt_str);
+		fmt_str += ft_strlen(fmt_str);
+	}
+	return (fmt_str);
+}
+
 int				ft_vprintf(const char *fmt_str, va_list ap)
 {
 	size_t		len;
-	char		*pos;
 
 	len = 0;
 	while (*fmt_str)
@@ -72,20 +90,7 @@ int				ft_vprintf(const char *fmt_str, va_list ap)
 				return (-1);
 		}
 		else
-		{
-			if ((pos = ft_strchr(fmt_str, '%')))
-			{
-				write(1, fmt_str, pos - fmt_str);
-				len += pos - fmt_str;
-				fmt_str += pos - fmt_str;
-			}
-			else
-			{
-				ft_putstr(fmt_str);
-				len += ft_strlen(fmt_str);
-				fmt_str += ft_strlen(fmt_str);
-			}
-		}
+			fmt_str = print_normal(fmt_str, &len);
 	}
 	return (len);
 }
