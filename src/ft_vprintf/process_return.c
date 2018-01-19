@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/17 22:20:26 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 17:28:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,11 @@ static void handle_zero_flag(t_format *format, char **s)
 
 static void	handle_flags(t_format *format, char **s)
 {
-	char *tmp;
-	
 	handle_sharp_flag(format, s);
 	if (format->flags[FLAGS_SPACE_KEY] && **s != '-' && format->field_width > -1
 		&& !format->is_nullchar && format->conversion != UINT_T
 		&& format->conversion != PERCENT_T)
-	{
-		tmp = (format->flags[FLAGS_ZERO_KEY]) ? "0" : " ";
-		*s = ft_strjoinfree(tmp, *s, 2);
-	}
+		*s = ft_strjoinfree(" ", *s, 2);
 	handle_zero_flag(format, s);
 	if (format->flags[FLAGS_PLUS_KEY] && **s != '-' && format->conversion != UINT_T)
 	{
