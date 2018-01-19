@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 15:59:23 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:49:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,32 +85,20 @@ typedef struct	s_ft_format
 int				ft_printf(const char *format, ...);
 int				ft_vprintf(const char *format, va_list ap);
 void			ft_vprintf_determine_format(const char *format_str, t_format *format);
-int				ft_snprintf(char *str, size_t size,
-							const char *format, ...);
-int				ft_vsnprintf(char *str, size_t size, const char *format,
-							va_list ap);
-int				ft_vsnprintf_check_shorthand(const char *format_str,
-											t_format *format);
-int				ft_vsnprintf_get_len_mod(const char *format_str);
-int				ft_vsnprintf_get_conversion(const char *format_str);
-int				ft_vsnprintf_get_disp_mod(const char *format_str);
-int				ft_vsnprintf_get_precision(const char *format_str);
-int				ft_vsnprintf_get_field_width(const char *format_str,
-											char *flags);
-void			ft_vsnprintf_get_flags(t_format *format,
-										const char *format_str);
-char			*ft_vsnprintf_ap_to_str(va_list ap, t_format format,
-										char *s);
 void			ft_vprintf_ap_to_str(va_list ap, t_format *format, char **s);
-char			*ft_vsnprintf_process_return(t_format format,
-											char *s);
 void			ft_vprintf_process_return(t_format *format, char **s);
-char			*ft_vsnprintf_apchar_to_str(t_format fmt,
-											intmax_t signed_int, char *s);
 void			ft_vprintf_apchar_to_str(t_format *fmt,
 											intmax_t signed_int, char **s);
-void			ft_vsnprintf_apuint_helper(t_format *fmt,
-										uintmax_t uint, char *s);
 void			ft_vprintf_apuint_helper(t_format *fmt,
 										uintmax_t uint, char **s);
+const char		*ft_vprintf_set_flags(const char *format_str,
+									t_format *format);
+const char		*ft_vprintf_set_field_width(const char *format_str,
+											t_format *format);
+const char		*ft_vprintf_set_precision(const char *format_str,
+										  t_format *format);
+const char		*ft_vprintf_set_len_mod(const char *format_str,
+										t_format *format);
+const char		*ft_vprintf_set_conversion(const char *format_str,
+											t_format *format);
 #endif

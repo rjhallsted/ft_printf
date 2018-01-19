@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/01/18 16:18:07 by rhallste         ###   ########.fr        #
+#    Updated: 2018/01/18 18:50:43 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -52,6 +52,7 @@ VPRINTF		=	$(addprefix ft_vprintf/,	\
 				ap_to_str					\
 				ap_helpers					\
 				determine_format			\
+				determine_format_wrapper	\
 				process_return				)
 
 PRINTING	=	ft_printf					\
