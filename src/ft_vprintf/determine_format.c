@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 16:14:15 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/18 17:21:47 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ static const char	*set_len_mod(const char *format_str, t_format *format)
 		if (format->len_mod == LONGLONG_MOD)
 			format_str++;
 	}
-	else {
-		if (*format_str == 'j')
-			format->len_mod = INTMAX_MOD;
-		else if (*format_str == 'z')
-			format->len_mod = SIZET_MOD;
-		if (format->len_mod != NONE_MOD)
-			format_str++;
+	else if (*format_str == 'j')
+	{
+		format->len_mod = INTMAX_MOD;
+		format_str++;
+	}
+	else if (*format_str == 'z')
+	{
+		format->len_mod = SIZET_MOD;
+		format_str++;
 	}
 	return (format_str);
 }
@@ -125,6 +127,30 @@ static void init_format(t_format *format)
 	format->str_jump = 0;
 	format->is_nullchar = ISNULLCHAR_NO;
 }
+static void	print_format(t_format *format)
+{
+	printf("--------------\n");
+	printf("Flags:\n");
+	if( format->flags[FLAGS_SPACE_KEY])
+		printf("->space\n");
+	if( format->flags[FLAGS_SHARP_KEY])
+		printf("->sharp\n");
+	if (format->flags[FLAGS_MINUS_KEY])
+		printf("->minus\n");
+	if (format->flags[FLAGS_PLUS_KEY])
+		printf("->plus\n");
+	if (format->flags[FLAGS_ZERO_KEY])
+		printf("->zero\n");
+	printf("Field width-> %d\n", format->field_width);
+	printf("Precision-> %d\n", format->precision);
+	printf("len_mod-> %d\n", format->len_mod);
+	printf("conversion-> %d\n", format->conversion);
+	printf("disp_mod-> %d\n", format->disp_mod);
+	printf("shorthand-> %d\n", format->shorthand);
+	printf("str_jump-> %zu\n", format->str_jump);
+	printf("is_nullchar-> %d\n", format->is_nullchar);
+	printf("-------------\n");
+}
 
 void	ft_vprintf_determine_format(const char *format_str, t_format *format)
 {
@@ -140,6 +166,8 @@ void	ft_vprintf_determine_format(const char *format_str, t_format *format)
 		format_str = set_precision(format_str, format);
 		format_str = set_len_mod(format_str, format);
 		format_str = set_conversion(format_str, format);
+		if (1 == 2)
+			print_format(format);
 	}
 	format->str_jump = format_str - start;
 }
