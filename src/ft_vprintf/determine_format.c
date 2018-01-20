@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:18:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 21:06:16 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ const char	*ft_vprintf_set_field_width(const char *format_str,
 	{
 		format->field_width = (format->flags[FLAGS_MINUS_KEY]) ? -1 : 1;
 		format->field_width *= ft_atoi(format_str);
-		format_str += ft_digitcount(ABS(format->field_width));
+		format_str += ft_digitcount((uintmax_t)ABS(format->field_width));
 	}
 	return (format_str);
 }
@@ -50,7 +50,7 @@ const char	*ft_vprintf_set_precision(const char *format_str, t_format *format)
 		format_str++;
 		format->precision = (ft_isdigit(*format_str)) ? ft_atoi(format_str) : 0;
 		if (ft_isdigit(*format_str))
-			format_str += ft_digitcount(format->precision);
+			format_str += ft_digitcount((uintmax_t)format->precision);
 	}
 	return (format_str);
 }

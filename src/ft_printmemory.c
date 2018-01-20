@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 13:39:24 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 21:04:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:46:40 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		ft_printmemory(const void *addr, size_t size)
 	const unsigned char	*mem;
 	size_t				i;
 	size_t				tmp;
-	char				c;
+	unsigned char		c;
 
 	i = 0;
 	mem = (const unsigned char *)addr;
@@ -60,7 +60,7 @@ void		ft_printmemory(const void *addr, size_t size)
 				write(1, " ", 1);
 		}
 		if (tmp - i < 16)
-			put_spacing(tmp - i);
+			put_spacing((int)(tmp - i));
 		while (++i <= tmp)
 		{
 			c = (ft_isprint(mem[i - 1])) ? *(mem + i - 1) : '.';

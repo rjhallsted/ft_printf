@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:09:48 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:52:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ enum	e_isnullchar {
 
 typedef struct	s_ft_format
 {
-	char		flags[5];
+	char		flags[8];
 	int			field_width;
 	int			precision;
 	int			len_mod;
 	int			conversion;
 	int			disp_mod;
-	int			shorthand;
-	size_t		str_jump;
+	int			str_jump;
 	int			is_nullchar;
 }				t_format;
 

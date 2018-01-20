@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:27:32 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/13 10:31:42 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 21:23:05 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_strreplace(char *s, int old, int new)
 	while (*s)
 	{
 		if (*s == old)
-			*s = new;
+			*s = (char)new;
 		s++;
 	}
 }

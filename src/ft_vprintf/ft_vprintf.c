@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:21:10 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:55:03 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static const char	*print_normal(const char *fmt_str, size_t *len)
 
 	if ((pos = ft_strchr(fmt_str, '%')))
 	{
-		write(1, fmt_str, pos - fmt_str);
-		*len += pos - fmt_str;
+		write(1, fmt_str, (size_t)(pos - fmt_str));
+		*len += (size_t)(pos - fmt_str);
 		fmt_str += pos - fmt_str;
 	}
 	else
@@ -93,5 +93,5 @@ int					ft_vprintf(const char *fmt_str, va_list ap)
 		else
 			fmt_str = print_normal(fmt_str, &len);
 	}
-	return (len);
+	return ((int)len);
 }

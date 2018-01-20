@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:28:15 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 21:11:29 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	handle_zero_flag(t_format *fmt, char **s)
 	if (fmt->flags[FLAGS_ZERO_KEY] && fmt->field_width > (int)ft_strlen(*s)
 		&& fmt->precision == -1 && !(fmt->flags[FLAGS_MINUS_KEY]))
 	{
-		tmp = ft_xstring('0', fmt->field_width - ft_strlen(*s));
-		*s = ft_strjoinfree(tmp, *s, 3);
+		tmp = ft_xstring('0', (size_t)fmt->field_width - ft_strlen(*s));
+		ft_strjoinfree(tmp, *s, 3);
 		tmp = ft_strdup("0x");
 		tmp[1] = (fmt->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
 		if ((fmt->disp_mod == HEX_DISP || fmt->disp_mod == HEX_UP_DISP)
@@ -83,7 +83,7 @@ static void	handle_precision(t_format *format, char **s)
 	else if (format->precision - (int)ft_strlen(*s) + neg > 0
 		&& !format->is_nullchar)
 	{
-		tmp = ft_xstring('0', format->precision - ft_strlen(*s) + neg);
+		tmp = ft_xstring('0', (size_t)format->precision - ft_strlen(*s) + (size_t)neg);
 		if (neg)
 			tmp2 = ft_strjoinfree(tmp, *s + 1, 1);
 		else
@@ -103,12 +103,12 @@ static void	handle_field_width(t_format *format, char **s)
 	int		len;
 	int		right_side;
 
-	len = (format->is_nullchar) ? 1 : ft_strlen(*s);
+	len = (format->is_nullchar) ? 1 : (int)ft_strlen(*s);
 	right_side = (format->field_width < 0);
 	format->field_width *= (right_side) ? -1 : 1;
 	if (format->field_width <= len)
 		return ;
-	padding = ft_xstring(' ', format->field_width - len);
+	padding = ft_xstring(' ', (size_t)(format->field_width - len));
 	if (right_side && format->is_nullchar)
 	{
 		free(*s);

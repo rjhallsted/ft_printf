@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:13:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:57:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ap_int_to_str(va_list ap, t_format *format, char **s)
 	else if (format->len_mod == LONGLONG_MOD)
 		signed_int = (long long)signed_int;
 	else if (format->len_mod == SIZET_MOD)
-		signed_int = (size_t)signed_int;
+		signed_int = (ssize_t)signed_int;
 	else if (format->len_mod == NONE_MOD)
 		signed_int = (int)signed_int;
 	*s = ft_intmaxtoa(signed_int);

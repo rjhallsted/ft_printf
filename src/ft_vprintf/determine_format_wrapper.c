@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:43:49 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:20:03 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 21:07:14 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 static void	init_format(t_format *format)
 {
-	ft_bzero(format->flags, 5);
+	ft_bzero(format->flags, 8);
 	format->conversion = NONE_T;
 	format->field_width = 0;
 	format->precision = -1;
 	format->len_mod = NONE_MOD;
 	format->disp_mod = NONE_DISP;
-	format->shorthand = 0;
 	format->str_jump = 0;
 	format->is_nullchar = ISNULLCHAR_NO;
 }
@@ -40,5 +39,5 @@ void		ft_vprintf_determine_format(const char *fmt_str, t_format *format)
 		fmt_str = ft_vprintf_set_len_mod(fmt_str, format);
 		fmt_str = ft_vprintf_set_conversion(fmt_str, format);
 	}
-	format->str_jump = fmt_str - start;
+	format->str_jump = (int)(fmt_str - start);
 }
