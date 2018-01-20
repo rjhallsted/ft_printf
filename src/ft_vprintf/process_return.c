@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 21:11:29 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 22:08:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	handle_zero_flag(t_format *fmt, char **s)
 		&& fmt->precision == -1 && !(fmt->flags[FLAGS_MINUS_KEY]))
 	{
 		tmp = ft_xstring('0', (size_t)fmt->field_width - ft_strlen(*s));
-		ft_strjoinfree(tmp, *s, 3);
+		*s = ft_strjoinfree(tmp, *s, 3);
 		tmp = ft_strdup("0x");
 		tmp[1] = (fmt->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
 		if ((fmt->disp_mod == HEX_DISP || fmt->disp_mod == HEX_UP_DISP)
@@ -71,8 +71,9 @@ static void	handle_flags(t_format *format, char **s)
 static void	handle_precision(t_format *format, char **s)
 {
 	char	*tmp;
-	char	*tmp2;
+	char	*t;
 	int		neg;
+	int		tmp_len;
 
 	neg = (**s == '-') ? 1 : 0;
 	if (format->conversion == STR_T)
@@ -83,13 +84,11 @@ static void	handle_precision(t_format *format, char **s)
 	else if (format->precision - (int)ft_strlen(*s) + neg > 0
 		&& !format->is_nullchar)
 	{
-		tmp = ft_xstring('0', (size_t)format->precision - ft_strlen(*s) + (size_t)neg);
-		if (neg)
-			tmp2 = ft_strjoinfree(tmp, *s + 1, 1);
-		else
-			tmp2 = ft_strjoinfree(tmp, *s, 1);
+		tmp_len = format->precision - (int)ft_strlen(*s) + neg;
+		tmp = ft_xstring('0', (size_t)tmp_len);
+		t = (neg) ? ft_strjoinfree(tmp, *s + 1, 1) : ft_strjoinfree(tmp, *s, 1);
 		free(*s);
-		*s = (neg) ? ft_strjoinfree("-", tmp2, 2) : tmp2;
+		*s = (neg) ? ft_strjoinfree("-", t, 2) : t;
 	}
 	else if (format->precision == 0 && (format->disp_mod != NONE_DISP
 		|| (ft_atoi(*s) == 0 && format->conversion != PERCENT_T)))
