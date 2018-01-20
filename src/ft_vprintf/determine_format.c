@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 11:32:11 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 18:50:06 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:18:29 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ const char	*ft_vprintf_set_flags(const char *format_str, t_format *format)
 	return (format_str);
 }
 
-const char	*ft_vprintf_set_field_width(const char *format_str, t_format *format)
+const char	*ft_vprintf_set_field_width(const char *format_str,
+										t_format *format)
 {
 	if (ft_isdigit(*format_str))
 	{
@@ -57,11 +58,11 @@ const char	*ft_vprintf_set_precision(const char *format_str, t_format *format)
 const char	*ft_vprintf_set_len_mod(const char *format_str, t_format *format)
 {
 	int tmp;
-	
+
 	if (*format_str == 'h')
 	{
 		format_str++;
-		tmp = (*format_str == 'h') ? CHAR_MOD : SHORT_MOD;		
+		tmp = (*format_str == 'h') ? CHAR_MOD : SHORT_MOD;
 		if (tmp == CHAR_MOD)
 			format_str++;
 		format->len_mod = MAX(format->len_mod, tmp);
@@ -74,23 +75,19 @@ const char	*ft_vprintf_set_len_mod(const char *format_str, t_format *format)
 			format_str++;
 	}
 	else if (*format_str == 'j')
-	{
 		format->len_mod = MAX(format->len_mod, INTMAX_MOD);
-		format_str++;
-	}
 	else if (*format_str == 'z')
-	{
 		format->len_mod = MAX(format->len_mod, SIZET_MOD);
+	if (*format_str == 'j' || *format_str == 'z')
 		format_str++;
-	}
 	return (format_str);
 }
 
 /*
- * The indexes in this array correspond to e_types
- */
-static const char *type_keys[] = { "diD", "ouxXOU", "cC", "s", "p", "%"};
-static const char disp_keys[] = { 'x', 'X', 'o' };
+** The indexes in this array correspond to e_types
+*/
+static const char *g_type_keys[] = { "diD", "ouxXOU", "cC", "s", "p", "%"};
+static const char g_disp_keys[] = { 'x', 'X', 'o' };
 
 const char	*ft_vprintf_set_conversion(const char *format_str, t_format *format)
 {
@@ -101,7 +98,7 @@ const char	*ft_vprintf_set_conversion(const char *format_str, t_format *format)
 	i = 0;
 	while (i < 6 && format->conversion == NONE_T)
 	{
-		if (ft_strchr(type_keys[i], *format_str))
+		if (ft_strchr(g_type_keys[i], *format_str))
 			format->conversion = i;
 		i++;
 	}
@@ -109,7 +106,7 @@ const char	*ft_vprintf_set_conversion(const char *format_str, t_format *format)
 	i = 0;
 	while (i < 3 && format->disp_mod == NONE_MOD)
 	{
-		if (disp_keys[i] == *format_str)
+		if (g_disp_keys[i] == *format_str)
 			format->disp_mod = i;
 		i++;
 	}

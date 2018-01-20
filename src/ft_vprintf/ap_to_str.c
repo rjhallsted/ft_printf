@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:00:16 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/15 15:57:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:13:54 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdarg.h>
 #include "../../inc/libft.h"
 
-static void ap_int_to_str(va_list ap, t_format *format, char **s)
+static void	ap_int_to_str(va_list ap, t_format *format, char **s)
 {
 	intmax_t		signed_int;
 
@@ -22,7 +22,7 @@ static void ap_int_to_str(va_list ap, t_format *format, char **s)
 	if (format->conversion == CHAR_T)
 	{
 		ft_vprintf_apchar_to_str(format, signed_int, s);
-		return;
+		return ;
 	}
 	if (format->len_mod == CHAR_MOD)
 		signed_int = (char)signed_int;
@@ -36,7 +36,7 @@ static void ap_int_to_str(va_list ap, t_format *format, char **s)
 		signed_int = (size_t)signed_int;
 	else if (format->len_mod == NONE_MOD)
 		signed_int = (int)signed_int;
-	*s = ft_intmaxtoa(signed_int); 
+	*s = ft_intmaxtoa(signed_int);
 	ft_vprintf_process_return(format, s);
 }
 
