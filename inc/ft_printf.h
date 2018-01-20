@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:45:54 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 18:49:02 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 20:09:48 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ enum	e_isnullchar {
 	ISNULLCHAR_RIGHT
 };
 
-
 # ifndef FT_FORMAT_FLAGS
 #  define FT_FORMAT_FLAGS " #-+0"
 # endif
@@ -84,7 +83,8 @@ typedef struct	s_ft_format
 
 int				ft_printf(const char *format, ...);
 int				ft_vprintf(const char *format, va_list ap);
-void			ft_vprintf_determine_format(const char *format_str, t_format *format);
+void			ft_vprintf_determine_format(const char *format_str,
+											t_format *format);
 void			ft_vprintf_ap_to_str(va_list ap, t_format *format, char **s);
 void			ft_vprintf_process_return(t_format *format, char **s);
 void			ft_vprintf_apchar_to_str(t_format *fmt,
@@ -96,7 +96,7 @@ const char		*ft_vprintf_set_flags(const char *format_str,
 const char		*ft_vprintf_set_field_width(const char *format_str,
 											t_format *format);
 const char		*ft_vprintf_set_precision(const char *format_str,
-										  t_format *format);
+										t_format *format);
 const char		*ft_vprintf_set_len_mod(const char *format_str,
 										t_format *format);
 const char		*ft_vprintf_set_conversion(const char *format_str,
