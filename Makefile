@@ -6,14 +6,14 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/02/06 18:30:34 by rhallste         ###   ########.fr        #
+#    Updated: 2018/02/06 18:31:50 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		= 	libft.a
 CC			=	gcc
 EXTRA_FLAGS =	-Weverything -Wno-cast-qual
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra #$(EXTRA_FLAGS)
 
 LIST		=	ft_lst_itemcpy				\
 				ft_lst_remove_if			\
@@ -85,7 +85,6 @@ STR			=	ft_atoi						\
 				ft_strdel					\
 				ft_strdup					\
 				ft_strequ					\
-				ft_strinsert				\
 				ft_striter					\
 				ft_striteri					\
 				ft_strjoin					\

@@ -6,41 +6,25 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 23:36:44 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 17:44:14 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/01/19 22:08:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../inc/libft.h"
 
-static void	handle_sharp_flag(t_format *format, char **s)
-{
-	char 	*tmp;
-
-	if (format->flags[FLAGS_SHARP_KEY] && format->disp_mod != NONE_DISP
-		&& **s != '0' && (ft_strlen(*s) > 0 || format->disp_mod == OCT_DISP))
-	{
-		tmp = ft_strdup("0x");
-		tmp[1] = (format->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
-		tmp[1] = (format->disp_mod == OCT_DISP) ? '\0' : tmp[1];
-		*s = ft_strjoinfree(tmp, *s, 3);
-	}
-}
-
-static void handle_zero_flag(t_format *format, char **s)
+static void	handle_zero_flag(t_format *fmt, char **s)
 {
 	char *tmp;
 
-	if (format->flags[FLAGS_ZERO_KEY] && format->field_width > (int)ft_strlen(*s)
-		&& format->precision == -1 && !(format->flags[FLAGS_MINUS_KEY]))
+	if (fmt->flags[FLAGS_ZERO_KEY] && fmt->field_width > (int)ft_strlen(*s)
+		&& fmt->precision == -1 && !(fmt->flags[FLAGS_MINUS_KEY]))
 	{
-//		printf("inner\n");
-		tmp = ft_xstring('0', format->field_width - ft_strlen(*s));
-//		printf("tmp:%s\n", tmp);
+		tmp = ft_xstring('0', (size_t)fmt->field_width - ft_strlen(*s));
 		*s = ft_strjoinfree(tmp, *s, 3);
 		tmp = ft_strdup("0x");
-		tmp[1] = (format->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
-		if ((format->disp_mod == HEX_DISP || format->disp_mod == HEX_UP_DISP)
+		tmp[1] = (fmt->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
+		if ((fmt->disp_mod == HEX_DISP || fmt->disp_mod == HEX_UP_DISP)
 			&& ft_strstr(*s, tmp))
 		{
 			ft_memset(ft_strstr(*s, tmp), '0', 2);
@@ -58,13 +42,23 @@ static void handle_zero_flag(t_format *format, char **s)
 
 static void	handle_flags(t_format *format, char **s)
 {
-	handle_sharp_flag(format, s);
+	char	*tmp;
+
+	if (format->flags[FLAGS_SHARP_KEY] && format->disp_mod != NONE_DISP
+		&& **s != '0' && (ft_strlen(*s) > 0 || format->disp_mod == OCT_DISP))
+	{
+		tmp = ft_strdup("0x");
+		tmp[1] = (format->disp_mod == HEX_UP_DISP) ? 'X' : tmp[1];
+		tmp[1] = (format->disp_mod == OCT_DISP) ? '\0' : tmp[1];
+		*s = ft_strjoinfree(tmp, *s, 3);
+	}
 	if (format->flags[FLAGS_SPACE_KEY] && **s != '-' && format->field_width > -1
 		&& !format->is_nullchar && format->conversion != UINT_T
 		&& format->conversion != PERCENT_T)
 		*s = ft_strjoinfree(" ", *s, 2);
 	handle_zero_flag(format, s);
-	if (format->flags[FLAGS_PLUS_KEY] && **s != '-' && format->conversion != UINT_T)
+	if (format->flags[FLAGS_PLUS_KEY] && **s != '-'
+		&& format->conversion != UINT_T)
 	{
 		if ((format->flags[FLAGS_ZERO_KEY] || format->flags[FLAGS_SPACE_KEY])
 			&& **s != '-' && ft_strlen(*s) > 1 && format->field_width > -1)
@@ -77,8 +71,9 @@ static void	handle_flags(t_format *format, char **s)
 static void	handle_precision(t_format *format, char **s)
 {
 	char	*tmp;
-	char	*tmp2;
+	char	*t;
 	int		neg;
+	int		tmp_len;
 
 	neg = (**s == '-') ? 1 : 0;
 	if (format->conversion == STR_T)
@@ -89,16 +84,16 @@ static void	handle_precision(t_format *format, char **s)
 	else if (format->precision - (int)ft_strlen(*s) + neg > 0
 		&& !format->is_nullchar)
 	{
-		tmp = ft_xstring('0', format->precision - ft_strlen(*s) + neg);
-		tmp2 = (neg) ? ft_strjoinfree(tmp, (*s) + 1, 1) : ft_strjoinfree(tmp, *s, 1);
+		tmp_len = format->precision - (int)ft_strlen(*s) + neg;
+		tmp = ft_xstring('0', (size_t)tmp_len);
+		t = (neg) ? ft_strjoinfree(tmp, *s + 1, 1) : ft_strjoinfree(tmp, *s, 1);
 		free(*s);
-		*s = (neg) ? ft_strjoinfree("-", tmp2, 2) : tmp2;
+		*s = (neg) ? ft_strjoinfree("-", t, 2) : t;
 	}
 	else if (format->precision == 0 && (format->disp_mod != NONE_DISP
 		|| (ft_atoi(*s) == 0 && format->conversion != PERCENT_T)))
 		ft_strclr(*s);
 }
-
 
 static void	handle_field_width(t_format *format, char **s)
 {
@@ -107,12 +102,12 @@ static void	handle_field_width(t_format *format, char **s)
 	int		len;
 	int		right_side;
 
-	len = (format->is_nullchar) ? 1 : ft_strlen(*s);
+	len = (format->is_nullchar) ? 1 : (int)ft_strlen(*s);
 	right_side = (format->field_width < 0);
 	format->field_width *= (right_side) ? -1 : 1;
 	if (format->field_width <= len)
-		return;
-	padding = ft_xstring(' ', format->field_width - len);
+		return ;
+	padding = ft_xstring(' ', (size_t)(format->field_width - len));
 	if (right_side && format->is_nullchar)
 	{
 		free(*s);
@@ -127,38 +122,8 @@ static void	handle_field_width(t_format *format, char **s)
 	*s = tmp;
 }
 
-#include <stdio.h>
-
-static void	print_format(t_format *format)
+void		ft_vprintf_process_return(t_format *format, char **s)
 {
-	printf("--------------\n");
-	printf("Flags:\n");
-	if( format->flags[FLAGS_SPACE_KEY])
-		printf("->space\n");
-	if( format->flags[FLAGS_SHARP_KEY])
-		printf("->sharp\n");
-	if (format->flags[FLAGS_MINUS_KEY])
-		printf("->minus\n");
-	if (format->flags[FLAGS_PLUS_KEY])
-		printf("->plus\n");
-	if (format->flags[FLAGS_ZERO_KEY])
-		printf("->zero\n");
-	printf("Field width-> %d\n", format->field_width);
-	printf("Precision-> %d\n", format->precision);
-	printf("len_mod-> %d\n", format->len_mod);
-	printf("conversion-> %d\n", format->conversion);
-	printf("disp_mod-> %d\n", format->disp_mod);
-	printf("shorthand-> %d\n", format->shorthand);
-	printf("str_jump-> %zu\n", format->str_jump);
-	printf("is_nullchar-> %d\n", format->is_nullchar);
-	printf("-------------\n");
-}
-
-void	ft_vprintf_process_return(t_format *format, char **s)
-{
-	if (1 == 2)
-		print_format(format);
-
 	handle_precision(format, s);
 	handle_flags(format, s);
 	handle_field_width(format, s);
