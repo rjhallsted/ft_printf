@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/02/06 18:37:41 by rhallste         ###   ########.fr        #
+#    Updated: 2018/02/06 18:52:42 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -123,6 +123,8 @@ STR			=	ft_atoi						\
 UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\
 				ft_free_2d_array			\
+				ft_gcd						\
+				ft_multiple_gcd				\
 				ft_pow						\
 				ft_pow_mod					\
 				ft_swap						\

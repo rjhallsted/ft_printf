@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2018/02/06 18:37:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/02/06 18:54:15 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void				ft_bzero(void *s, size_t n);
 int					ft_digitcount(uintmax_t n);
 int					ft_digitcount_base(uintmax_t n, unsigned int base);
 void				ft_free_2d_array(void ***array, size_t size);
+int					ft_gcd(int x, int y);
+int					ft_multiple_gcd(size_t size, int *tab);
 char				*ft_intmaxtoa(intmax_t n);
 char				*ft_intmaxtoa_base(intmax_t n, unsigned int base);
 int					ft_isalnum(int c);
