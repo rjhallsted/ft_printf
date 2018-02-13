@@ -6,11 +6,11 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/02/06 18:52:42 by rhallste         ###   ########.fr        #
+#    Updated: 2018/02/12 19:52:09 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME		= 	libft.a
+NAME		= 	libftprintf.a
 CC			=	gcc
 EXTRA_FLAGS =	-Weverything -Wno-cast-qual
 CFLAGS		=	-Wall -Werror -Wextra #$(EXTRA_FLAGS)
@@ -47,8 +47,8 @@ MEM			=	ft_bzero					\
 				ft_memset					\
 				ft_memrealloc
 
-VPRINTF		=	$(addprefix ft_vprintf/,	\
-				ft_vprintf					\
+VPRINTF		=	$(addprefix ft_vprintf_fd/,	\
+				ft_vprintf_fd				\
 				ap_to_str					\
 				ap_helpers					\
 				determine_format			\
@@ -56,6 +56,7 @@ VPRINTF		=	$(addprefix ft_vprintf/,	\
 				process_return				)
 
 PRINTING	=	ft_printf					\
+				ft_printf_fd				\
 				ft_printmemory				\
 				ft_putchar					\
 				ft_putchar_fd				\
