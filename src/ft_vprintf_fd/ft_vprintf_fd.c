@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_vprintf_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/15 21:40:52 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/19 20:55:03 by rhallste         ###   ########.fr       */
+/*   Created: 2018/02/12 16:50:44 by rhallste          #+#    #+#             */
+/*   Updated: 2018/02/12 16:57:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static int			format_var(char **str, const char *format_str, va_list ap,
 	return (format->str_jump);
 }
 
-static const char	*run_conversion(const char *fmt_str, va_list ap,
-									size_t *len)
+static const char	*run_conversion(int fd, const char *fmt_str,
+									va_list ap, size_t *len)
 {
 	int			increase;
 	char		*str;
@@ -50,34 +50,34 @@ static const char	*run_conversion(const char *fmt_str, va_list ap,
 	if (str && format.conversion != NONE_T)
 	{
 		*len += ft_strlen(str);
-		ft_putstr(str);
+		ft_putstr_fd(str, fd);
 		free(str);
 	}
 	if (format.is_nullchar == ISNULLCHAR_RIGHT)
-		write(1, "\0", 1);
+		write(fd, "\0", 1);
 	return (fmt_str);
 }
 
-static const char	*print_normal(const char *fmt_str, size_t *len)
+static const char	*print_normal(int fd, const char *fmt_str, size_t *len)
 {
 	char *pos;
 
 	if ((pos = ft_strchr(fmt_str, '%')))
 	{
-		write(1, fmt_str, (size_t)(pos - fmt_str));
+		write(fd, fmt_str, (size_t)(pos - fmt_str));
 		*len += (size_t)(pos - fmt_str);
 		fmt_str += pos - fmt_str;
 	}
 	else
 	{
-		ft_putstr(fmt_str);
+		ft_putstr_fd(fmt_str, fd);
 		*len += ft_strlen(fmt_str);
 		fmt_str += ft_strlen(fmt_str);
 	}
 	return (fmt_str);
 }
 
-int					ft_vprintf(const char *fmt_str, va_list ap)
+int					ft_vprintf_fd(int fd, const char *fmt_str, va_list ap)
 {
 	size_t		len;
 
@@ -86,12 +86,12 @@ int					ft_vprintf(const char *fmt_str, va_list ap)
 	{
 		if (*fmt_str == '%')
 		{
-			fmt_str = run_conversion(fmt_str, ap, &len);
+			fmt_str = run_conversion(fd, fmt_str, ap, &len);
 			if (!(fmt_str))
 				return (-1);
 		}
 		else
-			fmt_str = print_normal(fmt_str, &len);
+			fmt_str = print_normal(fd, fmt_str, &len);
 	}
 	return ((int)len);
 }

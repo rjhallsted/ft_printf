@@ -6,14 +6,14 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/02/15 19:30:35 by rhallste         ###   ########.fr        #
+#    Updated: 2018/02/15 19:32:37 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		= 	libftprintf.a
 CC			=	gcc
 EXTRA_FLAGS =	-Weverything -Wno-cast-qual
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra #$(EXTRA_FLAGS)
 
 LIST		=	ft_lst_itemcpy				\
 				ft_lst_remove_if			\
@@ -47,8 +47,8 @@ MEM			=	ft_bzero					\
 				ft_memset					\
 				ft_memrealloc
 
-VPRINTF		=	$(addprefix ft_vprintf/,	\
-				ft_vprintf					\
+VPRINTF		=	$(addprefix ft_vprintf_fd/,	\
+				ft_vprintf_fd				\
 				ap_to_str					\
 				ap_helpers					\
 				determine_format			\
@@ -56,6 +56,7 @@ VPRINTF		=	$(addprefix ft_vprintf/,	\
 				process_return				)
 
 PRINTING	=	ft_printf					\
+				ft_printf_fd				\
 				ft_printmemory				\
 				ft_putchar					\
 				ft_putchar_fd				\
@@ -86,7 +87,6 @@ STR			=	ft_atoi						\
 				ft_strdel					\
 				ft_strdup					\
 				ft_strequ					\
-				ft_strinsert				\
 				ft_striter					\
 				ft_striteri					\
 				ft_strjoin					\
@@ -125,7 +125,10 @@ STR			=	ft_atoi						\
 UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\
 				ft_free_2d_array			\
-				ft_power					\
+				ft_gcd						\
+				ft_multiple_gcd				\
+				ft_pow						\
+				ft_pow_mod					\
 				ft_swap						\
 				get_next_line
 

@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2018/02/15 19:30:16 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/02/15 19:32:23 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ size_t				ft_charcount(char *s, int c);
 int					ft_digitcount(uintmax_t n);
 int					ft_digitcount_base(uintmax_t n, unsigned int base);
 void				ft_free_2d_array(void ***array, size_t size);
+int					ft_gcd(int x, int y);
+int					ft_multiple_gcd(size_t size, int *tab);
 char				*ft_intmaxtoa(intmax_t n);
 char				*ft_intmaxtoa_base(intmax_t n, unsigned int base);
 int					ft_isalnum(int c);
@@ -60,7 +62,7 @@ t_list				*ft_lstdup(t_list *item);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *));
 size_t				ft_lstlen(t_list *item);
 void				ft_lst_remove_if(t_list **begin_list, void *data_ref,
-						int (*cmp)());
+									int (*cmp)(void *, void*));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 char				*ft_ltoa(long n);
@@ -79,8 +81,8 @@ void				*ft_memset(void *b, int c, size_t len);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_padnumstr(const char *s, int pad_by);
-int					ft_power(int base, int power);
-int					ft_printf(const char *format, ...);
+unsigned long		ft_pow(unsigned long base, unsigned long power);
+unsigned long		ft_pow_mod(unsigned long x, unsigned long y, unsigned long n);
 void				ft_printmemory(const void *addr, size_t size);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
@@ -98,7 +100,6 @@ void				ft_strclr(char *s);
 void				ft_strdel(char **as);
 char				*ft_strdup(const char *s1);
 int					ft_strequ(char const *s1, char const *s2);
-int					ft_strinsert(char *outer, const char *inner, size_t pos);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strjoin(char const *s1, char const *s2);

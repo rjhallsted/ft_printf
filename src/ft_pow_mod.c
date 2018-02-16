@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   return_val.c                                       :+:      :+:    :+:   */
+/*   ft_pow_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/16 11:29:55 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/16 11:31:33 by rhallste         ###   ########.fr       */
+/*   Created: 2018/02/06 18:33:06 by rhallste          #+#    #+#             */
+/*   Updated: 2018/02/06 18:40:20 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "inc/libft.h"
+#include "../inc/libft.h"
 
-int main(void)
+unsigned long ft_pow_mod(unsigned long x, unsigned long y, unsigned long n)
 {
-	printf("\n%d\n", ft_printf("\\n"));
-	return (0);
+	unsigned long	s;
+
+	s = 1;
+	while (y)
+	{
+		if (y & 1)
+			s = (s * x) % n;
+		y >>= 1;
+		x = (x * x) % n;
+	}
+	return (s);
 }

@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple.c                                           :+:      :+:    :+:   */
+/*   ft_gcd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/15 23:01:02 by rhallste          #+#    #+#             */
-/*   Updated: 2018/01/18 17:38:13 by rhallste         ###   ########.fr       */
+/*   Created: 2018/02/06 18:41:41 by rhallste          #+#    #+#             */
+/*   Updated: 2018/02/06 18:44:12 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
-#include <stdio.h>
+#include "../inc/libft.h"
 
-int main(void)
+int ft_gcd(int x, int y)
 {
-	ft_printf("%zhd", 4294967296);
-	return (0);
+	int g;
+
+	x = ABS(x);
+	y = ABS(y);
+	if (x == 0 && y == 0)
+		return (-1);
+	g = y;
+	while (x > 0)
+	{
+		g = x;
+		x = y % x;
+		y = g;
+	}
+	return (g);
 }

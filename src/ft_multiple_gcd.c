@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_power.c                                         :+:      :+:    :+:   */
+/*   ft_multiple_gcd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/04 14:40:31 by rhallste          #+#    #+#             */
-/*   Updated: 2017/11/22 10:25:32 by rhallste         ###   ########.fr       */
+/*   Created: 2018/02/06 18:48:10 by rhallste          #+#    #+#             */
+/*   Updated: 2018/02/06 18:54:02 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "../inc/libft.h"
 
-int	ft_power(int base, int power)
+int ft_multiple_gcd(size_t size, int *tab)
 {
-	int i;
-	int	nb;
+	size_t	i;
+	int		gd;
 
+	if (size < 1)
+		return (0);
+	gd = tab[0];
 	i = 1;
-	nb = 1;
-	while (i <= power)
+	while (i < size && gd != 1)
 	{
-		nb *= base;
+		gd = ft_gcd(gd, tab[i]);
 		i++;
 	}
-	return (nb);
+	return (gd);
 }
