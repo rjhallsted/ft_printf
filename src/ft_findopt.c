@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:15:22 by rhallste          #+#    #+#             */
-/*   Updated: 2018/03/01 22:37:33 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/01 22:44:56 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int ft_findopt(int argc, char **argv, char flag, char *optvalue)
 	{
 		if (argv[i][0] == '-' && argv[i][1] == flag)
 		{
-			if (argv[i][2])
+			if (argv[i][2] && optvalue)
 				optvalue = ft_strdup(argv[i] + 2);
-			else if (argv[i + 1])
+			else if (argv[i + 1] && optvalue)
 				optvalue = ft_strdup(argv[i + 1]);
 			return (1);
 		}

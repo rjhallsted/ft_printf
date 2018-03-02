@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 22:38:43 by rhallste          #+#    #+#             */
-/*   Updated: 2018/03/01 22:40:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/01 22:44:43 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_findopt_long(int argc, char **argv, char* label, char *optvalue)
 		if (argv[i][0] == '-' && argv[i][1] == '-'
 			&& ft_strstr(argv[i], label) == argv[i] + 2)
 		{
-			if ((eqpos = ft_strchr(argv[i], '=')))
+			if ((eqpos = ft_strchr(argv[i], '=')) && optvalue)
 				optvalue = ft_strdup(eqpos + 1);
 			return (1);
 		}
