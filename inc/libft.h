@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2018/03/01 22:39:41 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/03 15:28:54 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int					ft_digitcount_base(uintmax_t n, unsigned int base);
 void				ft_free_2d_array(void ***array, size_t size);
 int					ft_gcd(int x, int y);
 int					ft_findopt(int argc, char **argv, char flag,
-								char *optvalue);
+								char **optvalue);
 int					ft_findopt_long(int argc, char **argv, char *label,
-								char *optvalue);
+								char **optvalue);
 int					ft_multiple_gcd(size_t size, int *tab);
 char				*ft_intmaxtoa(intmax_t n);
 char				*ft_intmaxtoa_base(intmax_t n, unsigned int base);
