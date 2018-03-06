@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/03/01 22:40:06 by rhallste         ###   ########.fr        #
+#    Updated: 2018/03/05 21:47:05 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -45,7 +45,8 @@ MEM			=	ft_bzero					\
 				ft_memdel					\
 				ft_memmove					\
 				ft_memset					\
-				ft_memrealloc
+				ft_memrealloc				\
+				ft_reverse_bytes
 
 VPRINTF		=	$(addprefix ft_vprintf_fd/,	\
 				ft_vprintf_fd				\

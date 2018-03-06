@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2018/03/03 15:28:54 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/05 21:47:34 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
+void				ft_reverse_bytes(void *mem, size_t size);
 char				*ft_strcat(char *s1, char const *s2);
 int					ft_strcmp(char const *s1, char const *s2);
 char				*ft_strchr(char const *s, int c);
