@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/03/05 21:47:05 by rhallste         ###   ########.fr        #
+#    Updated: 2018/03/06 22:58:58 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -130,6 +130,7 @@ UTIL		=	ft_digitcount				\
 				ft_findopt					\
 				ft_findopt_long				\
 				ft_multiple_gcd				\
+				ft_prompt					\
 				ft_pow						\
 				ft_pow_mod					\
 				ft_swap						\
