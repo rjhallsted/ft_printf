@@ -6,17 +6,17 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 22:38:43 by rhallste          #+#    #+#             */
-/*   Updated: 2018/03/03 15:28:07 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/06 19:49:03 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-int	ft_findopt_long(int argc, char **argv, char* label, char **optvalue)
+int	ft_findopt_long(int argc, char **argv, char *label, char **optvalue)
 {
 	int		i;
 	char	*eqpos;
-	
+
 	if (argc < 2)
 		return (0);
 	i = 0;

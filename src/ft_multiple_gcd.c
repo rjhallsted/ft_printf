@@ -6,14 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 18:48:10 by rhallste          #+#    #+#             */
-/*   Updated: 2018/02/06 18:54:02 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/06 19:50:06 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "../inc/libft.h"
 
-int ft_multiple_gcd(size_t size, int *tab)
+int	ft_multiple_gcd(size_t size, int *tab)
 {
 	size_t	i;
 	int		gd;

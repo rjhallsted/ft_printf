@@ -6,13 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 18:41:41 by rhallste          #+#    #+#             */
-/*   Updated: 2018/02/06 18:44:12 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/06 19:48:35 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-int ft_gcd(int x, int y)
+int	ft_gcd(int x, int y)
 {
 	int g;
 
