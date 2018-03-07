@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:31:58 by rhallste          #+#    #+#             */
-/*   Updated: 2018/03/06 22:58:31 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/06 23:01:24 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_padnumstr(const char *s, int pad_by);
 unsigned long		ft_pow(unsigned long base, unsigned long power);
-unsigned long		ft_pow_mod(unsigned long x, unsigned long y, unsigned long n);
+unsigned long		ft_pow_mod(unsigned long x, unsigned long y,
+								unsigned long n);
 void				ft_printmemory(const void *addr, size_t size);
 char				*ft_prompt(const char *prompt);
 void				ft_putchar(char c);

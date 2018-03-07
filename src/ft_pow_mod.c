@@ -6,13 +6,13 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 18:33:06 by rhallste          #+#    #+#             */
-/*   Updated: 2018/02/06 18:40:20 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/03/06 19:49:52 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-unsigned long ft_pow_mod(unsigned long x, unsigned long y, unsigned long n)
+unsigned long	ft_pow_mod(unsigned long x, unsigned long y, unsigned long n)
 {
 	unsigned long	s;
 
