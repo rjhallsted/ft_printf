@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 22:28:44 by rhallste          #+#    #+#             */
-/*   Updated: 2017/12/15 22:30:30 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/11/07 18:44:23 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@ char	*ft_strjoinfree(char *s1, char *s2, int option)
 	char *new;
 
 	new = ft_strjoin(s1, s2);
-	if (option == 1)
+	if (option == 1 || option == 3)
 		free(s1);
-	else if (option == 2)
+	if (option == 2 || option == 3)
 		free(s2);
-	else if (option == 3)
-	{
-		free(s1);
-		free(s2);
-	}
 	return (new);
 }
