@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/03/06 22:58:58 by rhallste         ###   ########.fr        #
+#    Updated: 2018/11/07 18:33:38 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -127,6 +127,7 @@ UTIL		=	ft_digitcount				\
 				ft_digitcount_base			\
 				ft_free_2d_array			\
 				ft_gcd						\
+				ft_get_file_contents		\
 				ft_findopt					\
 				ft_findopt_long				\
 				ft_multiple_gcd				\
