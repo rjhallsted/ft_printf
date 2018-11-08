@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 18:28:47 by rhallste          #+#    #+#             */
-/*   Updated: 2018/11/07 18:32:32 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/11/07 18:48:41 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_get_file_contents(int fd)
 	
 	contents = ft_strnew(0);
 	prog = 0;
-	while ((rv = read(fd, buff + prog, BUFF_SIZE)))
+	while ((rv = read(fd, buff, BUFF_SIZE)))
 	{
 		prog += rv;
 		buff[rv] = '\0';
