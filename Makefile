@@ -6,7 +6,7 @@
 #    By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 09:37:14 by rhallste          #+#    #+#              #
-#    Updated: 2018/11/07 18:33:38 by rhallste         ###   ########.fr        #
+#    Updated: 2018/11/08 20:04:31 by rhallste         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -59,6 +59,7 @@ VPRINTF		=	$(addprefix ft_vprintf_fd/,	\
 PRINTING	=	ft_printf					\
 				ft_printf_fd				\
 				ft_printmemory				\
+				ft_printmemory_binary		\
 				ft_putchar					\
 				ft_putchar_fd				\
 				ft_putendl					\
