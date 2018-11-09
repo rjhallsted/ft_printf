@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 19:55:17 by rhallste          #+#    #+#             */
-/*   Updated: 2018/11/08 20:10:44 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/11/08 20:32:10 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ static void	put_binary(int a)
 
 static void	put_spacing(int a)
 {
-	while (a < 16)
+	while (a < 4)
 	{
-		if (a % 2 == 1)
+		if (a % 4 == 1)
 		{
-			write(1, "   ", 3);
+			write(1, "       ", 7);
 			a++;
 		}
-		write(1, "     ", 5);
-		a += 2;
+		write(1, "         ", 9);
+		a += 1;
 	}
 }
 
@@ -53,18 +53,18 @@ void		ft_printmemory_binary(const void *addr, size_t size)
 	while (i < size)
 	{
 		tmp = i;
-		while (tmp < size && (tmp - i) < 16)
+		while (tmp < size && (tmp - i) < 4)
 		{
 			put_binary(mem[tmp++]);
-			if (tmp % 4 == 0)
-				write(1, " ", 1);
+			write(1, " ", 1);
 		}
-		if (tmp - i < 16)
+		if (tmp - i < 4)
 			put_spacing((int)(tmp - i));
-		while (++i <= tmp)
+		while (i < tmp)
 		{
-			c = (ft_isprint(mem[i - 1])) ? *(mem + i - 1) : '.';
+			c = (ft_isprint(mem[i])) ? *(mem + i) : '.';
 			write(1, &c, 1);
+			i++;
 		}
 		write(1, "\n", 1);
 	}
