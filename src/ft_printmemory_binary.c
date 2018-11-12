@@ -6,7 +6,7 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 19:55:17 by rhallste          #+#    #+#             */
-/*   Updated: 2018/11/08 20:32:10 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/11/11 17:32:32 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	put_binary(int a)
 {
 	char	*str;
 	int		len;
-	
+
 	str = ft_itoa_base(a, 2);
 	len = ft_strlen(str);
 	write(1, "00000000", 8 - len);
