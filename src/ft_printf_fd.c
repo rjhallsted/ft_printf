@@ -6,13 +6,14 @@
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:47:38 by rhallste          #+#    #+#             */
-/*   Updated: 2018/02/12 16:55:21 by rhallste         ###   ########.fr       */
+/*   Updated: 2018/11/21 21:28:28 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "../inc/libft.h"
+#include "../inc/ft_printf.h"
 
 int	ft_printf_fd(int fd, const char *format, ...)
 {
