@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_block.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhallste <rhallste@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/09 16:40:51 by rhallste          #+#    #+#             */
-/*   Updated: 2018/11/21 20:33:37 by rhallste         ###   ########.fr       */
+/*   Created: 2018/11/21 20:37:02 by rhallste          #+#    #+#             */
+/*   Updated: 2018/11/21 21:05:17 by rhallste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_BLOCK_H
+# define GET_NEXT_BLOCK_H
 
-# ifndef BUFF_SIZE
-#  define BUFF_SIZE 31
-# endif
+# define BLOCK_BUFF_SIZE 10000
 
-typedef struct		s_fdb
+typedef struct		s_gnb
 {
 	int				fd;
 	int				len;
-	char			buff[BUFF_SIZE + 1];
-	struct s_fdb	*next;
-}					t_fdb;
+	char			buff[BLOCK_BUFF_SIZE + 1];
+	struct s_gnb	*next;
+}					t_gnb;
 
-int					get_next_line(const int fd, char **line);
+int					get_next_block(const int fd, char **block,
+								   size_t block_size);
 
 #endif
